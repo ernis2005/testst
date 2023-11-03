@@ -1,0 +1,29 @@
+.card {
+  .image {
+    position: relative;
+    width: 100%;
+    height: 466px;
+  }
+
+  h3 {
+    color: var(--dark, #161616);
+    font-family: Gilroy-SemiBold;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    margin: 30px 0;
+  }
+
+  p {
+    color: var(--dark, #161616);
+    text-align: justify;
+    font-family: Gilroy-Medium;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.8;
+  }
+}
