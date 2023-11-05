@@ -9,7 +9,7 @@ import News from '../../../public/imgs/news.png'
 export default function NewsCard() {
   return (
     <div className={s.card}>
-      <Image className={s.image} objectFit='cover' src={News} alt="" />
+      <Image className={s.image} width={100} height={100} src={News} alt="" />
       <div className={s.card_wrapper}>
         <div className={s.title}>
           <h2>

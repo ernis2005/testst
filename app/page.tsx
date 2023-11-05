@@ -7,11 +7,12 @@ import { MdOutlineLocalPhone } from 'react-icons/md'
 import Link from 'next/link'
 import ServiceCard from '@/components/Cards/ServiceCard/ServiceCard';
 import iPhone15 from '../public/imgs/iPhone15.png'
-import Appstore from '@/components/svg/Appstore';
-import PlayMarket from '@/components/svg/PlayMarket';
 import NewsCard from '@/components/Cards/NewsCard/NewsCard';
 import Accordion from '@/components/Accordion/Accordion';
-
+import Iphone from '../public/imgs/iPhone15.png'
+import Play from '../public/imgs/play.png'
+import Appstore from '../public/imgs/appstore.png'
+import { MdLocalPhone } from 'react-icons/md';
 
 
 const data = [{
@@ -51,6 +52,85 @@ const avatar = [{
   img: '/imgs/avatar4.png'
 }
 ]
+
+const accordion = [
+  {
+    id: 1,
+    title: 'Orci a vitae ut fringilla lacus. At vel dapibus orci elementum ac at?',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing'
+  },
+  {
+    id: 2,
+    title: 'Orci a vitae ut fringilla lacus. At vel dapibus orci elementum ac at?',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing'
+  },
+  {
+    id: 3,
+    title: 'Orci a vitae ut fringilla lacus. At vel dapibus orci elementum ac at?',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing'
+  },
+  {
+    id: 4,
+    title: 'Orci a vitae ut fringilla lacus. At vel dapibus orci elementum ac at?',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing'
+  },
+  {
+    id: 5,
+    title: 'Orci a vitae ut fringilla lacus. At vel dapibus orci elementum ac at?',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing'
+  },
+  {
+    id: 6,
+    title: 'Orci a vitae ut fringilla lacus. At vel dapibus orci elementum ac at?',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing'
+  },
+  {
+    id: 7,
+    title: 'Orci a vitae ut fringilla lacus. At vel dapibus orci elementum ac at?',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor sit amet, consectetur adipiscing'
+  },
+]
+
+const logo = [
+  {
+    id: 1,
+    img: '/imgs/bmw.png',
+    title: 'BMW'
+  },
+  {
+    id: 2,
+    img: '/imgs/tesla.png',
+    title: 'TESLA'
+  },
+  {
+    id: 3,
+    img: '/imgs/apple.png',
+    title: 'APPLE'
+  },
+  {
+    id: 4,
+    img: '/imgs/toyota.png',
+    title: 'TOYOTA'
+  },
+  {
+    id: 5,
+    img: '/imgs/porsche.png',
+    title: 'PORSCHE'
+  },
+  {
+    id: 6,
+    img: '/imgs/bmw.png',
+    title: 'BMW'
+  },
+  {
+    id: 7,
+    img: '/imgs/tesla.png',
+    title: 'TESLA'
+  },
+
+]
+
+
 export default function Home() {
 
 
@@ -61,15 +141,14 @@ export default function Home() {
           <div className={s.Hero}>
             <h1>Dui sapien aliquet aliquam</h1>
             <div className={s.Hero_title}>
-              <p></p>
               <p>
                 Quis fringilla convallis et vitae volutpat at porttitor. Est tincidunt massa aliquam sed enim rhoncus. Id nullam sollicitudin aliquet in.
               </p>
-              <Link href='#' className={s.link}>
-                <MdOutlineLocalPhone className={s.logo} />
-              </Link>
             </div>
-            <Image src={BgImage} alt="" />
+            <Image className={s.hero_img} objectFit='cover' src={BgImage} alt="" />
+            <a href="#" className={s.link}>
+              <MdLocalPhone className={s.logo} />
+            </a>
           </div>
         </div>
         <div className={s.compony}>
@@ -82,7 +161,7 @@ export default function Home() {
               </button>
             </div>
             <div className={s.compony_left}>
-              <Image className='w-[864px]' src={ComponyImg} alt="" />
+              <Image className={s.img} objectFit='cover' src={ComponyImg} alt="" />
               <div className={s.compomny_wrapper}>
                 <div className={s.compony_blog}>
                   <h3>30+</h3>
@@ -95,9 +174,20 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className={s.compomy_slide}>
+            {logo.map((e) => {
+              return (
+                <div key={e.id} className={s.slide}>
+                  <img width={100} height={100} className={s.slide_img} src={e.img} alt="" />
+                  <p>{e.title}</p>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
       <div className={s.blog_service}>
+
         <div className='container'>
           <div className={s.service}>
             <div className=''>
@@ -126,37 +216,39 @@ export default function Home() {
                   </p>
                 </div>
                 <div className={s.iphone}>
-                  <div className={s.iphone15} />
+                  <Image className={s.iphone15} src={Iphone} alt="" />
                 </div>
                 <div className={s.button}>
-                  <div>
-                    <h3>2000+</h3>
-                    <p>
-                      Quis fringilla convallis et vitae volutpat at porttitor.
-                    </p>
-                  </div>
-                  <div className='flex -space-x-10'>
-                    {avatar.map((e) => {
-                      return (
-                        <Image key={e.id} className={s.image} width={100} height={100} src={e.img} alt="" />
-                      )
-                    })}
-                    <div className={s.Avatar}>
-                      <span>
-                        212+
-                      </span>
+                  <div className={s.button_title}>
+                    <div>
+                      <h3>2000+</h3>
+                      <p>
+                        Quis fringilla convallis et vitae volutpat at porttitor.
+                      </p>
+                    </div>
+                    <div className='flex -space-x-5  lg:-space-x-10'>
+                      {avatar.map((e) => {
+                        return (
+                          <Image key={e.id} className={s.image} width={100} height={100} src={e.img} alt="" />
+                        )
+                      })}
+                      <div className={s.Avatar}>
+                        <span>
+                          212+
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div className={s.Links}>
                     <Link className={s.Item} href="#">
-                      <PlayMarket />
+                      <Image className={s.logo} src={Play} alt="" />
                       <div>
                         <span>ANDROID APP ON</span>
                         <h4>Google play</h4>
                       </div>
                     </Link>
                     <Link className={s.Item} href="#">
-                      <Appstore />
+                      <Image className={s.logo} src={Appstore} alt="" />
                       <div>
                         <span>Download on the</span>
                         <h4>App Store</h4>
@@ -170,12 +262,14 @@ export default function Home() {
         </div>
       </div>
       <div className={s.blog_news}>
-        <div className='container'>
+        <div className={s.container}>
           <div className={s.news}>
-            <h2>Будьте в курсе наших последних событий</h2>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-            </p>
+            <div className='container'>
+              <h2>Будьте в курсе наших последних событий</h2>
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+              </p>
+            </div>
             <div className={s.new_wrapper}>
               {[1, 2, 3].map((e) => {
                 return (
@@ -185,16 +279,22 @@ export default function Home() {
             </div>
           </div>
           <div className={s.accordion}>
-            <div className={s.accordion_wrapper}>
-              {[1, 2, 3, 4].map((e) => {
-                return (
-                  <Accordion key={e} />
-                )
-              })}
+            <div className='container'>
+              <div className={s.accordion_wrapper}>
+                <div>
+                  <h2>F.A.Q</h2>
+                  <h3>Вопросы и ответы</h3>
+                </div>
+                {accordion.map((e) => {
+                  return (
+                    <Accordion key={e.id} props={e} />
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 }

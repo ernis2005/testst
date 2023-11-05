@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 482px;
+  @media screen and (max-width: 1000px) {
+    min-width: 420px;
+  }
+
+  @media screen and (max-width: 600px) {
+    min-width: 241px;
+  }
 
   .image {
     width: 100%;
@@ -12,10 +20,19 @@
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    @media screen and (max-width: 600px) {
+      gap: 8px;
+    }
     .title {
       display: flex;
       flex-direction: column;
       gap: 12px;
+      @media screen and (max-width: 1140px) {
+        gap: 0px;
+      }
+      @media screen and (max-width: 600px) {
+        gap: 6px;
+      }
       h2 {
         color: var(--dark, #161616);
         font-family: Gilroy-SemiBold;
@@ -24,6 +41,13 @@
         font-weight: 400;
         line-height: normal;
         text-align: start;
+
+        @media screen and (max-width: 1140px) {
+          font-size: 26px;
+        }
+        @media screen and (max-width: 600px) {
+          font-size: 15px;
+        }
       }
       p {
         color: var(--dark, #161616);
@@ -33,6 +57,12 @@
         font-weight: 300;
         line-height: normal;
         text-align: start;
+        @media screen and (max-width: 1140px) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: 600px) {
+          font-size: 12px;
+        }
       }
     }
 
@@ -41,10 +71,24 @@
       background-color: #fff;
       box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.2);
       border-radius: 50%;
+      @media screen and (max-width: 1140px) {
+        padding: 19px;
+      }
+      @media screen and (max-width: 600px) {
+        padding: 10px;
+      }
 
       .logo {
         width: 48px;
         height: 48px;
+        @media screen and (max-width: 1140px) {
+          width: 32px;
+          height: 32px;
+        }
+        @media screen and (max-width: 600px) {
+          width: 24px;
+          height: 24px;
+        }
       }
     }
   }

@@ -1,33 +1,62 @@
 .Header {
-  padding: 40px 0px 30px 0px;
-  border-bottom: 1px solid #161616;
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 40px 0px 30px 0px;
+    border-bottom: 1px solid #161616;
+    @media screen and (max-width: 600px) {
+      padding: 20px 0px 10px 0px;
+    }
 
     .header_logo {
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-    span {
-      color: var(--blue, #0051c7);
-      font-family: Gilroy;
-      font-size: 26px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
+
+      span {
+        color: var(--blue, #0051c7);
+        font-family: Gilroy;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        @media screen and (max-width: 600px) {
+          font-size: 12.209px;
+        }
+      }
+      .logo {
+        @media screen and (max-width: 600px) {
+          width: 50px;
+        }
+      }
     }
 
     .header_menu {
       display: flex;
       align-items: center;
       gap: 60px;
+      @media screen and (max-width: 1140px) {
+        justify-content: space-between;
+        gap: 0;
+      }
+      @media screen and (max-width: 1000px) {
+        gap: 40px;
+      }
+      @media screen and (max-width: 600px) {
+        gap: 20px;
+      }
+
+      .mobile {
+      }
 
       .header_link {
         display: flex;
         align-items: center;
+
+        @media screen and (max-width: 1000px) {
+          display: none;
+        }
         li {
           padding: 0 20px;
           border-right: 1px solid #161616;
@@ -47,7 +76,7 @@
         }
       }
 
-      button {
+      .header_button {
         color: #fff;
         font-family: Gilroy-SemiBold;
         font-size: 20px;
@@ -56,6 +85,22 @@
         line-height: normal;
         padding: 10px 30px;
         background: #0051c7;
+
+        @media screen and (max-width: 600px) {
+          font-size: 16px;
+        }
+      }
+
+      .toggle {
+        display: none;
+        @media screen and (max-width: 1000px) {
+          display: block;
+
+          .logo {
+            width: 30px;
+            height: 30px;
+          }
+        }
       }
     }
   }
