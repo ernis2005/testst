@@ -769,17 +769,8 @@
     @media screen and (max-width: 600px) {
       margin-top: 40px;
     }
-    .accordion_wrapper {
-      display: grid;
-      grid-template-columns: 6fr 6fr;
-      row-gap: 20px;
-      column-gap: 40px;
-      @media screen and (max-width: 1000px) {
-        grid-template-columns: 12fr;
-      }
-      @media screen and (max-width: 600px) {
-        gap: 10px;
-      }
+
+    .accor_title {
       h2 {
         color: var(--dark, #161616);
         font-family: Gilroy;
@@ -808,6 +799,36 @@
         @media screen and (max-width: 600px) {
           font-size: 26px;
         }
+      }
+      p {
+        color: var(--dark, #161616);
+        font-family: Gilroy-SemiBold;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 185%;
+        margin: 20px 0 40px;
+        @media screen and (max-width: 1000px) {
+          font-size: 18px;
+          margin: 10px 0 20px;
+        }
+        @media screen and (max-width: 600px) {
+          font-size: 12px;
+          margin: 5px 0 20px;
+        }
+      }
+    }
+
+    .accordion_wrapper {
+      display: grid;
+      grid-template-columns: 6fr 6fr;
+      row-gap: 20px;
+      column-gap: 40px;
+      @media screen and (max-width: 1000px) {
+        grid-template-columns: 12fr;
+      }
+      @media screen and (max-width: 600px) {
+        gap: 10px;
       }
     }
   }

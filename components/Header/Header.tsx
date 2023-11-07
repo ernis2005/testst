@@ -10,26 +10,26 @@ export default function Header() {
       <div className={`${s.Header}`}>
         <div className='container'>
           <nav className=''>
-            <div className={s.header_logo}>
+            <Link href="/" className={s.header_logo}>
               <Image className={s.logo} src={Logo} alt="" />
               <span >КОС и КОГ</span>
-            </div>
+            </Link>
             <div className={s.header_menu}>
               <ul className={`${s.header_link}`}>
                 <li className='px-[20px]'>
                   <Link href="/">Главная</Link>
                 </li>
                 <li>
-                  <Link href="/Compony">О компании</Link>
+                  <Link href="/page/compony">О компании</Link>
                 </li>
                 <li>
-                  <Link href="#">Новости</Link>
+                  <Link href="/page/news">Новости</Link>
                 </li>
                 <li>
-                  <Link href="#">Вопросы</Link>
+                  <Link href="/page/questions">Вопросы</Link>
                 </li>
                 <li>
-                  <Link href="#">Контакты</Link>
+                  <Link href="/page/contact">Контакты</Link>
                 </li>
               </ul>
               <button className={s.header_button}>Войти</button>

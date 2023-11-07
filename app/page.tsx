@@ -280,11 +280,12 @@ export default function Home() {
           </div>
           <div className={s.accordion}>
             <div className='container'>
+              <div className={s.accor_title}>
+                <h2>F.A.Q</h2>
+                <h3>Вопросы и ответы</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text </p>
+              </div>
               <div className={s.accordion_wrapper}>
-                <div>
-                  <h2>F.A.Q</h2>
-                  <h3>Вопросы и ответы</h3>
-                </div>
                 {accordion.map((e) => {
                   return (
                     <Accordion key={e.id} props={e} />

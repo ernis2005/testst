@@ -49,7 +49,6 @@ export default function Accordion({ props }: Accotdion) {
           </div>
         </Collapse>
       </div>
-
-    </div >
+    </div>
   )
 }
