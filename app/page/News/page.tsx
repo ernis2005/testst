@@ -21,7 +21,7 @@ export default function NewsPage() {
               <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h3>
               <div className={s.data}>
                 <p>03.04.2023</p>
-                <Link className={s.link} href="#">Читать полностью  <FiArrowUpRight className={s.logo} /> </Link>
+                <Link className={s.link} href={`news/${1}`}>Читать полностью  <FiArrowUpRight className={s.logo} /> </Link>
               </div>
             </div>
           </div>
