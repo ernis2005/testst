@@ -2,24 +2,13 @@
 import React, { useRef, useState } from 'react';
 import s from './page.module.scss'
 import Image from 'next/image'
-import { GrFormView } from 'react-icons/gr'
+import { FaEye } from 'react-icons/fa'
 import Images from '../../../../public/imgs/newscard.png'
 import { FiArrowUpRight } from 'react-icons/fi'
 import Link from 'next/link'
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import 'swiper/css';
-// import 'swiper/css/pagination';
-// import { Pagination } from 'swiper/modules';
-
-
 
 export default function NewsIn() {
-  // const pagination = {
-  //   clickable: true,
-  //   renderBullet: function (index, className) {
-  //     return '<span class="' + className + '">' + (index + 1) + '</span>';
-  //   },
-  // };
+
   return (
     <div className={s.news_in}>
       <div className='container'>
@@ -28,22 +17,10 @@ export default function NewsIn() {
             <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h2>
             <div className={s.card}>
               <Image objectFit='cover' layout='responsive' width={1000} height={1000} className={s.image} src={'/imgs/nesin.png'} alt="" />
-              {/* <Swiper
-                pagination={pagination}
-                modules={[Pagination]}
-                className={s.mySwiper}
-              >
-                <SwiperSlide>
-                  <Image objectFit='cover' layout='responsive' width={1000} height={1000} className={s.image} src={'/imgs/nesin.png'} alt="" />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Image objectFit='cover' layout='responsive' width={1000} height={1000} className={s.image} src={'/imgs/nesin.png'} alt="" />
-                </SwiperSlide>
-              </Swiper> */}
               <div className={s.title}>
                 <h5>03.04.2023</h5>
                 <p>
-                  <GrFormView className={s.logo} />
+                  <FaEye className={s.logo} />
                   <span>34 просмотра</span>
                 </p>
               </div>
