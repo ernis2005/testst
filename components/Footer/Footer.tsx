@@ -2,7 +2,7 @@ import React from 'react'
 import s from './page.module.scss'
 import Logo from '../../public/imgs/Logo.png'
 import Oracle from '../../public/imgs/Oracle.png'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import Email from '../svg/Email'
 import Location from '../svg/Location'

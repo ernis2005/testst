@@ -1,7 +1,7 @@
 'use client'
 import React, { useRef, useState } from 'react';
 import s from './page.module.scss'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { FaEye } from 'react-icons/fa'
 import Images from '../../../../public/imgs/newscard.png'
 import { FiArrowUpRight } from 'react-icons/fi'
@@ -16,7 +16,7 @@ export default function NewsIn() {
           <div className={s.cards}>
             <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </h2>
             <div className={s.card}>
-              <Image objectFit='cover' layout='responsive' width={1000} height={1000} className={s.image} src={'/imgs/nesin.png'} alt="" />
+              <Image width={1064} height={500} className={s.image} src={'/imgs/nesin.png'} alt="" />
               <div className={s.title}>
                 <h5>03.04.2023</h5>
                 <p>

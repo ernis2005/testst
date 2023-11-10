@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import s from './page.module.scss'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Logo from '../../public/imgs/Logo.png'
 import Link from 'next/link'
 import { RiMenu3Fill, RiCloseFill } from 'react-icons/ri'

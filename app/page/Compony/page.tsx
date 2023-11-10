@@ -1,7 +1,7 @@
 
 import React, { useRef, useState } from 'react';
 import s from './page.module.scss'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Com from '../../../public/imgs/com.png'
 import Com2 from '../../../public/imgs/hero.png'
 import Slider from '@/components/Slider/Slider';

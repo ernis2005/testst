@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './page.module.scss'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import { FiArrowUpRight } from 'react-icons/fi'
 import Imgs from '../../../public/imgs/newscard.png'

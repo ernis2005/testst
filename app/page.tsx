@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import s from './page.module.scss'
 import ComponyImg from '../public/imgs/compony.png'
 import { FiArrowUpRight } from 'react-icons/fi'
