@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './page.module.scss'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import Link from 'next/link'
 import { FiArrowUpRight } from 'react-icons/fi'
 import News from '../../../public/imgs/news.png'
@@ -9,7 +9,7 @@ import News from '../../../public/imgs/news.png'
 export default function NewsCard() {
   return (
     <div className={s.card}>
-      <Image className={s.image} width={100} height={100} src={News} alt="" />
+      <Image src={News} alt="" />
       <div className={s.card_wrapper}>
         <div className={s.title}>
           <h2>

@@ -85,9 +85,7 @@
 
   .hero_img {
     width: 100%;
-    @media screen and (max-width: 600px) {
-      height: 280px;
-    }
+    height: auto;
   }
 }
 

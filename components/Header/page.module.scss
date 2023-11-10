@@ -48,6 +48,9 @@
       }
 
       .mobile {
+        display: block;
+        position: absolute;
+        flex-direction: column;
       }
 
       .header_link {
@@ -102,6 +105,41 @@
           }
         }
       }
+    }
+  }
+
+  .toggle_menu {
+    position: absolute;
+    top: 130px;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #f6f6f6;
+    padding: 30px;
+    z-index: 11;
+    transition: all 1s ease-in-out;
+    @media screen and (max-width: 600px) {
+      top: 70px;
+    }
+
+    li {
+      padding: 15px 20px;
+      margin: 10px 0;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .link {
+      color: #161616;
+      font-family: Gilroy-SemiBold;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
     }
   }
 }
