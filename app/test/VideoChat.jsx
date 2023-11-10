@@ -1,17 +1,26 @@
 'use client';
-
 import React, { useEffect, useState, useRef } from 'react';
 import Video from 'twilio-video';
+import Participant from './Participant'
 import './VideoChat.css';
+
 
 function VideoChat() {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
+  const [isFirstTime, setIsFirstTime] = useState(true)
   const localVideoRef = useRef(null);
-  console.log(room);
+  
   useEffect(() => {
+    console.log(isFirstTime)
+    setIsFirstTime(false)
     const connectToRoom = async () => {
       try {
+        // const videoTrack = await Video.createLocalVideoTrack();
+        // const trackElement = videoTrack.attach();
+
+        // localVideoRef.current.appendChild(trackElement);
+
         const response = await fetch(
           `http://192.168.89.9:5001/token?identity=ernis&room=Operator2`,
         );
@@ -27,10 +36,7 @@ function VideoChat() {
         setRoom(newRoom);
 
         // Добавляем локальный видеопоток
-        const videoTrack = await Video.createLocalVideoTrack();
-        const trackElement = videoTrack.attach();
-
-        localVideoRef.current.appendChild(trackElement);
+        
       } catch (error) {
         console.error('Error connecting to the room:', error);
       }
@@ -59,6 +65,7 @@ function VideoChat() {
         room.off('participantDisconnected', participantDisconnected);
       }
     };
+
   }, [room]);
 
   const participantConnected = (participant) => {
@@ -72,28 +79,17 @@ function VideoChat() {
       prevParticipants.filter((p) => p !== participant),
     );
   };
-  console.log(localVideoRef, 'hrllo')
-  console.log(participants,'participants');
+
+
+  console.log(participants);
   return (
     <div className="video-chat-container">
-      <div ref={localVideoRef} 
-      className="local-video-container"
-      style={{
-        width: 200, height: 200, background: 'black'
-      }}
-      ></div>
-      {participants.map((participant) => (
-          <div key={participant.sid} className="participant-container">
-            <p>{participant.identity}</p>
-            <video
-                      key={participant.sid}
-                      autoPlay
-                      ref={(ref) =>{
-                        console.log(participant.attach ,'hello') 
-                        // return track.attach(ref) 
-                      }}/>
+      {room && <Participant participant={room.localParticipant} />}
+      {participants.map((participant,i) =>(
+          <div key={i} className="participant-container">
+            <Participant participant={participant} />
           </div>
-        ))}
+  ))}
     </div>
   );
 }
