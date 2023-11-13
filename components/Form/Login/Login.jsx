@@ -19,8 +19,6 @@ export default function Login() {
     setEye(!eye);
   };
 
-  console.log(error);
-
   const submitForm = (data) => {
     if (data.password.length >= 7) {
       dispatch(userLogin(data));

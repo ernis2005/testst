@@ -28,7 +28,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/Form/Redister/Register.jsx",
-    "components/Form/Login/Login.jsx"
+    "components/Form/Login/Login.jsx",
+    "components/Form/Confirmation/Confirmation.jsx"
   ],
   "exclude": ["node_modules"]
 }

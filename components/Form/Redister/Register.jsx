@@ -4,21 +4,22 @@ import s from './page.module.scss';
 import { InputMask } from '@react-input/mask';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { registerUser } from '@/app/store/slice/authSlice';
+import { registerUser } from '@/app/store/slice/registerSlice';
 
 export default function Register() {
-  const { register, handleSubmit } = useForm();
+  const { data, register, handleSubmit } = useForm();
   const [customError, setCustomError] = useState(null);
   const dispatch = useDispatch();
+  console.log(data);
 
   const submitRegister = (data) => {
-    dispatch(registerUser(data));
-    // if (data.password === data.confirmPassword) {
-    //   dispatch(registerUser(data));
-    // } else {
-    //   setCustomError('Password mismatch');
-    //   console.log(customError);
-    // }
+    // dispatch(registerUser(data));
+    if (data.password === data.confirmPassword) {
+      dispatch(registerUser(data));
+    } else {
+      setCustomError('Password mismatch');
+      console.log(customError);
+    }
   };
   return (
     <>
@@ -45,6 +46,9 @@ export default function Register() {
           <div className={s.wrapper}>
             <label htmlFor="password">Пароль</label>
             <input
+              // style={{
+              //   border: data >= 7 ? '#000' : 'red',
+              // }}
               {...register('password')}
               type="password"
               placeholder="Введите ваш пароль"
