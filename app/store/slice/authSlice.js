@@ -1,31 +1,87 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { useEffect } from 'react';
+import axios from 'axios';
 
+const backendURL = 'http://185.251.88.75/api/';
 const initialState = {
-  full_name: '',
-  password: '',
-  phone: '',
+  isUser: false,
   loading: false,
-  error: '',
-  isAutor: false,
+  userInfo: null,
+  userToken: null,
+  error: null,
+  success: false,
 };
-
-export const signUpUser = createAsyncThunk(
-  'data/fetchData',
-  async (requestData, { rejectWithValue }) => {
+export const userLogin = createAsyncThunk(
+  'users/login',
+  async ({ login, password }, { rejectWithValue, dispatch }) => {
+    const number = login.replace(/\D/g, '');
     try {
-      const phoneNumberWithoutMask = requestData.login.replace(/\D/g, '');
-
-      const data = {
-        login: phoneNumberWithoutMask,
-        password: requestData.password,
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       };
-      const response = await axios.post(
-        'http://185.251.88.75/api/users/login/',
-        data,
+      const data = await axios.post(
+        `${backendURL}users/login/`,
+        {
+          login: number,
+          password: password,
+        },
+        config,
       );
-      console.log(response.data);
-      return response.data;
+      dispatch(userProfile(data.data.tokens.access));
+      localStorage.setItem(
+        'userToken',
+        JSON.stringify(data.data.tokens.access),
+      );
+      return data;
     } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const userProfile = createAsyncThunk(
+  'users/profile',
+  async function (id, { dispatch }) {
+    try {
+      const response = await axios.get(`${backendURL}users/profile/`, {
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${id}`,
+        },
+      });
+      dispatch(autoLogin(response));
+    } catch (error) {
+      return error;
+    }
+  },
+);
+
+export const registerUser = createAsyncThunk(
+  'users/register',
+  async ({ full_name, phone, password }, { rejectWithValue }) => {
+    const number = phone.replace(/\D/g, '');
+    console.log(number, full_name, password);
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+      const user = await axios.post(
+        `${backendURL}users/register/`,
+        {
+          phone: number,
+          full_name,
+          password,
+        },
+        config,
+      );
+      console.log(user);
+      return user.data;
+    } catch (error) {
+      console.log(error);
       return rejectWithValue(error);
     }
   },
@@ -34,23 +90,45 @@ export const signUpUser = createAsyncThunk(
 const authSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
-  extraReducers: {
-    [signUpUser.pending]: (state, action) => {
-      state.loading = true;
+  reducers: {
+    autoLogin: (state, action) => {
+      state.userInfo = action.payload.data;
     },
-    [signUpUser.fulfilled]: (state, { payload: { error } }) => {
-      // state.loading = false;
-      // if (error) {
-      //   state.error = error;
-      // } else {
-      //   state.msg = msg;
-      // }
-    },
-    [signUpUser.rejected]: (state, action) => {
-      state.loading = true;
+    autoRegister: (state, action) => {
+      state.userInfo = action;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(userLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userLogin.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.isUser = true;
+        state.userInfo = payload;
+        state.userToken = payload.data.tokens.access;
+      })
+      .addCase(userLogin.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload.response.data.detail || 'An error occurred';
+        console.log(payload.response.data.detail);
+      })
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(registerUser.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.loading = false;
+      })
+      .addCase(registerUser.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+        console.log(payload);
+      });
+  },
 });
-
+export const { autoLogin } = authSlice.actions;
 export default authSlice.reducer;

@@ -130,7 +130,6 @@ const logo = [
 
 ]
 
-
 export default function Home() {
 
 
@@ -187,7 +186,6 @@ export default function Home() {
         </div>
       </div>
       <div className={s.blog_service}>
-
         <div className='container'>
           <div className={s.service}>
             <div className=''>
@@ -216,7 +214,9 @@ export default function Home() {
                   </p>
                 </div>
                 <div className={s.iphone}>
-                  <Image className={s.iphone15} src={Iphone} alt="" />
+                  <div className={s.iphone15}>
+                    <Image objectFit="cover" src={Iphone} alt="" />
+                  </div>
                 </div>
                 <div className={s.button}>
                   <div className={s.button_title}>
@@ -229,7 +229,9 @@ export default function Home() {
                     <div className='flex -space-x-5  lg:-space-x-10'>
                       {avatar.map((e) => {
                         return (
-                          <Image key={e.id} className={s.image} width={100} height={100} src={e.img} alt="" />
+                          <div className={s.image}>
+                            <Image key={e.id} width={100} height={100} src={e.img} alt="" />
+                          </div>
                         )
                       })}
                       <div className={s.Avatar}>

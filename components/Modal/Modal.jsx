@@ -5,8 +5,10 @@ import { InputMask } from '@react-input/mask';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { RiCloseFill } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUpUser } from '../../app/store/slice/authSlice';
 import { useForm } from 'react-hook-form';
+import { userLogin } from '@/app/store/slice/authSlice';
+import Register from '../Form/Redister/Register';
+import Login from '../Form/Login/Login';
 
 export default function Modal({ modal, setModal }) {
   const [eye, setEye] = useState(false);
@@ -14,18 +16,20 @@ export default function Modal({ modal, setModal }) {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
 
+  const { loading, error, isUser } = useSelector((state) => state.auth);
   const eyeFuntion = (e) => {
     e.preventDefault();
     setEye(!eye);
   };
-  const onSubmit = (data) => {
-    console.log(data);
-    dispatch(signUpUser(data));
-  };
+
+  if (isUser) {
+    setModal(!modal);
+  }
 
   const handleTabClick = (index) => {
     setActiveTab(index);
   };
+
   return (
     <div className={s.modal}>
       <div className={s.blog}>
@@ -48,90 +52,58 @@ export default function Modal({ modal, setModal }) {
             </button>
           </div>
         )}
+        {error && <p className={s.error}>{error}</p>}
 
         {activeTab === 1 && (
-          <div className={s.login}>
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
-              <div className={s.input}>
-                <label htmlFor="tel">Номер телефона</label>
-                <InputMask
-                  className={s.tel}
-                  {...register('login')}
-                  mask="+996 (___) ___-___"
-                  placeholder="+996"
-                  replacement={{ _: /\d/ }}
-                />
-              </div>
-              <div className={s.input}>
-                <label htmlFor="password">Пароль</label>
-                <div className={s.password}>
-                  <input
-                    {...register('password')}
-                    className={s.pass}
-                    placeholder="Введите ваш пароль"
-                    type={eye ? 'text' : 'password'}
-                  />
-                  <button onClick={eyeFuntion}>
-                    {eye ? (
-                      <AiOutlineEye className={s.logo} />
-                    ) : (
-                      <AiOutlineEyeInvisible className={s.logo} />
-                    )}
-                  </button>
-                </div>
-              </div>
-              <button type="submit" className={s.button}>
-                <span> Войти</span>
-              </button>
-            </form>
+          <>
+            <Login />
             <button onClick={() => handleTabClick(3)} className={s.link}>
               <span>Забыли пароль?</span>
             </button>
-          </div>
+          </>
+          // <div className={s.login}>
+          //   <form action="" onSubmit={handleSubmit(submitForm)}>
+          //     <div className={s.input}>
+          //       <label htmlFor="tel">Номер телефона</label>
+          //       <InputMask
+          //         className={s.tel}
+          //         {...register('login')}
+          //         mask="+996 (___) ___-___"
+          //         placeholder="+996"
+          //         replacement={{ _: /\d/ }}
+          //       />
+          //     </div>
+          //     <div className={s.input}>
+          //       <label htmlFor="password">Пароль</label>
+          //       <div className={s.password}>
+          //         <input
+          //           {...register('password')}
+          //           className={s.pass}
+          //           placeholder="Введите ваш пароль"
+          //           type={eye ? 'text' : 'password'}
+          //         />
+          //         <button onClick={eyeFuntion}>
+          //           {eye ? (
+          //             <AiOutlineEye className={s.logo} />
+          //           ) : (
+          //             <AiOutlineEyeInvisible className={s.logo} />
+          //           )}
+          //         </button>
+          //       </div>
+          //     </div>
+          //     <button type="submit" className={s.button}>
+          //       <span> {loading ? 'loading' : 'Войти'} </span>
+          //     </button>
+          //   </form>
+          //   <button onClick={() => handleTabClick(3)} className={s.link}>
+          //     <span>Забыли пароль?</span>
+          //   </button>
+          // </div>
         )}
         {activeTab === 2 && (
-          <div className={s.register}>
-            <form>
-              <div className={s.wrapper}>
-                <label htmlFor="text">ФИО</label>
-                <input
-                  {...register('full_name')}
-                  type="text"
-                  placeholder="Введите ФИО"
-                />
-              </div>
-              <div className={s.wrapper}>
-                <label htmlFor="tel">Номер телефона</label>
-                <InputMask
-                  {...register('phone')}
-                  className={s.tel}
-                  mask="+996 (___) ___-___"
-                  placeholder="+996"
-                  replacement={{ _: /\d/ }}
-                />
-              </div>
-              <div className={s.wrapper}>
-                <label htmlFor="password">Пароль</label>
-                <input
-                  {...register('password')}
-                  type="password"
-                  placeholder="Введите ваш пароль"
-                />
-              </div>
-              <div className={s.wrapper}>
-                <label htmlFor="password">Повторите пароль</label>
-                <input
-                  {...register('confirmPassword')}
-                  type="password"
-                  placeholder="Повторите пароль"
-                  required
-                />
-              </div>
-              <button className={s.button}>
-                <span>Зарегистрироваться</span>
-              </button>
-            </form>
-          </div>
+          <>
+            <Register />
+          </>
         )}
 
         {activeTab === 3 && (

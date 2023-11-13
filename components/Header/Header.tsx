@@ -1,14 +1,29 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import s from './page.module.scss'
 import Image from "next/legacy/image"
 import Logo from '../../public/imgs/Logo.png'
 import Link from 'next/link'
 import { RiMenu3Fill, RiCloseFill } from 'react-icons/ri'
 import Modal from '@/components/Modal/Modal'
+import { useDispatch, useSelector } from 'react-redux'
+import authSlice, { userProfile } from '@/app/store/slice/authSlice'
+
 export default function Header() {
   const [toggle, setToggle] = useState(false)
   const [modal, setModal] = useState(false)
+  const dispatch = useDispatch()
+
+  const { isUser, error, userInfo } = useSelector(
+    (state) => state.auth
+  )
+
+  useEffect(() => {
+    const id = JSON.parse(localStorage.getItem('userToken'));
+    if (id !== null) {
+      dispatch(userProfile(id));
+    }
+  }, [userInfo, isUser]);
 
   return (
     <div>
@@ -37,7 +52,16 @@ export default function Header() {
                   <Link href="/page/contact">Контакты</Link>
                 </li>
               </ul>
-              <button onClick={() => setModal(!modal)} className={s.header_button}>Войти</button>
+              {
+                userInfo ?
+                  <Link className={s.profil} href='#'>
+                    <Image width={70} height={70} src={userInfo?.image_profile} alt="" />
+                  </Link>
+                  :
+                  <button onClick={() => setModal(!modal)} className={s.header_button}>
+                    Войти
+                  </button>
+              }
               <button
                 onClick={() => setToggle(!toggle)} className={s.toggle}>
                 {toggle ?
