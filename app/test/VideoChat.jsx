@@ -1,19 +1,18 @@
 'use client';
 import React, { useEffect, useState, useRef } from 'react';
 import Video from 'twilio-video';
-import Participant from './Participant'
+import Participant from './Participant';
 import './VideoChat.css';
-
 
 function VideoChat() {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
-  const [isFirstTime, setIsFirstTime] = useState(true)
+  const [isFirstTime, setIsFirstTime] = useState(true);
   const localVideoRef = useRef(null);
-  
+
   useEffect(() => {
-    console.log(isFirstTime)
-    setIsFirstTime(false)
+    console.log(isFirstTime);
+    setIsFirstTime(false);
     const connectToRoom = async () => {
       try {
         // const videoTrack = await Video.createLocalVideoTrack();
@@ -22,7 +21,7 @@ function VideoChat() {
         // localVideoRef.current.appendChild(trackElement);
 
         const response = await fetch(
-          `http://192.168.89.9:5001/token?identity=ernis&room=Operator2`,
+          `http://192.168.89.9:5001/token?identity=ernisfdgfdfg&room=Operator2`,
         );
 
         const { token } = await response.json();
@@ -36,7 +35,6 @@ function VideoChat() {
         setRoom(newRoom);
 
         // Добавляем локальный видеопоток
-        
       } catch (error) {
         console.error('Error connecting to the room:', error);
       }
@@ -65,31 +63,27 @@ function VideoChat() {
         room.off('participantDisconnected', participantDisconnected);
       }
     };
-
   }, [room]);
 
   const participantConnected = (participant) => {
- 
     setParticipants((prevParticipants) => [...prevParticipants, participant]);
   };
 
   const participantDisconnected = (participant) => {
-
     setParticipants((prevParticipants) =>
       prevParticipants.filter((p) => p !== participant),
     );
   };
 
-
   console.log(participants);
   return (
     <div className="video-chat-container">
       {room && <Participant participant={room.localParticipant} />}
-      {participants.map((participant,i) =>(
-          <div key={i} className="participant-container">
-            <Participant participant={participant} />
-          </div>
-  ))}
+      {participants.map((participant, i) => (
+        <div key={i} className="participant-container">
+          <Participant participant={participant} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -104,8 +98,8 @@ export default VideoChat;
 //           key={track.sid}
 //           autoPlay
 //           ref={(ref) =>{
-//             console.log(track.attach ,'hello') 
-//             // return track.attach(ref) 
+//             console.log(track.attach ,'hello')
+//             // return track.attach(ref)
 //           }}
 //         />
 //       ))}

@@ -411,7 +411,7 @@
 
     .wrapper {
       display: grid;
-      grid-template-columns: 3fr 5fr 3fr;
+      grid-template-columns: 3fr 6fr 3fr;
       gap: 72px;
       align-items: center;
       @media screen and (max-width: 1140px) {
@@ -476,10 +476,11 @@
         .iphone15 {
           position: absolute;
           right: 0;
-          max-width: 882px;
-          height: 100%;
+          bottom: 0;
+          width: 880px;
+
           @media screen and (max-width: 1440px) {
-            max-width: 800px;
+            max-width: 750px;
           }
           @media screen and (max-width: 1140px) {
             max-width: 550px;
@@ -573,6 +574,7 @@
           align-items: center;
           border-radius: 50%;
           background-color: #d9d9d9;
+          z-index: 5;
           @media screen and (max-width: 1140px) {
             height: 70px;
             width: 70px;

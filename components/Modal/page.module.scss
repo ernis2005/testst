@@ -21,6 +21,16 @@
     @media screen and (max-width: 600px) {
       padding: 60px 20px 40px;
     }
+
+    .error {
+      color: red;
+      font-family: Gilroy-SemiBold;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-align: center;
+    }
     .close {
       position: absolute;
       right: 45px;
@@ -171,74 +181,6 @@
                 width: 24px;
                 height: 24px;
               }
-            }
-          }
-        }
-      }
-    }
-
-    .register {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      @media screen and (max-width: 600px) {
-        gap: 20px;
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        @media screen and (max-width: 600px) {
-          gap: 10px;
-        }
-        .wrapper {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          label {
-            color: #161616;
-            font-family: Gilroy-SemiBold;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            opacity: 0.9;
-            @media screen and (max-width: 600px) {
-              font-size: 12px;
-            }
-          }
-
-          input {
-            display: flex;
-            width: 490px;
-            height: 60px;
-            padding: 10px;
-            align-items: center;
-            gap: 10px;
-            background: var(--gray, #f6f6f6);
-            color: #161616;
-            font-family: Gilroy-SemiBold;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            outline: none;
-            @media screen and (max-width: 600px) {
-              width: 310px;
-              height: 44px;
-              font-size: 15px;
-            }
-            ::placeholder {
-              color: #161616;
-              font-size: 16px;
-              opacity: 0.5;
-              @media screen and (max-width: 600px) {
-                font-size: 12px;
-              }
-            }
-            &:focus-within {
-              border: 2px solid #161616;
-              background: var(--gray, #fff);
             }
           }
         }

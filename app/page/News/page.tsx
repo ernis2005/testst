@@ -1,13 +1,28 @@
+'use client'
 import Image from "next/legacy/image"
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './page.module.scss'
 import NewsImage from '../../../public/imgs/newsPost.png'
 import { FiArrowUpRight } from 'react-icons/fi'
 import NewCards from '@/components/Cards/NewCards/NewCards'
+import { fetchData } from "@/app/store/slice/newSlice"
+import { useDispatch, useSelector } from "react-redux"
+
+
+
+
 
 
 export default function NewsPage() {
+  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state) => state.news);
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  console.log(data);
+
   return (
     <div>
       <div className='container'>

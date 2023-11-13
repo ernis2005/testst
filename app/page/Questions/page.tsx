@@ -1,8 +1,11 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import s from './page.module.scss'
 import { FiArrowUpLeft, FiArrowDownLeft } from 'react-icons/fi'
-// import { Collapse } from 'react-collapse'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchFaq } from '@/app/store/slice/faqSlice'
+import Spiner from '@/components/Spiner/Spiner'
+
 const question = [
   {
     id: 1,
@@ -36,8 +39,17 @@ const question = [
   }
 ]
 
+
 export default function QuestionPage() {
   const [openItemId, setOpenItemId] = useState<number | null>(null);
+  const dispatch = useDispatch()
+  const data = useSelector((state) => state)
+  console.log(data);
+
+  useEffect(() => {
+    dispatch(fetchFaq());
+  }, [dispatch]);
+
 
   const toggleAccordion = (itemId: number) => {
     if (openItemId === itemId) {
