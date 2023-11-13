@@ -3,12 +3,15 @@ import React, { useEffect, useState, useRef } from 'react';
 import Video from 'twilio-video';
 import Participant from './Participant';
 import './VideoChat.css';
+import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 function VideoChat() {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [isFirstTime, setIsFirstTime] = useState(true);
   const localVideoRef = useRef(null);
+
+  
 
   useEffect(() => {
     console.log(isFirstTime);
@@ -31,9 +34,7 @@ function VideoChat() {
           audio: true,
           video: { width: 640 },
         });
-
         setRoom(newRoom);
-
         // Добавляем локальный видеопоток
       } catch (error) {
         console.error('Error connecting to the room:', error);
@@ -74,7 +75,6 @@ function VideoChat() {
       prevParticipants.filter((p) => p !== participant),
     );
   };
-
   console.log(participants);
   return (
     <div className="video-chat-container">
