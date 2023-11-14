@@ -55,7 +55,8 @@ export default function Header() {
               {
                 userInfo ?
                   <Link className={s.profil} href='#'>
-                    <Image width={70} height={70} src={userInfo?.image_profile} alt="" />
+                    {/* <Image width={70} height={70} src={userInfo?.image_profile} alt="" /> */}
+                    janar
                   </Link>
                   :
                   <button onClick={() => setModal(!modal)} className={s.header_button}>

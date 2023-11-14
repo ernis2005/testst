@@ -110,7 +110,9 @@ export default function ComponyPage() {
               {logo.map((e) => {
                 return (
                   <div key={e.id} className={s.card}>
-                    <Image width={100} height={100} className={s.card_img} src={e.img} alt="" />
+                    <div className={s.card_img} >
+                      <Image width={100} height={100} src={e.img} alt="" />
+                    </div>
                     <p>{e.title}</p>
                   </div>
                 )

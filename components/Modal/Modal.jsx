@@ -9,12 +9,18 @@ import { useForm } from 'react-hook-form';
 import { userLogin } from '@/app/store/slice/authSlice';
 import Register from '../Form/Redister/Register';
 import Login from '../Form/Login/Login';
+import { handleTabClick } from '@/app/store/slice/modalSlice';
+import Confirmation from '../Form/Confirmation/Confirmation';
 
 export default function Modal({ modal, setModal }) {
   const [eye, setEye] = useState(false);
-  const [activeTab, setActiveTab] = useState(1);
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { value } = useSelector((state) => state.modal);
 
   const { loading, error, isUser } = useSelector((state) => state.auth);
   const eyeFuntion = (e) => {
@@ -25,88 +31,53 @@ export default function Modal({ modal, setModal }) {
   if (isUser) {
     setModal(!modal);
   }
+  const handleTabClickModal = (index) => {
+    dispatch(handleTabClick(index));
+  };
 
-  const handleTabClick = (index) => {
-    setActiveTab(index);
+  const handleCloseModal = () => {
+    dispatch(handleTabClick(1));
+    setModal(!modal);
   };
 
   return (
     <div className={s.modal}>
       <div className={s.blog}>
-        <button onClick={() => setModal(!modal)} className={s.close}>
+        <button onClick={() => handleCloseModal()} className={s.close}>
           <RiCloseFill className={s.logo} />
         </button>
-        {activeTab !== 3 && (
+        {(value === 1 || value == 2) && (
           <div className={s.btn}>
             <button
-              className={activeTab === 1 ? `${s.active}` : ''}
-              onClick={() => handleTabClick(1)}
+              className={value === 1 ? `${s.active}` : ''}
+              onClick={() => handleTabClickModal(1)}
             >
               Войти
             </button>
             <button
-              className={activeTab === 2 ? `${s.active}` : ''}
-              onClick={() => handleTabClick(2)}
+              className={value === 2 ? `${s.active}` : ''}
+              onClick={() => handleTabClickModal(2)}
             >
               Зарегистрироваться
             </button>
           </div>
         )}
         {error && <p className={s.error}>{error}</p>}
-
-        {activeTab === 1 && (
+        {value === 1 && (
           <>
             <Login />
-            <button onClick={() => handleTabClick(3)} className={s.link}>
+            <button onClick={() => handleTabClickModal(3)} className={s.link}>
               <span>Забыли пароль?</span>
             </button>
           </>
-          // <div className={s.login}>
-          //   <form action="" onSubmit={handleSubmit(submitForm)}>
-          //     <div className={s.input}>
-          //       <label htmlFor="tel">Номер телефона</label>
-          //       <InputMask
-          //         className={s.tel}
-          //         {...register('login')}
-          //         mask="+996 (___) ___-___"
-          //         placeholder="+996"
-          //         replacement={{ _: /\d/ }}
-          //       />
-          //     </div>
-          //     <div className={s.input}>
-          //       <label htmlFor="password">Пароль</label>
-          //       <div className={s.password}>
-          //         <input
-          //           {...register('password')}
-          //           className={s.pass}
-          //           placeholder="Введите ваш пароль"
-          //           type={eye ? 'text' : 'password'}
-          //         />
-          //         <button onClick={eyeFuntion}>
-          //           {eye ? (
-          //             <AiOutlineEye className={s.logo} />
-          //           ) : (
-          //             <AiOutlineEyeInvisible className={s.logo} />
-          //           )}
-          //         </button>
-          //       </div>
-          //     </div>
-          //     <button type="submit" className={s.button}>
-          //       <span> {loading ? 'loading' : 'Войти'} </span>
-          //     </button>
-          //   </form>
-          //   <button onClick={() => handleTabClick(3)} className={s.link}>
-          //     <span>Забыли пароль?</span>
-          //   </button>
-          // </div>
         )}
-        {activeTab === 2 && (
+        {value === 2 && (
           <>
             <Register />
           </>
         )}
 
-        {activeTab === 3 && (
+        {value === 3 && (
           <div className={s.recovery}>
             <button className={s.link}>
               <span>Восстановление пароля</span>
@@ -131,20 +102,22 @@ export default function Modal({ modal, setModal }) {
             </button>
             <h5>
               У вас уже есть аккаунт?
-              <span onClick={() => handleTabClick(1)}>Войти</span>
+              <span onClick={() => handleTabClickModal(1)}>Войти</span>
             </h5>
             <h5>
               У вас нет аккаунта?
-              <span onClick={() => handleTabClick(2)}>Зарегистрируйтесь</span>
+              <span onClick={() => handleTabClickModal(2)}>
+                Зарегистрируйтесь
+              </span>
             </h5>
           </div>
         )}
-
-        {activeTab === 4 && (
-          <div>
-            <form action=""></form>
-          </div>
+        {value === 4 && (
+          <>
+            <Confirmation />
+          </>
         )}
+        {value === 5 && <div>Поздравляем! Регистрация завершена</div>}
       </div>
     </div>
   );
