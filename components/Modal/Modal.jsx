@@ -10,10 +10,10 @@ import { userLogin } from '@/app/store/slice/authSlice';
 import Register from '../Form/Redister/Register';
 import Login from '../Form/Login/Login';
 import { handleTabClick } from '@/app/store/slice/modalSlice';
+import Confirmation from '../Form/Confirmation/Confirmation';
 
 export default function Modal({ modal, setModal }) {
   const [eye, setEye] = useState(false);
-  const [activeTab, setActiveTab] = useState(1);
   const dispatch = useDispatch();
   const {
     register,
@@ -46,23 +46,22 @@ export default function Modal({ modal, setModal }) {
         <button onClick={() => handleCloseModal()} className={s.close}>
           <RiCloseFill className={s.logo} />
         </button>
-        {value === 1 ||
-          (value == 2 && (
-            <div className={s.btn}>
-              <button
-                className={value === 1 ? `${s.active}` : ''}
-                onClick={() => handleTabClickModal(1)}
-              >
-                Войти
-              </button>
-              <button
-                className={value === 2 ? `${s.active}` : ''}
-                onClick={() => handleTabClickModal(2)}
-              >
-                Зарегистрироваться
-              </button>
-            </div>
-          ))}
+        {(value === 1 || value == 2) && (
+          <div className={s.btn}>
+            <button
+              className={value === 1 ? `${s.active}` : ''}
+              onClick={() => handleTabClickModal(1)}
+            >
+              Войти
+            </button>
+            <button
+              className={value === 2 ? `${s.active}` : ''}
+              onClick={() => handleTabClickModal(2)}
+            >
+              Зарегистрироваться
+            </button>
+          </div>
+        )}
         {error && <p className={s.error}>{error}</p>}
         {value === 1 && (
           <>
@@ -114,17 +113,11 @@ export default function Modal({ modal, setModal }) {
           </div>
         )}
         {value === 4 && (
-          <div>
-            <button className={s.link}>
-              <span>Потверждение номера телефона</span>
-            </button>
-            <p>
-              На ваш номер +996(559)****33 был отправлен код. Он нужен для
-              потверждения вашей личности
-            </p>
-            <form action=""></form>
-          </div>
+          <>
+            <Confirmation />
+          </>
         )}
+        {value === 5 && <div>Поздравляем! Регистрация завершена</div>}
       </div>
     </div>
   );

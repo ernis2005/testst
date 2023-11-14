@@ -13,7 +13,6 @@ export default function Register() {
   console.log(data);
 
   const submitRegister = (data) => {
-    // dispatch(registerUser(data));
     if (data.password === data.confirmPassword) {
       dispatch(registerUser(data));
     } else {

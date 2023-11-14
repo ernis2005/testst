@@ -5,8 +5,8 @@ import { handleTabClick } from './modalSlice';
 
 const backendURL = 'http://185.251.88.75/api/';
 
-export const registerUser = createAsyncThunk(
-  'users/register',
+export const confirmationFetch = createAsyncThunk(
+  'users/phone_verify',
   async (data, { rejectWithValue, dispatch }) => {
     const number = data.phone.replace(/\D/g, '');
     try {
@@ -15,55 +15,54 @@ export const registerUser = createAsyncThunk(
           'Content-Type': 'application/json',
         },
       };
-      const user = await axios.post(
-        `${backendURL}users/register/`,
+      const response = await axios.post(
+        `${backendURL}users/phone_verify/`,
         {
           phone: number,
-          full_name: data.full_name,
-          password: data.password,
+          code: data.code,
         },
         config,
       );
-      dispatch(autoRegister(data.phone));
-      dispatch(handleTabClick(4));
-      return user;
+      console.log(response);
+      dispatch(handleTabClick(5));
+      return response;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.log(error);
+      return rejectWithValue(error);
     }
   },
 );
 
-const registerSlice = createSlice({
-  name: 'signup',
+const confirmationSlice = createSlice({
+  name: 'code',
   initialState: {
-    isUser: false,
     loading: false,
-    phone: '',
+    token: '',
     error: null,
-    success: false,
   },
   reducers: {
-    autoRegister: (state, { payload }) => {
+    autoConfirtion: (state, { payload }) => {
       console.log(payload);
-      state.phone = payload;
+      // state.token = payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => {
+      .addCase(confirmationFetch.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
+      .addCase(confirmationFetch.fulfilled, (state, { payload }) => {
         console.log(payload);
         state.loading = false;
-        state.userInfo = payload;
+        state.token = payload.data.token.access;
       })
-      .addCase(registerUser.rejected, (state, { payload }) => {
+      .addCase(confirmationFetch.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+        console.log(payload);
       });
   },
 });
-export const { autoRegister } = registerSlice.actions;
-export default registerSlice.reducer;
+export const { autoConfirtion } = confirmationSlice.actions;
+export default confirmationSlice.reducer;
