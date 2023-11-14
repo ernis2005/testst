@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/eslint-plugin-next": "^14.0.1",
+    "@pbe/react-yandex-maps": "^1.2.5",
     "@react-input/mask": "^1.0.20",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.0",

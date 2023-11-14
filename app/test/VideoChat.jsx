@@ -4,6 +4,7 @@ import Video from 'twilio-video';
 import Participant from './Participant';
 import './VideoChat.css';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
+import axios from 'axios';
 
 function VideoChat() {
   const [room, setRoom] = useState(null);
@@ -18,16 +19,17 @@ function VideoChat() {
     setIsFirstTime(false);
     const connectToRoom = async () => {
       try {
-        // const videoTrack = await Video.createLocalVideoTrack();
-        // const trackElement = videoTrack.attach();
 
-        // localVideoRef.current.appendChild(trackElement);
-
-        const response = await fetch(
-          `http://192.168.89.9:5001/token?identity=ernisfdgfdfg&room=Operator2`,
+        const bearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA1MTI3MDc5LCJpYXQiOjE2OTk5NDMwNzksImp0aSI6ImYwOTIyNjEyNDQ1ZTQxZWQ4MzRlZDg2YmI1MTY5ODZjIiwidXNlcl9pZCI6MTA0fQ.tGsyICt5MSUYEjPrDO8stuR83jK4BuGLJTb72C2hjus'// localStorage.getItem('token')
+        const response = await axios.get(
+          `http://185.251.88.75/api/general/get_video_token/`,
+          {
+            headers: {
+              Authorization: `Bearer ${bearerToken}`
+            }
+          }
         );
-
-        const { token } = await response.json();
+        const { token } = await response.data;
         console.log(token);
         const newRoom = await Video.connect(token, {
           name: 'my-room',
