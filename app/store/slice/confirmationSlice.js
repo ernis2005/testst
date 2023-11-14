@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import axios from 'axios';
-import { handleTabClick } from './modalSlice';
+import { handleModal, handleTabClick } from './modalSlice';
+import { userProfile } from './authSlice';
 
 const backendURL = 'http://185.251.88.75/api/';
 
@@ -23,8 +24,16 @@ export const confirmationFetch = createAsyncThunk(
         },
         config,
       );
-      console.log(response);
+      console.log(response.data);
+      dispatch(userProfile(response.data.token.access));
+      localStorage.setItem(
+        'userToken',
+        JSON.stringify(response.data.token.access),
+      );
       dispatch(handleTabClick(5));
+      setTimeout(() => {
+        dispatch(handleModal());
+      }, 3000);
       return response;
     } catch (error) {
       console.log(error);
