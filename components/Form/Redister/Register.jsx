@@ -7,9 +7,9 @@ import { useForm } from 'react-hook-form';
 import { registerUser } from '@/app/store/slice/registerSlice';
 
 export default function Register() {
-  const { data, register, handleSubmit } = useForm();
   const [customError, setCustomError] = useState(null);
   const dispatch = useDispatch();
+  const data = useSelector((state) => state);
   console.log(data);
 
   const submitRegister = (data) => {
@@ -45,9 +45,6 @@ export default function Register() {
           <div className={s.wrapper}>
             <label htmlFor="password">Пароль</label>
             <input
-              // style={{
-              //   border: data >= 7 ? '#000' : 'red',
-              // }}
               {...register('password')}
               type="password"
               placeholder="Введите ваш пароль"

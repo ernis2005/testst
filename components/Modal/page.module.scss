@@ -21,6 +21,28 @@
     @media screen and (max-width: 600px) {
       padding: 60px 20px 40px;
     }
+    .right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .img {
+        width: 58px;
+        height: 58px;
+        fill: #0051c7;
+      }
+      p {
+        color: var(--dark, #161616);
+        text-align: center;
+        font-family: Gilroy-SemiBold;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 280px;
+        margin-bottom: 30px;
+      }
+    }
 
     .error {
       color: red;

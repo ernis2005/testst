@@ -9,10 +9,11 @@ import { useForm } from 'react-hook-form';
 import { userLogin } from '@/app/store/slice/authSlice';
 import Register from '../Form/Redister/Register';
 import Login from '../Form/Login/Login';
-import { handleTabClick } from '@/app/store/slice/modalSlice';
+import { handleModal, handleTabClick } from '@/app/store/slice/modalSlice';
 import Confirmation from '../Form/Confirmation/Confirmation';
+import { BsCheckCircle } from 'react-icons/bs';
 
-export default function Modal({ modal, setModal }) {
+export default function Modal() {
   const [eye, setEye] = useState(false);
   const dispatch = useDispatch();
   const {
@@ -21,7 +22,7 @@ export default function Modal({ modal, setModal }) {
     formState: { errors },
   } = useForm();
   const { value } = useSelector((state) => state.modal);
-
+  const { modal } = useSelector((state) => state.modal);
   const { loading, error, isUser } = useSelector((state) => state.auth);
   const eyeFuntion = (e) => {
     e.preventDefault();
@@ -29,7 +30,7 @@ export default function Modal({ modal, setModal }) {
   };
 
   if (isUser) {
-    setModal(!modal);
+    dispatch(handleModal(!modal));
   }
   const handleTabClickModal = (index) => {
     dispatch(handleTabClick(index));
@@ -37,15 +38,20 @@ export default function Modal({ modal, setModal }) {
 
   const handleCloseModal = () => {
     dispatch(handleTabClick(1));
-    setModal(!modal);
+    dispatch(handleModal(!modal));
   };
+
+  setTimeout(() => {}, 5000);
 
   return (
     <div className={s.modal}>
       <div className={s.blog}>
-        <button onClick={() => handleCloseModal()} className={s.close}>
-          <RiCloseFill className={s.logo} />
-        </button>
+        {value === 5 ? null : (
+          <button onClick={() => handleCloseModal()} className={s.close}>
+            <RiCloseFill className={s.logo} />
+          </button>
+        )}
+
         {(value === 1 || value == 2) && (
           <div className={s.btn}>
             <button
@@ -117,7 +123,16 @@ export default function Modal({ modal, setModal }) {
             <Confirmation />
           </>
         )}
-        {value === 5 && <div>Поздравляем! Регистрация завершена</div>}
+        {value === 5 && (
+          <>
+            <div>
+              <div className={s.right}>
+                <BsCheckCircle className={s.img} />
+                <p>Поздравляем! Регистрация завершена</p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
