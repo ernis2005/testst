@@ -8,11 +8,15 @@ import { RiMenu3Fill, RiCloseFill } from 'react-icons/ri'
 import Modal from '@/components/Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import authSlice, { userProfile } from '@/app/store/slice/authSlice'
+import Avatar from '../../public/imgs/avatar.png'
+import { handleModal } from '@/app/store/slice/modalSlice'
 
 export default function Header() {
   const [toggle, setToggle] = useState(false)
-  const [modal, setModal] = useState(false)
+  // const [modal, setModal] = useState(false)
   const dispatch = useDispatch()
+
+  const { modal } = useSelector((state) => state.modal)
 
   const { isUser, error, userInfo } = useSelector(
     (state) => state.auth
@@ -23,7 +27,14 @@ export default function Header() {
     if (id !== null) {
       dispatch(userProfile(id));
     }
-  }, [userInfo, isUser]);
+  }, [dispatch]);
+
+
+  const handleModalOnclik = () => {
+    dispatch(handleModal(!modal))
+  }
+
+
 
   return (
     <div>
@@ -54,12 +65,11 @@ export default function Header() {
               </ul>
               {
                 userInfo ?
-                  <Link className={s.profil} href='#'>
-                    {/* <Image width={70} height={70} src={userInfo?.image_profile} alt="" /> */}
-                    janar
+                  <Link className={s.profil} href='/page/profil'>
+                    <Image width={70} height={70} src={userInfo.image_profile === null ? Avatar : userInfo?.image_profile} alt="" />
                   </Link>
                   :
-                  <button onClick={() => setModal(!modal)} className={s.header_button}>
+                  <button onClick={handleModalOnclik} className={s.header_button}>
                     Войти
                   </button>
               }
@@ -92,7 +102,7 @@ export default function Header() {
             </li>
           </ul>}
         {modal &&
-          <Modal setModal={setModal} modal={modal} />}
+          <Modal />}
       </div>
     </div>
   )

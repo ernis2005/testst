@@ -40,7 +40,7 @@
         justify-content: space-between;
         gap: 0;
       }
-      @media screen and (max-width: 1000px) {
+      @media screen and (max-width: 1024px) {
         gap: 40px;
       }
       @media screen and (max-width: 600px) {
@@ -66,7 +66,7 @@
         display: flex;
         align-items: center;
 
-        @media screen and (max-width: 1000px) {
+        @media screen and (max-width: 1024px) {
           display: none;
         }
         li {
@@ -105,7 +105,7 @@
 
       .toggle {
         display: none;
-        @media screen and (max-width: 1000px) {
+        @media screen and (max-width: 1024px) {
           display: block;
 
           .logo {

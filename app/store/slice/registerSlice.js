@@ -28,7 +28,8 @@ export const registerUser = createAsyncThunk(
       dispatch(handleTabClick(4));
       return user;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.log(error.response);
+      return rejectWithValue(error);
     }
   },
 );
@@ -59,7 +60,8 @@ const registerSlice = createSlice({
         state.loading = false;
         state.userInfo = payload;
       })
-      .addCase(registerUser.rejected, (state, { payload }) => {
+      .addCase(registerUser.rejected, (state, action) => {
+        console.log(action, 'test');
         state.loading = false;
         state.error = payload;
       });

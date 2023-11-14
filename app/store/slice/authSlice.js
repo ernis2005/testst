@@ -58,36 +58,6 @@ export const userProfile = createAsyncThunk(
   },
 );
 
-// export const registerUser = createAsyncThunk(
-//   'users/register',
-//   async (data, { rejectWithValue }) => {
-//     const number = data.phone.replace(/\D/g, '');
-//     console.log(data);
-//     console.log(typeof number);
-//     try {
-//       // const config = {
-//       //   headers: {
-//       //     'Content-Type': 'application/json',
-//       //   },
-//       // };
-//       const user = await axios.post(
-//         `${backendURL}users/register`,
-//         {
-//           phone: number,
-//           full_name: data.full_name,
-//           password: data.password,
-//         },
-//         // config,
-//       );
-//       console.log(user);
-//       return user.data;
-//     } catch (error) {
-//       console.log(error);
-//       return rejectWithValue(error);
-//     }
-//   },
-// );
-
 const authSlice = createSlice({
   name: 'user',
   initialState,
