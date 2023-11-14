@@ -6,7 +6,7 @@ import './VideoChat.css';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import axios from 'axios';
 
-function VideoChat() {
+function VideoChat({ handleEndCall }) {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [isFirstTime, setIsFirstTime] = useState(true);
@@ -19,6 +19,8 @@ function VideoChat() {
     setIsFirstTime(false);
     const connectToRoom = async () => {
       try {
+
+        console.log('connectToRoom')
 
         const bearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA1MTQ5NjExLCJpYXQiOjE2OTk5NjU2MTEsImp0aSI6IjA4NTcwYmQxNWJiYjRmMGVhMWIyMDAxOGVjNTVkODc5IiwidXNlcl9pZCI6MTA5fQ.ww8KI2pISSvZmGlbWAEldLoIioJVcLod0UO32IhsKkI'// localStorage.getItem('token')
         const response = await axios.get(
@@ -35,7 +37,7 @@ function VideoChat() {
           name: 'my-room',
           audio: true,
           video: { width: 640 },
-          
+
         });
         setRoom(newRoom);
         // Добавляем локальный видеопоток
@@ -55,7 +57,7 @@ function VideoChat() {
 
   useEffect(() => {
     if (room) {
-      room.on('participantConnected', participantConnected);
+      // room.on('participantConnected', participantConnected);
       room.on('participantDisconnected', participantDisconnected);
 
       room.participants.forEach(participantConnected);
@@ -72,11 +74,15 @@ function VideoChat() {
   const participantConnected = (participant) => {
     setParticipants((prevParticipants) => [...prevParticipants, participant]);
   };
+  
 
   const participantDisconnected = (participant) => {
+    handleEndCall()
+    console.log('disconnected ' + participant)
     setParticipants((prevParticipants) =>
       prevParticipants.filter((p) => p !== participant),
     );
+    
   };
   console.log(participants);
 

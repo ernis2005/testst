@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const Participant = ({ participant }) => {
+const Participant = ({ participant, trackUnsubscribed }) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
 
@@ -13,13 +13,18 @@ const Participant = ({ participant }) => {
       .filter((track) => track !== null);
 
   useEffect(() => {
+    // console.log(participant,'test');
+
     setVideoTracks(trackpubsToTracks(participant.videoTracks));
     setAudioTracks(trackpubsToTracks(participant.audioTracks));
+    // console.log('audioTracks', participant.audioTracks)
 
     const trackSubscribed = (track) => {
+      console.log(track,'track');
       if (track.kind === "video") {
         setVideoTracks((videoTracks) => [...videoTracks, track]);
       } else if (track.kind === "audio") {
+        console.log('audio track')
         setAudioTracks((audioTracks) => [...audioTracks, track]);
       }
     };
@@ -66,7 +71,7 @@ const Participant = ({ participant }) => {
     <div className="participant">
       <h3>{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} muted={false} />
+      <audio ref={audioRef} autoPlay={true}  />
     </div>
   );
 };

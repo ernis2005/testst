@@ -42,6 +42,13 @@ const page = () => {
       }
     }
   }, [lastMessage]);
+
+  useEffect(() => {
+    return () => {
+      if (isInCall) handleEndCall()
+    }
+  }, [])
+
   const handleAnswerCall = () => {
     sendMessage(JSON.stringify({ type: 'answering', 'call_info_id': callId }))
     setIsInCall(true)
@@ -52,6 +59,15 @@ const page = () => {
     setIsCalling(false)
     setIsInCall(false)
   }
+
+
+  const handleEndCall = () => {
+    console.log('end call')
+    sendMessage(JSON.stringify({ type: 'disable', 'call_info_id': callId }))
+    setIsCalling(false)
+    setIsInCall(false)
+  }
+
   return (
     <div>
       {isCalling && (
@@ -87,7 +103,7 @@ const page = () => {
         Тег audio не поддерживается вашим браузером. <a href="/test.mp3">Скачайте музыку</a>.
       </audio>)}
 
-      {isInCall && <VideoChat />}
+      {isInCall && <VideoChat handleEndCall={handleEndCall} />}
     </div>
   )
 }
