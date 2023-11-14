@@ -20,7 +20,7 @@ function VideoChat() {
     const connectToRoom = async () => {
       try {
 
-        const bearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA1MTI3MDc5LCJpYXQiOjE2OTk5NDMwNzksImp0aSI6ImYwOTIyNjEyNDQ1ZTQxZWQ4MzRlZDg2YmI1MTY5ODZjIiwidXNlcl9pZCI6MTA0fQ.tGsyICt5MSUYEjPrDO8stuR83jK4BuGLJTb72C2hjus'// localStorage.getItem('token')
+        const bearerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA1MTQ5NjExLCJpYXQiOjE2OTk5NjU2MTEsImp0aSI6IjA4NTcwYmQxNWJiYjRmMGVhMWIyMDAxOGVjNTVkODc5IiwidXNlcl9pZCI6MTA5fQ.ww8KI2pISSvZmGlbWAEldLoIioJVcLod0UO32IhsKkI'// localStorage.getItem('token')
         const response = await axios.get(
           `http://185.251.88.75/api/general/get_video_token/`,
           {
@@ -35,6 +35,7 @@ function VideoChat() {
           name: 'my-room',
           audio: true,
           video: { width: 640 },
+          
         });
         setRoom(newRoom);
         // Добавляем локальный видеопоток
@@ -78,12 +79,17 @@ function VideoChat() {
     );
   };
   console.log(participants);
+
+  const mute = () => {
+    participants.forEach(e => e.videoTracks[0].disable())
+  }
+
   return (
     <div className="video-chat-container">
       {room && <Participant participant={room.localParticipant} />}
       {participants.map((participant, i) => (
         <div key={i} className="participant-container">
-          <Participant participant={participant} />
+          <Participant participant={participant} /> 
         </div>
       ))}
     </div>
