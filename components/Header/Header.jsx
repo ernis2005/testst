@@ -32,7 +32,16 @@ export default function Header() {
 
   const handleModalOnclik = () => {
     dispatch(handleModal(!modal))
+
   }
+
+  useEffect(() => {
+    if (modal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [modal])
 
 
 

@@ -29,7 +29,7 @@ export const registerUser = createAsyncThunk(
       return user;
     } catch (error) {
       console.log(error.response);
-      return rejectWithValue(error);
+      return rejectWithValue(error.response);
     }
   },
 );
@@ -50,21 +50,20 @@ const registerSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(registerUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.loading = false;
-        state.userInfo = payload;
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        console.log(action, 'test');
-        state.loading = false;
-        state.error = payload;
-      });
+    builder.addCase(registerUser.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(registerUser.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      state.loading = false;
+      state.userInfo = payload;
+    });
+    builder.addCase(registerUser.rejected, (state, { payload }) => {
+      console.log(payload.data, 'janar');
+      state.loading = false;
+      state.error = payload.data;
+    });
   },
 });
 export const { autoRegister } = registerSlice.actions;

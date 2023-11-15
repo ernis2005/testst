@@ -478,7 +478,6 @@
           right: 0;
           bottom: 0;
           width: 880px;
-          height: 691px;
 
           @media screen and (max-width: 1440px) {
             max-width: 750px;
@@ -488,10 +487,7 @@
           }
           @media screen and (max-width: 1024px) {
             position: static;
-            max-width: 1000px;
-          }
-
-          @media screen and (max-width: 768px) {
+            width: 100%;
           }
         }
       }

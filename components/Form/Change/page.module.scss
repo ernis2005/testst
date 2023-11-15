@@ -1,18 +1,37 @@
-.register {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  @media screen and (max-width: 600px) {
-    gap: 20px;
+.change {
+  .btn {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid var(--dark, #161616);
+    margin-bottom: 24px;
+
+    span {
+      color: var(--dark, #161616);
+      font-family: Gilroy-SemiBold;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      @media screen and (max-width: 600px) {
+        font-size: 16px;
+      }
+    }
+
+    .logo {
+      width: 24px;
+      height: 24px;
+      @media screen and (max-width: 600px) {
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
   form {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    @media screen and (max-width: 600px) {
-      gap: 10px;
-    }
-
     .input {
       display: flex;
       flex-direction: column;
@@ -102,56 +121,6 @@
             width: 24px;
             height: 24px;
           }
-        }
-      }
-    }
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      label {
-        color: #161616;
-        font-family: Gilroy-SemiBold;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        opacity: 0.9;
-        @media screen and (max-width: 600px) {
-          font-size: 12px;
-        }
-      }
-      input {
-        display: flex;
-        width: 490px;
-        height: 60px;
-        padding: 10px;
-        align-items: center;
-        gap: 10px;
-        background: var(--gray, #f6f6f6);
-        color: #161616;
-        font-family: Gilroy-SemiBold;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        outline: none;
-        @media screen and (max-width: 600px) {
-          width: 310px;
-          height: 44px;
-          font-size: 15px;
-        }
-        ::placeholder {
-          color: #161616;
-          font-size: 16px;
-          opacity: 0.5;
-          @media screen and (max-width: 600px) {
-            font-size: 12px;
-          }
-        }
-        &:focus-within {
-          border: 2px solid #161616;
-          background: var(--gray, #fff);
         }
       }
     }

@@ -33,11 +33,11 @@ export default function ProfilPage() {
             </button>
             <button className={s.btn}>
               <MdOutlinePhone className={s.logo} />
-              <span>Мой профиль</span>
+              <span>Звонки</span>
             </button>
             <button className={s.btn}>
               <CiLogout className={s.logo} />
-              <span>Мой профиль</span>
+              <span>Выйти</span>
             </button>
           </div>
           <div className={s.title}>
@@ -61,6 +61,15 @@ export default function ProfilPage() {
               </li>
             </ul>
           </div>
+          {/* <div className={s.exit}>
+            <div className={s.title}>
+              <p>Вы действительно хотите выйти?</p>
+              <div className={s.btn}>
+                <button>Да</button>
+                <button>Нет</button>
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
     </div>

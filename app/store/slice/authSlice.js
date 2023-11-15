@@ -4,7 +4,6 @@ import axios from 'axios';
 
 const backendURL = 'http://185.251.88.75/api/';
 const initialState = {
-  isUser: false,
   loading: false,
   userInfo: null,
   userToken: null,
@@ -67,22 +66,19 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(userLogin.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(userLogin.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.isUser = true;
-        state.userInfo = payload;
-        state.userToken = payload.data.tokens.access;
-      })
-      .addCase(userLogin.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload.response.data.detail || 'An error occurred';
-        console.log(payload.response.data.detail);
-      });
+    builder.addCase(userLogin.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(userLogin.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.userInfo = payload;
+      state.userToken = payload.data.tokens.access;
+    });
+    builder.addCase(userLogin.rejected, (state, { payload }) => {
+      state.loading = false;
+      state.error = payload.response.data.detail || 'An error occurred';
+    });
   },
 });
 export const { autoLogin } = authSlice.actions;

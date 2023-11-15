@@ -51,8 +51,7 @@ const confirmationSlice = createSlice({
   },
   reducers: {
     autoConfirtion: (state, { payload }) => {
-      console.log(payload);
-      // state.token = payload;
+      state.token = payload;
     },
   },
   extraReducers: (builder) => {
@@ -69,7 +68,6 @@ const confirmationSlice = createSlice({
       .addCase(confirmationFetch.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-        console.log(payload);
       });
   },
 });
