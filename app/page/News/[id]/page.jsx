@@ -57,7 +57,7 @@ export default async function NewsIn({ params: { id } }) {
                     <div className={s.image}>
                       <Image
                         objectFit="cover"
-                        width={400}
+                        width={500}
                         height={250}
                         src={e.images_slides[0].photo}
                         alt=""

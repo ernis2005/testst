@@ -37,7 +37,9 @@
     "app/getData/getData.js",
     "app/page/questions/page.jsx",
     "app/page.jsx",
-    "components/Accordion/Accordion.jsx"
+    "components/Accordion/Accordion.jsx",
+    "app/store/ProviderRedux/ProviderRedux.jsx",
+    "app/page/profil/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

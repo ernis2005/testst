@@ -4,10 +4,18 @@ import s from './page.module.scss';
 import { useForm } from 'react-hook-form';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { FaChevronLeft } from 'react-icons/fa';
+import { handleTabClick } from '@/app/store/slice/modalSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeFirtch } from '@/app/store/slice/changeSlice';
+import Spiner from '@/components/Spiner/Spiner';
 
 export default function Change() {
   const [eye, setEye] = useState(false);
   const [eye2, setEye2] = useState(false);
+  const { loading, error } = useSelector((state) => state.change);
+  const { phone } = useSelector((state) => state.cod);
+  const [result, setResult] = useState(false);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -21,13 +29,26 @@ export default function Change() {
     e.preventDefault();
     setEye2(!eye2);
   };
+
+  const changeOnclick = (data) => {
+    if (data.password === data.confirmPassword) {
+      dispatch(changeFirtch({ ...phone, password: data.password }));
+    } else {
+      setResult('error');
+    }
+  };
+
+  const handleBack = () => {
+    dispatch(handleTabClick(7));
+  };
+
   return (
     <div className={s.change}>
-      <button className={s.btn}>
+      <button onClick={handleBack} className={s.btn}>
         <FaChevronLeft className={s.logo} />
         <span>Поменять пароль</span>
       </button>
-      <form action="" onSubmit={handleSubmit()}>
+      <form action="" onSubmit={handleSubmit(changeOnclick)}>
         <div className={s.input}>
           <label htmlFor="password">Повторите пароль</label>
           <div className={s.password}>
@@ -68,7 +89,7 @@ export default function Change() {
               })}
               className={s.pass}
               placeholder="Повторите пароль"
-              type={eye ? 'text' : 'password'}
+              type={eye2 ? 'text' : 'password'}
             />
             <button onClick={eye2Funtion}>
               {eye2 ? (
@@ -79,7 +100,7 @@ export default function Change() {
             </button>
           </div>
           {errors && (
-            <p style={{ color: 'red' }}>{errors?.password?.message}</p>
+            <p style={{ color: 'red' }}>{errors?.confirmPassword?.message}</p>
           )}
         </div>
         <button
@@ -89,7 +110,7 @@ export default function Change() {
           type="submit"
           className={s.button}
         >
-          <span>Сохранить</span>
+          <span>{loading ? <Spiner /> : 'Сохранить'}</span>
         </button>
       </form>
     </div>

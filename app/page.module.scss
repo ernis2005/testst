@@ -14,7 +14,7 @@
     border-right: 1px solid var(--dark, #161616);
     background: var(--blue, #0051c7);
     box-shadow: 0px 0px 10px 0px rgba(67, 67, 67, 0.1);
-    z-index: 1;
+    z-index: 5;
     @media screen and (max-width: 1440px) {
       right: 30px;
     }
@@ -65,7 +65,7 @@
     p {
       color: #161616;
       text-align: center;
-      font-family: Gilroy-Medium;
+      font-family: Ubuntu-Medium;
       font-size: 24px;
       font-style: normal;
       font-weight: 400;
@@ -143,7 +143,7 @@
 
       p {
         color: var(--dark, #1c1c1c);
-        font-family: Gilroy-SemiBold;
+        font-family: Ubuntu-Medium;
         font-size: 36px;
         font-style: normal;
         font-weight: 400;
@@ -175,9 +175,6 @@
     .compony_left {
       .img {
         width: 100%;
-        @media screen and (max-width: 600px) {
-          height: 200px;
-        }
       }
 
       .compomny_wrapper {
@@ -197,6 +194,10 @@
       }
 
       .compony_blog {
+        background-image: url('../public/imgs/jjjjjj.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         background-color: #bad6ff;
         width: 100%;
         height: 240px;
@@ -218,7 +219,7 @@
 
         h3 {
           color: var(--dark, #161616);
-          font-family: Gilroy;
+          font-family: Ubuntu-Bold;
           font-size: 62px;
           font-style: normal;
           font-weight: 700;
@@ -233,7 +234,7 @@
         }
         p {
           color: var(--dark, #161616);
-          font-family: Gilroy-Medium;
+          font-family: Ubuntu-Medium;
           font-size: 32px;
           font-style: normal;
           font-weight: 400;
@@ -256,7 +257,7 @@
     .compony_title {
       h2 {
         color: #161616;
-        font-family: Gilroy;
+        font-family: Ubuntu-Bold;
         font-size: 64px;
         font-style: normal;
         font-weight: 800;
@@ -275,13 +276,13 @@
       p {
         color: var(--dark, #161616);
         text-align: justify;
-        font-family: Gilroy-Medium;
+        font-family: Ubuntu-Medium;
         font-size: 22px;
         font-style: normal;
         font-weight: 400;
         line-height: 185%;
         opacity: 0.8;
-        margin: 90px 0 40px;
+        margin: 60px 0 40px;
         @media screen and (max-width: 1140px) {
           font-size: 20px;
           margin: 40px 0 40px;
@@ -296,9 +297,11 @@
         }
       }
 
-      button {
+      .btn {
+        width: 209px;
+        height: 60px;
         color: #fff;
-        font-family: Gilroy-SemiBold;
+        font-family: Ubuntu-Medium;
         font-size: 20px;
         font-style: normal;
         font-weight: 400;
@@ -325,7 +328,7 @@
     background-size: contain;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1024px) {
     background-image: none;
   }
   .service {
@@ -356,7 +359,7 @@
 
       h2 {
         color: var(--dark, #161616);
-        font-family: Gilroy;
+        font-family: Ubuntu-Bold;
         font-size: 64px;
         font-style: normal;
         font-weight: 800;
@@ -374,7 +377,7 @@
       p {
         color: var(--dark, #161616);
         text-align: justify;
-        font-family: Gilroy-Medium;
+        font-family: Ubuntu-Medium;
         font-size: 22px;
         font-style: normal;
         font-weight: 400;
@@ -436,7 +439,7 @@
 
         h2 {
           color: var(--dark, #161616);
-          font-family: Gilroy;
+          font-family: Ubuntu-Bold;
           font-size: 64px;
           font-style: normal;
           font-weight: 700;
@@ -450,7 +453,7 @@
         }
         p {
           color: var(--dark, #161616);
-          font-family: Gilroy-Medium;
+          font-family: Ubuntu-Medium;
           font-size: 24px;
           font-style: normal;
           font-weight: 400;
@@ -470,8 +473,17 @@
         background-position: center;
         background-size: cover;
         width: 100%;
-        height: 100%;
+        height: 105%;
         position: relative;
+        @media screen and (max-width: 1440px) {
+          height: 95%;
+        }
+        @media screen and (max-width: 1140px) {
+          height: 85%;
+        }
+        @media screen and (max-width: 1024px) {
+          display: none;
+        }
 
         .iphone15 {
           position: absolute;
@@ -485,10 +497,14 @@
           @media screen and (max-width: 1140px) {
             max-width: 550px;
           }
-          @media screen and (max-width: 1024px) {
-            position: static;
-            width: 100%;
-          }
+        }
+      }
+
+      .mobil {
+        display: none;
+        @media screen and (max-width: 1024px) {
+          display: block;
+          width: 100%;
         }
       }
 
@@ -531,7 +547,7 @@
 
         p {
           color: var(--dark, #161616);
-          font-family: Gilroy-Medium;
+          font-family: Ubuntu-Medium;
           font-size: 28px;
           font-style: normal;
           font-weight: 400;
@@ -574,7 +590,7 @@
           align-items: center;
           border-radius: 50%;
           background-color: #d9d9d9;
-          z-index: 5;
+          z-index: 2;
           @media screen and (max-width: 1140px) {
             height: 70px;
             width: 70px;
@@ -645,7 +661,7 @@
 
             span {
               color: var(--white, #fff);
-              font-family: Gilroy-SemiBold;
+              font-family: Ubuntu-Medium;
               font-size: 11.467px;
               font-style: normal;
               font-weight: 400;
@@ -656,7 +672,7 @@
             }
             h4 {
               color: var(--white, #fff);
-              font-family: Gilroy;
+              font-family: Ubuntu-Bold;
               font-size: 31.533px;
               font-style: normal;
               font-weight: 700;
@@ -699,7 +715,7 @@
   .news {
     h2 {
       color: var(--dark, #161616);
-      font-family: Gilroy;
+      font-family: Ubuntu-Bold;
       font-size: 60px;
       font-style: normal;
       font-weight: 700;
@@ -718,7 +734,7 @@
     p {
       color: var(--dark, #161616);
       text-align: center;
-      font-family: Gilroy-SemiBold;
+      font-family: Ubuntu-Medium;
       font-size: 20px;
       font-style: normal;
       font-weight: 400;
@@ -773,7 +789,7 @@
     .accor_title {
       h2 {
         color: var(--dark, #161616);
-        font-family: Gilroy;
+        font-family: Ubuntu-Bold;
         font-size: 60px;
         font-style: normal;
         font-weight: 700;
@@ -788,7 +804,7 @@
       }
       h3 {
         color: var(--dark, #161616);
-        font-family: Gilroy;
+        font-family: Ubuntu-Bold;
         font-size: 60px;
         font-style: normal;
         font-weight: 700;
@@ -802,7 +818,7 @@
       }
       p {
         color: var(--dark, #161616);
-        font-family: Gilroy-SemiBold;
+        font-family: Ubuntu-Medium;
         font-size: 20px;
         font-style: normal;
         font-weight: 400;

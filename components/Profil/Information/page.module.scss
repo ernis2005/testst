@@ -1,0 +1,89 @@
+.title {
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  @media screen and (max-width: 1024px) {
+    gap: 30px;
+  }
+  @media screen and (max-width: 600px) {
+    gap: 4px;
+    padding: 0 10px;
+  }
+  h2 {
+    color: var(--dark, #161616);
+    font-family: Ubuntu-Medium;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    @media screen and (max-width: 1140px) {
+      font-size: 30px;
+    }
+    @media screen and (max-width: 1024px) {
+      font-size: 44px;
+    }
+    @media screen and (max-width: 600px) {
+      font-size: 20px;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    li {
+      margin: 10px 0;
+      @media screen and (max-width: 600px) {
+        margin: 0;
+      }
+
+      span {
+        color: var(--dark, #161616);
+        font-family: Ubuntu-Medium;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 185%;
+        opacity: 0.7;
+        @media screen and (max-width: 1024px) {
+          font-size: 16px;
+        }
+        @media screen and (max-width: 600px) {
+          font-size: 14px;
+        }
+      }
+      p {
+        color: var(--dark, #161616);
+        font-family: Ubuntu-Medium;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 185%;
+        @media screen and (max-width: 1024px) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: 600px) {
+          font-size: 16px;
+        }
+
+        span {
+          color: var(--dark, #161616);
+          font-family: Ubuntu-Medium;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 185%;
+          margin-left: 20px;
+          @media screen and (max-width: 1024px) {
+            font-size: 20px;
+          }
+          @media screen and (max-width: 600px) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -5,17 +5,19 @@ const modalSlice = createSlice({
   initialState: {
     value: 1,
     modal: false,
+    profil: 1,
   },
   reducers: {
-    handleTabClick: (state, { payload }) => {
-      console.log(payload);
-      state.value = payload;
+    handleTabClick: (state, action) => {
+      state.value = action.payload;
     },
-    handleModal: (state, { payload }) => {
-      console.log(payload);
-      state.modal = payload;
+    handleModal: (state, action) => {
+      state.modal = action.payload;
+    },
+    handleProfil: (state, action) => {
+      state.profil = action.payload;
     },
   },
 });
-export const { handleTabClick, handleModal } = modalSlice.actions;
+export const { handleTabClick, handleModal, handleProfil } = modalSlice.actions;
 export default modalSlice.reducer;

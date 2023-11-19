@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { userLogin } from '@/app/store/slice/authSlice';
 import Spiner from '@/components/Spiner/Spiner';
+import { handleModal } from '@/app/store/slice/modalSlice';
 
 export default function Login() {
   const [eye, setEye] = useState(false);
@@ -18,20 +19,18 @@ export default function Login() {
     formState: { errors, isValid },
   } = useForm();
   const { loading, error, isUser } = useSelector((state) => state.auth);
+  const { modal } = useSelector((state) => state.modal);
   const eyeFuntion = (e) => {
     e.preventDefault();
     setEye(!eye);
   };
-
   const submitForm = (data) => {
-    if (data.password.length >= 7) {
-      dispatch(userLogin(data));
-    } else {
-      alert('7 den kichine');
-    }
+    dispatch(userLogin(data));
   };
+
   return (
     <>
+      {error && <p style={{ color: 'red' }}>{error.data.detail}</p>}
       <div className={s.login}>
         <form action="" onSubmit={handleSubmit(submitForm)}>
           <div className={s.input}>

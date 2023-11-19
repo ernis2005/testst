@@ -15,7 +15,6 @@ export default function Register() {
 
   const dispatch = useDispatch();
   const { error, loading } = useSelector((state) => state.signup);
-  console.log(error);
   const {
     register,
     handleSubmit,
@@ -38,6 +37,7 @@ export default function Register() {
     e.preventDefault();
     setEye2(!eye2);
   };
+
   return (
     <>
       {error && <p style={{ color: 'red' }}>{error.Сообщение}</p>}

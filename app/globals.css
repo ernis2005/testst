@@ -22,20 +22,20 @@ body {
   transition: height 500ms;
 }
 @font-face {
-  font-family: 'gilroy';
-  src: url('../public/font/gilroy/Gilroy-Bold.ttf');
+  font-family: 'Ubuntu-Medium';
+  src: url('../public/font/Ubuntu/Ubuntu-Regular.ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Ubuntu-Bold';
+  src: url('../public/font/Ubuntu/Ubuntu-Bold.ttf');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Copperplate Gothic Bold';
   src: url('../public/font/Copperplate-Gothic-Bold/Copperplate\ Gothic\ Bold\ Regular.ttf');
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Gilroy-Medium';
-  src: url('../public/font/Gilroy-Medium/Gilroy-Medium.ttf');
   font-weight: 400;
   font-style: normal;
 }

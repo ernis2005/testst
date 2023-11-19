@@ -34,9 +34,9 @@ export default function Footer() {
             <div>
               <h3>Quick Links</h3>
               <ul>
-                <li><Link href="#">Главная</Link></li>
-                <li><Link href="#">О компании</Link></li>
-                <li><Link href="#">Новости</Link></li>
+                <li><Link className={s.link} href="/">Главная</Link></li>
+                <li><Link className={s.link} href="page/compony">О компании</Link></li>
+                <li><Link className={s.link} href="/page/news">Новости</Link></li>
               </ul>
             </div>
             <div className={s.wrapper}>
@@ -46,11 +46,11 @@ export default function Footer() {
                   <ul>
                     <li>
                       <Email />
-                      <Link href="#">@gmail.com</Link>
+                      <Link className={s.link} href="#">@gmail.com</Link>
                     </li>
                     <li>
                       <Location />
-                      <Link href="#">location</Link></li>
+                      <Link className={s.link} href="#">location</Link></li>
                   </ul>
                 </div>
                 <div className={s.footer_item}>

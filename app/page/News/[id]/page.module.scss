@@ -8,10 +8,13 @@
   }
   .wrapper {
     display: grid;
-    grid-template-columns: 9fr 3fr;
+    grid-template-columns: 8fr 4fr;
     align-items: end;
     gap: 100px;
     position: relative;
+    @media screen and (max-width: 1440px) {
+      gap: 50px;
+    }
     @media screen and (max-width: 1280px) {
       gap: 70px;
     }
@@ -27,7 +30,7 @@
     .cards {
       h2 {
         color: var(--dark, #161616);
-        font-family: Gilroy-SemiBold;
+        font-family: Ubuntu-Medium;
         font-size: 64px;
         font-style: normal;
         font-weight: 400;
@@ -52,7 +55,7 @@
         }
 
         .slide {
-          max-width: 1064px;
+          max-width: 1000px;
           @media screen and (max-width: 1440px) {
             max-width: 950px;
           }
@@ -75,7 +78,7 @@
           align-items: center;
           h5 {
             color: var(--dark, #161616);
-            font-family: Gilroy-SemiBold;
+            font-family: Ubuntu-Medium;
             font-size: 20px;
             font-style: normal;
             font-weight: 400;
@@ -84,7 +87,7 @@
           }
           p {
             color: var(--blue, #0051c7);
-            font-family: Gilroy-SemiBold;
+            font-family: Ubuntu-Medium;
             font-size: 20px;
             font-style: normal;
             font-weight: 400;
@@ -98,7 +101,7 @@
         p {
           color: var(--dark, #161616);
           text-align: justify;
-          font-family: Gilroy-Medium;
+          font-family: Ubuntu-Medium;
           font-size: 22px;
           font-style: normal;
           font-weight: 400;
@@ -149,9 +152,6 @@
 
           .image {
             width: 100%;
-            @media screen and (max-width: 600px) {
-              height: 200px;
-            }
           }
           .title {
             display: flex;
@@ -169,7 +169,7 @@
               align-items: center;
               p {
                 color: var(--dark, #161616);
-                font-family: Gilroy-SemiBold;
+                font-family: Ubuntu-Medium;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 400;
@@ -188,7 +188,7 @@
               }
               .link {
                 color: var(--dark, #161616);
-                font-family: Gilroy-SemiBold;
+                font-family: Ubuntu-Medium;
                 font-size: 20px;
                 font-style: normal;
                 font-weight: 400;
@@ -227,7 +227,7 @@
             h4 {
               color: var(--dark, #161616);
               text-align: justify;
-              font-family: Gilroy-SemiBold;
+              font-family: Ubuntu-Medium;
               font-size: 26px;
               font-style: normal;
               font-weight: 400;
@@ -249,7 +249,7 @@
 
       h2 {
         color: var(--dark, #161616);
-        font-family: Gilroy;
+        font-family: Ubuntu-Bold;
         font-size: 40px;
         font-style: normal;
         font-weight: 700;
@@ -271,7 +271,7 @@
         background: var(--blue, #0051c7);
         span {
           color: var(--white, #fff);
-          font-family: Gilroy-SemiBold;
+          font-family: Ubuntu-Medium;
           font-size: 20px;
           font-style: normal;
           font-weight: 400;
