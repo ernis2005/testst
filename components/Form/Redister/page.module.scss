@@ -12,13 +12,15 @@
     @media screen and (max-width: 600px) {
       gap: 10px;
     }
-    .wrapper {
+
+    .input {
       display: flex;
       flex-direction: column;
+      align-items: baseline;
       gap: 6px;
       label {
         color: #161616;
-        font-family: Gilroy-SemiBold;
+        font-family: Ubuntu-Medium;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
@@ -29,6 +31,96 @@
         }
       }
 
+      .tel {
+        display: flex;
+        width: 490px;
+        height: 60px;
+        padding: 10px;
+        align-items: center;
+        gap: 10px;
+        background: var(--gray, #f6f6f6);
+        color: #161616;
+        font-family: Ubuntu-Medium;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        outline: none;
+        &:focus-within {
+          border: 2px solid #161616;
+          background: var(--gray, #fff);
+        }
+        @media screen and (max-width: 600px) {
+          width: 310px;
+          height: 44px;
+          font-size: 15px;
+        }
+      }
+
+      .password {
+        display: flex;
+        width: 490px;
+        height: 60px;
+        padding: 10px;
+        justify-content: space-between;
+        align-items: center;
+        background: var(--gray, #f6f6f6);
+        gap: 20px;
+        &:focus-within {
+          border: 2px solid #161616;
+          background: var(--gray, #fff);
+        }
+        @media screen and (max-width: 600px) {
+          width: 310px;
+          height: 44px;
+        }
+
+        .pass {
+          width: 100%;
+          height: 100%;
+          color: #161616;
+          background-color: transparent;
+          font-family: Ubuntu-Medium;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          outline: none;
+          &::placeholder {
+            font-size: 16px;
+            @media screen and (max-width: 600px) {
+              font-size: 12px;
+            }
+          }
+          @media screen and (max-width: 600px) {
+            font-size: 15px;
+          }
+        }
+        button {
+          cursor: pointer;
+          .logo {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      label {
+        color: #161616;
+        font-family: Ubuntu-Medium;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        opacity: 0.9;
+        @media screen and (max-width: 600px) {
+          font-size: 12px;
+        }
+      }
       input {
         display: flex;
         width: 490px;
@@ -38,7 +130,7 @@
         gap: 10px;
         background: var(--gray, #f6f6f6);
         color: #161616;
-        font-family: Gilroy-SemiBold;
+        font-family: Ubuntu-Medium;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;
@@ -82,7 +174,7 @@
     }
     span {
       color: var(--white, #fff);
-      font-family: Gilroy-SemiBold;
+      font-family: Ubuntu-Medium;
       font-size: 18px;
       font-style: normal;
       font-weight: 400;

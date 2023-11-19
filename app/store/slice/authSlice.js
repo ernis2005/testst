@@ -1,15 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { useEffect } from 'react';
 import axios from 'axios';
+import { handleModal } from './modalSlice';
 
 const backendURL = 'http://185.251.88.75/api/';
 const initialState = {
-  isUser: false,
   loading: false,
   userInfo: null,
   userToken: null,
   error: null,
-  success: false,
 };
 export const userLogin = createAsyncThunk(
   'users/login',
@@ -34,6 +33,7 @@ export const userLogin = createAsyncThunk(
         'userToken',
         JSON.stringify(data.data.tokens.access),
       );
+      dispatch(handleModal(false));
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -41,6 +41,22 @@ export const userLogin = createAsyncThunk(
   },
 );
 
+// export const userProfile = createAsyncThunk(
+//   'users/profile',
+//   async function (id, { dispatch }) {
+//     try {
+//       const response = await axios.get(`${backendURL}users/profile/`, {
+//         headers: {
+//           accept: 'application/json',
+//           Authorization: `Bearer ${id}`,
+//         },
+//       });
+//       dispatch(autoLogin(response));
+//     } catch (error) {
+//       return error;
+//     }
+//   },
+// );
 export const userProfile = createAsyncThunk(
   'users/profile',
   async function (id, { dispatch }) {
@@ -51,7 +67,8 @@ export const userProfile = createAsyncThunk(
           Authorization: `Bearer ${id}`,
         },
       });
-      dispatch(autoLogin(response));
+      const userData = response;
+      dispatch(autoLogin(userData));
     } catch (error) {
       return error;
     }
@@ -67,22 +84,19 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(userLogin.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(userLogin.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.isUser = true;
-        state.userInfo = payload;
-        state.userToken = payload.data.tokens.access;
-      })
-      .addCase(userLogin.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload.response.data.detail || 'An error occurred';
-        console.log(payload.response.data.detail);
-      });
+    builder.addCase(userLogin.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(userLogin.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+      state.userToken = action.payload.data.tokens.access;
+    });
+    builder.addCase(userLogin.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.response;
+    });
   },
 });
 export const { autoLogin } = authSlice.actions;

@@ -24,12 +24,14 @@ export const registerUser = createAsyncThunk(
         },
         config,
       );
-      dispatch(autoRegister(data.phone));
+      const phone = data.phone;
+      dispatch(autoRegister(phone));
+      // dispatch(autoRegister(data.phone));
       dispatch(handleTabClick(4));
       return user;
     } catch (error) {
       console.log(error.response);
-      return rejectWithValue(error);
+      return rejectWithValue(error.response);
     }
   },
 );
@@ -44,27 +46,23 @@ const registerSlice = createSlice({
     success: false,
   },
   reducers: {
-    autoRegister: (state, { payload }) => {
-      console.log(payload);
-      state.phone = payload;
+    autoRegister: (state, action) => {
+      state.phone = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(registerUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(registerUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.loading = false;
-        state.userInfo = payload;
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        console.log(action, 'test');
-        state.loading = false;
-        state.error = payload;
-      });
+    builder.addCase(registerUser.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      state.loading = false;
+      state.userInfo = action.payload;
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.data;
+    });
   },
 });
 export const { autoRegister } = registerSlice.actions;

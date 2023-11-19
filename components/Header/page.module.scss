@@ -16,7 +16,7 @@
 
       span {
         color: var(--blue, #0051c7);
-        font-family: Gilroy;
+        font-family: Ubuntu-Bold;
         font-size: 26px;
         font-style: normal;
         font-weight: 700;
@@ -56,6 +56,10 @@
       .profil {
         width: 70px;
         height: 70px;
+        @media screen and (max-width: 600px) {
+          width: 50px;
+          height: 50px;
+        }
 
         img {
           border-radius: 50%;
@@ -78,19 +82,23 @@
           border: none;
         }
 
-        Link {
+        .link {
           color: #161616;
-          font-family: Gilroy-SemiBold;
+          font-family: Ubuntu-Medium;
           font-size: 20px;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
+          transition: all 250ms ease-in;
+          &:hover {
+            color: #0051c7;
+          }
         }
       }
 
       .header_button {
         color: #fff;
-        font-family: Gilroy-SemiBold;
+        font-family: Ubuntu-Medium;
         font-size: 20px;
         font-style: normal;
         font-weight: 400;
@@ -127,8 +135,11 @@
     padding: 30px;
     z-index: 11;
     transition: all 1s ease-in-out;
+    @media screen and (max-width: 1024px) {
+      top: 150px;
+    }
     @media screen and (max-width: 600px) {
-      top: 70px;
+      top: 90px;
     }
 
     li {
@@ -144,7 +155,7 @@
 
     .link {
       color: #161616;
-      font-family: Gilroy-SemiBold;
+      font-family: Ubuntu-Medium;
       font-size: 20px;
       font-style: normal;
       font-weight: 400;
