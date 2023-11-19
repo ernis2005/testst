@@ -1,0 +1,100 @@
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  .item {
+    color: #161616;
+    font-family: Ubuntu-Medium;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    @media screen and (max-width: 600px) {
+      font-size: 16px;
+    }
+    span {
+      border-bottom: 1px solid var(--dark, #161616);
+      padding: 10px;
+      opacity: 0.9;
+    }
+  }
+
+  p {
+    width: 490px;
+    color: #444;
+    text-align: center;
+    font-family: Ubuntu-Bold;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.6;
+    @media screen and (max-width: 600px) {
+      font-size: 12px;
+      width: 310px;
+    }
+  }
+
+  .cont {
+    width: 490px;
+    @media screen and (max-width: 600px) {
+      width: 310px;
+    }
+
+    .contai {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      input {
+        width: 90px;
+        height: 80px;
+        background-color: #f6f6f6;
+        color: var(--dark, #161616);
+        text-align: center;
+        font-family: Ubuntu-Bold;
+        font-size: 38px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.24px;
+        margin-right: 40px;
+        @media screen and (max-width: 600px) {
+          width: 73px;
+          height: 60px;
+          margin-right: 5px;
+          font-size: 26px;
+        }
+      }
+
+      input:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  .button {
+    display: flex;
+    width: 490px;
+    height: 60px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: var(--blue, #0051c7);
+    margin-top: 24px;
+    @media screen and (max-width: 600px) {
+      width: 310px;
+      height: 44px;
+      margin-top: 20px;
+    }
+    span {
+      color: var(--white, #fff);
+      font-family: Ubuntu-Medium;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+}

@@ -1,0 +1,141 @@
+.recovery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  @media screen and (max-width: 600px) {
+    gap: 20px;
+  }
+  p {
+    width: 490px;
+    color: #444;
+    text-align: center;
+    font-family: Ubuntu-Bold;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.6;
+    @media screen and (max-width: 600px) {
+      font-size: 12px;
+      width: 310px;
+    }
+  }
+
+  .button {
+    display: flex;
+    width: 490px;
+    height: 60px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.6;
+    background: var(--blue, #0051c7);
+    margin-top: 24px;
+    @media screen and (max-width: 600px) {
+      width: 310px;
+      height: 44px;
+      margin-top: 20px;
+    }
+    span {
+      color: var(--white, #fff);
+      font-family: Ubuntu-Medium;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    label {
+      color: #161616;
+      font-family: Ubuntu-Medium;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      opacity: 0.9;
+      @media screen and (max-width: 600px) {
+        font-size: 12px;
+      }
+    }
+
+    input {
+      display: flex;
+      width: 490px;
+      height: 60px;
+      padding: 10px;
+      align-items: center;
+      gap: 10px;
+      background: var(--gray, #f6f6f6);
+      color: #161616;
+      font-family: Ubuntu-Medium;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      outline: none;
+      @media screen and (max-width: 600px) {
+        width: 310px;
+        height: 44px;
+        font-size: 15px;
+      }
+      ::placeholder {
+        color: #161616;
+        font-family: Ubuntu-Bold;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        opacity: 0.5;
+        @media screen and (max-width: 600px) {
+          font-size: 12px;
+        }
+      }
+      &:focus-within {
+        border: 2px solid #161616;
+        background: var(--gray, #fff);
+      }
+    }
+  }
+
+  .link {
+    color: #161616;
+    font-family: Ubuntu-Medium;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    @media screen and (max-width: 600px) {
+      font-size: 16px;
+    }
+    span {
+      border-bottom: 1px solid var(--dark, #161616);
+      padding: 10px;
+      opacity: 0.9;
+    }
+  }
+
+  h5 {
+    color: var(--dark, #161616);
+    text-align: center;
+    font-family: Ubuntu-Medium;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.24px;
+    @media screen and (max-width: 600px) {
+      font-size: 16px;
+    }
+    span {
+      color: var(--blue, #0051c7);
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+}

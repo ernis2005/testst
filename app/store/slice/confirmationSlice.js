@@ -24,16 +24,13 @@ export const confirmationFetch = createAsyncThunk(
         },
         config,
       );
-      console.log(response.data);
-      dispatch(userProfile(response.data.token.access));
-      localStorage.setItem(
-        'userToken',
-        JSON.stringify(response.data.token.access),
-      );
+      dispatch(autoConfirtion(data));
+      dispatch(userProfile(response.data.access));
+      localStorage.setItem('userToken', JSON.stringify(response.data.access));
       dispatch(handleTabClick(5));
       setTimeout(() => {
         dispatch(handleModal());
-      }, 3000);
+      }, 2000);
       return response;
     } catch (error) {
       console.log(error);
@@ -47,30 +44,29 @@ const confirmationSlice = createSlice({
   initialState: {
     loading: false,
     token: '',
+    user: '',
     error: null,
   },
   reducers: {
-    autoConfirtion: (state, { payload }) => {
-      console.log(payload);
-      // state.token = payload;
+    autoConfirtion: (state, action) => {
+      state.token = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(confirmationFetch.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(confirmationFetch.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.loading = false;
-        state.token = payload.data.token.access;
-      })
-      .addCase(confirmationFetch.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
-        console.log(payload);
-      });
+    builder.addCase(confirmationFetch.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(confirmationFetch.fulfilled, (state, action) => {
+      state.loading = false;
+      state.token = action.payload;
+      console.log(action.payload);
+    });
+    builder.addCase(confirmationFetch.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload.response;
+      console.log(action.payload.response.data);
+    });
   },
 });
 export const { autoConfirtion } = confirmationSlice.actions;

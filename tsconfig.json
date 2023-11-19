@@ -30,6 +30,6 @@
     "components/Form/Redister/Register.jsx",
     "components/Form/Login/Login.jsx",
     "components/Form/Confirmation/Confirmation.jsx"
-, "app/page/profil/page.jsx", "app/store/ProfilPages/Page1/Page1.jsx", "app/test/page.jsx"  ],
+  ],
   "exclude": ["node_modules"]
 }
