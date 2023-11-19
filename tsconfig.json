@@ -29,17 +29,7 @@
     ".next/types/**/*.ts",
     "components/Form/Redister/Register.jsx",
     "components/Form/Login/Login.jsx",
-    "components/Form/Confirmation/Confirmation.jsx",
-    "components/Header/Header.jsx",
-    "app/page/news/page.jsx",
-    "components/Cards/NewCards/NewCards.jsx",
-    "app/page/news/[id]/page.jsx",
-    "app/getData/getData.js",
-    "app/page/questions/page.jsx",
-    "app/page.jsx",
-    "components/Accordion/Accordion.jsx",
-    "app/store/ProviderRedux/ProviderRedux.jsx",
-    "app/page/profil/page.jsx"
+    "components/Form/Confirmation/Confirmation.jsx"
   ],
   "exclude": ["node_modules"]
 }
