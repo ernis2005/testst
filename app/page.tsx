@@ -145,7 +145,9 @@ export default function Home() {
               </p>
             </div>
             <Image className={s.hero_img} objectFit='cover' src={BgImage} alt="" />
-            <Link href="#" className={s.link}>
+            <Link
+              href="/page/videochat"
+              className={s.link}>
               <MdLocalPhone className={s.logo} />
             </Link>
           </div>

@@ -1,24 +1,29 @@
 import React, { useState, useEffect, useRef } from "react";
+import useWebSocket from "react-use-websocket";
+ import s from './page.module.scss'
+import { BiMicrophoneOff } from "react-icons/bi";
+const Participant = ({ participant, isMicMuted,height,isVideoEnabled }) => {
 
-const Participant = ({ participant, trackUnsubscribed }) => {
+
+
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
 
   const videoRef = useRef();
   const audioRef = useRef();
+ const [isAudio , setIsAudio ] = useState(true)
 
   const trackpubsToTracks = (trackMap) =>
-    Array.from(trackMap.values())
+    Array.from(trackMap?.values())
       .map((publication) => publication.track)
       .filter((track) => track !== null);
 
-  useEffect(() => {
+    useEffect(() => {
     // console.log(participant,'test');
-
-    setVideoTracks(trackpubsToTracks(participant.videoTracks));
-    setAudioTracks(trackpubsToTracks(participant.audioTracks));
-    // console.log('audioTracks', participant.audioTracks)
-
+    setVideoTracks(trackpubsToTracks(participant?.videoTracks));
+    setAudioTracks(trackpubsToTracks(participant?.audioTracks));
+    
+    
     const trackSubscribed = (track) => {
       console.log(track,'track');
       if (track.kind === "video") {
@@ -66,12 +71,16 @@ const Participant = ({ participant, trackUnsubscribed }) => {
       };
     }
   }, [audioTracks]);
-
   return (
-    <div className="participant">
-      <h3>{participant.identity}</h3>
-      <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true}  />
+    <div className={s.participant}>
+      <h3>{participant?.identity}</h3>
+      {isMicMuted === true  &&   <div className={s.audioUsers}>
+      <BiMicrophoneOff />
+     </div>
+    }
+     
+      <video ref={videoRef} autoPlay={true}  />
+      <audio ref={audioRef} autoPlay={isAudio}  />
     </div>
   );
 };
