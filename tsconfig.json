@@ -30,6 +30,6 @@
     "components/Form/Redister/Register.jsx",
     "components/Form/Login/Login.jsx",
     "components/Form/Confirmation/Confirmation.jsx"
-  ],
+, "app/pa/page.jsx"  ],
   "exclude": ["node_modules"]
 }
