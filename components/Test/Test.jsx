@@ -161,5 +161,5 @@ const TestJS = () => {
   )
 }
 
-export default page
+export default TestJS
     
