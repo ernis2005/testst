@@ -36,7 +36,6 @@ export default function Header() {
       document.body.style.overflow = '';
     }
   }, [modal]);
-
   return (
     <div>
       <div className={`${s.Header}`}>
