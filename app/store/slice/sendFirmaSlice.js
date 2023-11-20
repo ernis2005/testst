@@ -25,7 +25,6 @@ export const sendCodeFitchCode = createAsyncThunk(
       );
       console.log(response.data);
       dispatch(sendCodeConfirtion(data));
-      // dispatch(userProfile(response.data.access));
       localStorage.setItem('userToken', JSON.stringify(response.data.access));
       dispatch(handleTabClick(6));
       return response;

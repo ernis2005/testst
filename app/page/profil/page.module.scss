@@ -46,7 +46,7 @@
         .image {
           width: 140px;
           height: 140px;
-          border-radius: 140px;
+          border-radius: 50%;
           border: 1px solid var(--dark, #161616);
           @media screen and (max-width: 1024px) {
             width: 100px;
@@ -69,6 +69,10 @@
             font-size: 18px;
           }
         }
+        input[type='file'] {
+          display: none;
+          cursor: pointer;
+        }
 
         .button {
           color: var(--blue, #0051c7);
@@ -79,6 +83,8 @@
           line-height: 185%; /* 48.1px */
           text-decoration-line: underline;
           opacity: 0.7;
+          cursor: pointer;
+
           @media screen and (max-width: 1024px) {
             font-size: 20px;
           }

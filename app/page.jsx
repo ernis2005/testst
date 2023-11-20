@@ -6,7 +6,7 @@ import BgImage from '../public/imgs/hero.png';
 import { MdOutlineLocalPhone } from 'react-icons/md';
 import Link from 'next/link';
 import ServiceCard from '@/components/Cards/ServiceCard/ServiceCard';
-import iPhone15 from '../public/imgs/ddddd.png';
+import mobilbe from '../public/imgs/ddddd.png';
 import NewsCard from '@/components/Cards/NewsCard/NewsCard';
 import Accordion from '@/components/Accordion/Accordion';
 import Iphone from '../public/imgs/iPhone15.png';
@@ -150,9 +150,9 @@ const logo = [
 
 export default async function Home() {
   const question = await fetchQuintion();
-  const questionDate = question.results;
+  const questionData = question?.results || [];
   const news = await fetchNews();
-  const newsData = data.results;
+  const newsData = news?.results || [];
 
   return (
     <div>
@@ -173,9 +173,6 @@ export default async function Home() {
               src={BgImage}
               alt=""
             />
-            <Link href="#" className={s.link}>
-              <MdLocalPhone className={s.logo} />
-            </Link>
           </div>
         </div>
         <div className={s.compony}>
@@ -190,9 +187,9 @@ export default async function Home() {
                 industry's standard dummy text ever since the 1500s Lorem Ipsum
                 is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever
-                since the 1500s
+                since the 1500s{' '}
               </p>
-              <Link className={s.btn} href="">
+              <Link href={'page/compony'} className={s.btn}>
                 Подробнее
                 <FiArrowUpRight className="w-[24px] h-[24px]" />
               </Link>
@@ -200,9 +197,9 @@ export default async function Home() {
             <div className={s.compony_left}>
               <div className={s.img}>
                 <Image
-                  objectFit="cover"
                   width={964}
                   height={294}
+                  objectFit="cover"
                   src={ComponyImg}
                   alt=""
                 />
@@ -247,7 +244,7 @@ export default async function Home() {
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s Lorem Ipsum is simply
-                  dummys
+                  dummys{' '}
                 </p>
               </div>
               <div className={s.blog_Card}>
@@ -274,11 +271,11 @@ export default async function Home() {
                 </div>
                 <div className={s.iphone}>
                   <div className={s.iphone15}>
-                    <Image src={Iphone} alt="" />
+                    <Image objectFit="cover" src={Iphone} alt="" />
                   </div>
                 </div>
                 <div className={s.mobil}>
-                  <Image src={iPhone15} alt="" />
+                  <Image objectFit="cover" src={mobilbe} alt="" />
                 </div>
                 <div className={s.button}>
                   <div className={s.button_title}>
@@ -309,18 +306,14 @@ export default async function Home() {
                   </div>
                   <div className={s.Links}>
                     <Link className={s.Item} href="#">
-                      <div className={s.logo}>
-                        <Image src={Play} alt="" />
-                      </div>
+                      <Image className={s.logo} src={Play} alt="" />
                       <div>
                         <span>ANDROID APP ON</span>
                         <h4>Google play</h4>
                       </div>
                     </Link>
                     <Link className={s.Item} href="#">
-                      <div className={s.logo}>
-                        <Image src={Appstore} alt="" />
-                      </div>
+                      <Image className={s.logo} src={Appstore} alt="" />
                       <div>
                         <span>Download on the</span>
                         <h4>App Store</h4>
@@ -346,14 +339,14 @@ export default async function Home() {
                 industry's standard dummy text
               </p>
             </div>
-            {newsData === [] ? (
-              <center>пусто</center>
-            ) : (
+            {newsData.length > 0 ? (
               <div className={s.new_wrapper}>
-                {/* {newsData.map((e) => {
-                  return <NewsCard key={e} />;
-                })} */}
+                {newsData.map((e) => {
+                  return <NewsCard key={e.id} news={e} />;
+                })}
               </div>
+            ) : (
+              <center>пусто</center>
             )}
           </div>
           <div className={s.accordion}>
@@ -369,17 +362,15 @@ export default async function Home() {
                   Ipsum has been the industry's standard dummy text{' '}
                 </p>
               </div>
-              <>
-                {questionDate === [] ? (
-                  <center>пусто</center>
-                ) : (
-                  <div className={s.accordion_wrapper}>
-                    {questionDate.map((e) => {
-                      return <Acordion key={e.id} props={e} />;
-                    })}
-                  </div>
-                )}
-              </>
+              {questionData.length > 0 ? (
+                <div className={s.accordion_wrapper}>
+                  {questionData.map((e) => {
+                    return <Accordion key={e.id} props={e} />;
+                  })}
+                </div>
+              ) : (
+                <center>пусто</center>
+              )}
             </div>
           </div>
         </div>

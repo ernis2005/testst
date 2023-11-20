@@ -30,14 +30,3 @@ export const fetchQuintion = async () => {
     console.log(error);
   }
 };
-// http://185.251.88.75/api/
-
-export const fetchHistory = async () => {
-  try {
-    const response = await axios.get(`${backendURL}users/profile/`);
-    console.log(response);
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};

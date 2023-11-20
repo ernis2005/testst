@@ -1,7 +1,9 @@
 import React from 'react';
 import s from './page.module.scss';
+import { useSelector } from 'react-redux';
 
 export default function Information() {
+  const { userInfo } = useSelector((state) => state.auth);
   return (
     <>
       <div className={s.title}>
@@ -9,22 +11,22 @@ export default function Information() {
         <ul className={s.information}>
           <li>
             <span>Ф.И.О.:</span>
-            <p>Jane Doe</p>
+            <p>{userInfo?.full_name}</p>
           </li>
           <li>
             <span>Номер телефона:</span>
-            <p>+996 (555) 555 555</p>
+            <p>{userInfo?.phone}</p>
           </li>
           <li>
             <span>Должность:</span>
-            <p>Оператор</p>
+            <p>{userInfo?.role}</p>
           </li>
-          <li>
+          {/* <li>
             <span>Дата регистрации:</span>
             <p>
               12.12.2023 г. <span>20:13</span>
             </p>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>
