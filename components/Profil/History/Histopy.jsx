@@ -82,7 +82,7 @@ export default function Histopy() {
                   <GrNext />
                 </button>
                 {calender && (
-                  <div className={s.calendar}>
+                  <div onClick={dateHandleClick} className={s.calendar}>
                     <Calendar
                       className={s.cal}
                       onChange={handleDateChange}
@@ -97,7 +97,7 @@ export default function Histopy() {
                   {date2 && <span>{formatDate(date2)}</span>} <GrNext />
                 </button>
                 {calender2 && (
-                  <div className={s.calendar}>
+                  <div onClick={dateHandleClick2} className={s.calendar}>
                     <Calendar
                       className={s.cal}
                       onChange={handleDateChange2}

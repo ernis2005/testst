@@ -173,6 +173,9 @@ export default async function Home() {
               src={BgImage}
               alt=""
             />
+            <Link href="/page/videochat" className={s.link}>
+              <MdLocalPhone className={s.logo} />
+            </Link>
           </div>
         </div>
         <div className={s.compony}>

@@ -21,13 +21,13 @@ export default function ProfilPage() {
   const { profil } = useSelector((state) => state.modal);
   const { userInfo } = useSelector((state) => state.auth);
   const { status } = useSelector((state) => state.photo);
-  console.log(status);
 
   const handleOnClick = (index) => {
     dispatch(handleProfil(index));
   };
 
   const handleFileChange = (event) => {
+    console.log(event);
     const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);
@@ -82,9 +82,9 @@ export default function ProfilPage() {
                 <h2>{userInfo?.full_name}</h2>
                 <label className={s.button}>
                   <input
-                    onChange={handleFileChange}
+                    onChange={(event) => handleFileChange(event)}
                     name="picture"
-                    accept="image/*"
+                    accept="image/* "
                     type="file"
                   />
                   Сменить фото

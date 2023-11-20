@@ -6,7 +6,6 @@ const backendURL = 'http://185.251.88.75/api/';
 export const updateDate = createAsyncThunk(
   'users/update_user',
   async function (selectedFile, { rejectWithValue, dispatch }) {
-    console.log(selectedFile);
     try {
       const token = localStorage.getItem('userToken')?.replaceAll('"', '');
       const formData = new FormData();
@@ -17,7 +16,6 @@ export const updateDate = createAsyncThunk(
         {
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         },
