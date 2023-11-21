@@ -132,7 +132,17 @@ const TestJS = () => {
     sendMessage(JSON.stringify({ type: 'disable', 'call_info_id': callId }))
     setIsCalling(false)
     setIsInCall(false)
- 
+  
+    toast(("Звонок завершён"), {
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   }
   return (
     <div  >

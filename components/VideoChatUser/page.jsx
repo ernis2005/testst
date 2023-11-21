@@ -201,11 +201,35 @@ export const VideoChatUser = () => {
           setIsCalling(false);
           setIsInCall(true);
         } else if (type === 'disable') {
+          toast(("Звонок завершён"), {
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           setIsInCall(false);
           setIsCalling(false);
-          if (redirectTest === true) {
-            window.location.href = '/';
-          }
+          redirect('/')
+
+
+        } else if (type === 'decline') {
+          toast(("Звонок завершён"), {
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          setIsInCall(false);
+          setIsCalling(false);
+          redirect('/')
         }
       } catch (e) {
         console.log(e);
@@ -221,11 +245,17 @@ export const VideoChatUser = () => {
       window.location.href = '/';
     }
   };
+  const onRediteck = () => {
+    redirect('/')
+  }
 
 
   return (
     <div className={s.blockblock}>
+      {redirectTest === true && (
+        <p onClick={onRediteck()}></p>
 
+      )}
 
       {isCalling === true && (
         <div className={s.module}>
@@ -239,7 +269,7 @@ export const VideoChatUser = () => {
                     layout="fill"
                     objectFit="cover"
                   />
-                ) : null}{' '}
+                ) : null}
               </div>
               <h2>{userInfo?.full_name}</h2>
             </span>
