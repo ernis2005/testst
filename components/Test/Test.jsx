@@ -9,6 +9,8 @@ import { redirect, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import VideoChat from '../VideoChat/VideoChat'
 export const Svg = () => (
   <svg className='text-white' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -16,20 +18,15 @@ export const Svg = () => (
   </svg>
 )
 const TestJS = () => {
-  const  {userInfo} = useSelector((state)=> state.auth )
-  console.log(userInfo,'data');
+  const { userInfo } = useSelector((state) => state.auth)
+  console.log(userInfo, 'data');
   const userId = userInfo?.id
   const { sendMessage, lastMessage, readyState } = useWebSocket(`ws://185.251.88.75:8000/ws/room/${userId}/`);
-
   const [isCalling, setIsCalling] = useState(false)
   const [isInCall, setIsInCall] = useState(false)
   const [callId, setCallid] = useState(null)
   const [lastMessageData, setLastMessageData] = useState()
-
-  
-
   console.log(lastMessageData, 'lastMessage');
-
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
@@ -76,57 +73,71 @@ const TestJS = () => {
           console.log(data, "data");
           setIsCalling(true)
         } else if (type === 'disable') {
-           console.log('');
-        } else if ( type === 'decline'){
-    
-            alert(type)
+          toast(("Звонок завершён"), {
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          // location.reload()
+          setIsCalling(false)
+          setIsInCall(false)
+        } else if (type === 'decline') {
+          alert(type)
         }
       } catch (e) {
         console.log(e)
       }
     }
   }, [lastMessage]);
-
   console.log(lastMessageData);
-
-
   useEffect(() => {
     return () => {
       if (isInCall) handleEndCall()
     }
   }, [])
-
-  
-
   const handleAnswerCall = () => {
     sendMessage(JSON.stringify({ type: 'answering', 'call_info_id': callId }))
     setIsInCall(true)
     setIsCalling(false)
   }
-
   const handleDeclineCall = () => {
     sendMessage(JSON.stringify({ type: 'decline', 'call_info_id': callId }))
     setIsCalling(false)
     setIsInCall(false)
   }
-
   const handleEndCall = () => {
     console.log('end call')
-
-    // stopScreenRecording()
     sendMessage(JSON.stringify({ type: 'disable', 'call_info_id': callId }))
     setIsCalling(false)
     setIsInCall(false)
     location.reload()
   }
-
   return (
     <div  >
+      <ToastContainer
+        className={s.ToastContainer}
+        autoClose={1000}
+        limit={1}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
       {isCalling && (
         <div className={s.module}>
           <div className={s.bloxk}>
             <span className={s.userInfo}>
-              <div className={s.image}> {lastMessageData?.image !== null  ?( <Image src={lastMessageData?.image} layout='fill' objectFit='cover' />): ( null)  } </div>
+              <div className={s.image}> {lastMessageData?.image !== null ? (<Image src={lastMessageData?.image} layout='fill' objectFit='cover' />) : (null)} </div>
               <h2> {lastMessageData.name} </h2>
             </span>
             <div className={s.buttons}>
@@ -145,7 +156,7 @@ const TestJS = () => {
           </div>
         </div>
       )}
-      {isCalling && (<audio  autoPlay>
+      {isCalling && (<audio autoPlay>
         <source src="/test1.mp3" type='audio/ogg; codecs=vorbis' />
         <source src="/test1.mp3" type="audio/mpeg" />
         Тег audio не поддерживается вашим браузером. <a href="/test1.mp3">Скачайте музыку</a>.
@@ -153,13 +164,12 @@ const TestJS = () => {
       {isCalling && (<button onClick={handleNotification()}>Отправить уведомление</button>)}
       {isInCall &&
         <div className={s.module1}>
-        <VideoChat handleEndCall={handleEndCall} />
+          <VideoChat handleEndCall={handleEndCall}    name={lastMessageData.name} />
         </div>
       }
-
     </div>
   )
 }
 
 export default TestJS
-    
+

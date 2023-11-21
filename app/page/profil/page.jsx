@@ -11,7 +11,9 @@ import History from '../../../components/Profil/History/Histopy';
 import { handleProfil } from '@/app/store/slice/modalSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHistory } from '@/app/getData/getData';
-import TestJS from '../../../components/Test/Test'
+import TestJS from '../../../components/Test/Test';
+
+
 export default function ProfilPage() {
   const data = fetchHistory();
   const [edit, setEdit] = useState(false);
@@ -31,7 +33,7 @@ export default function ProfilPage() {
 
   return (
     <>
-    <TestJS/>
+  
     <div className={s.profil}>
 
     <div className="container">

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import authSlice, { userProfile } from '@/app/store/slice/authSlice';
 import Avatar from '../../public/imgs/avatar.png';
 import { handleModal } from '@/app/store/slice/modalSlice';
+import TestJS from '../Test/Test';
 
 export default function Header() {
   const [toggle, setToggle] = useState(false);
@@ -19,7 +20,8 @@ export default function Header() {
   const { isUser, error, userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    const id = JSON.parse(localStorage.getItem('userToken'));
+    
+    const id = JSON?.parse(localStorage.getItem('userToken'));
     if (id !== null) {
       dispatch(userProfile(id));
     }
@@ -36,9 +38,10 @@ export default function Header() {
       document.body.style.overflow = '';
     }
   }, [modal]);
-  return (
+  return (  
     <div>
-      <div className={`${s.Header}`}>
+ <TestJS/>
+    <div className={`${s.Header}`}>
         <div className="container">
           <nav className="">
             <Link href="/" className={s.header_logo}>
@@ -53,7 +56,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className={s.link} href="/page/compony">
+                  <Link className={s.link} href="/page/company">
                     О компании
                   </Link>
                 </li>

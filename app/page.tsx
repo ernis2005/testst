@@ -146,6 +146,17 @@ const logo = [
     title: 'TESLA',
   },
 ];
+export const metadata = {
+  title:  " Кос и Ког",
+  description: '',
+  icons: [
+    {
+      rel: "icon",
+      sizes: "any",
+      url: "/logo.jpg",
+    },
+  ],
+}
 
 export default function Home() {
   return (

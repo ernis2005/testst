@@ -6,6 +6,10 @@ import { FiArrowUpRight } from 'react-icons/fi';
 import NewCards from '@/components/Cards/NewCards/NewCards';
 import { fetchNews } from '@/app/getData/getData';
 import Paginate from '@/components/Paginate/Paginate';
+export const metadata = {
+  title: 'Новости',
+  description: '',
+}
 
 export default async function NewsPage() {
   const data = await fetchNews();

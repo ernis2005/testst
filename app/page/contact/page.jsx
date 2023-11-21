@@ -1,5 +1,16 @@
 import React from 'react';
 import s from './page.module.scss';
+export const metadata = {
+  title: 'Контакты',
+  description: '',
+  icons: [
+    {
+      rel: "icon",
+      sizes: "any",
+      url: "/logo.jpg",
+    },
+  ],
+}
 
 export default function ContactPage() {
   return (
