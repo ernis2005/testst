@@ -80,17 +80,7 @@ const logo = [
   },
 
 ]
-export const metadata = {
-  title: ' О компании',
-  description: '',
-  icons: [
-    {
-      rel: "icon",
-      sizes: "any",
-      url: "/logo.jpg",
-    },
-  ],
-}
+
 export default function ComponyPage() {
   return (
     <div>

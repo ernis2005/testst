@@ -6,16 +6,17 @@ import { FiArrowUpRight } from 'react-icons/fi';
 import NewCards from '@/components/Cards/NewCards/NewCards';
 import { fetchNews } from '@/app/getData/getData';
 import Paginate from '@/components/Paginate/Paginate';
+
+import noneImage from '../../../public/imgs/noneImage.png';
 export const metadata = {
   title: 'Новости',
   description: '',
-}
+};
 
 export default async function NewsPage() {
   const data = await fetchNews();
-  const newsData = data.results;
+  const newsData = data?.results || [];
 
-  console.log(newsData[0].images_slides[0]);
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();
@@ -26,26 +27,29 @@ export default async function NewsPage() {
 
   return (
     <div>
-      {newsData === [] ? (
-        <center>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/21/21601.png"
-            alt=""
-          />
-        </center>
-      ) : (
+      {newsData.length > 0 ? (
         <div className="container">
           <div className={s.news}>
             <h2>Последние новости</h2>
             <div className={s.new_card}>
               <div className={s.image}>
-                <Image
-                  objectFit="cover"
-                  width={1564}
-                  height={500}
-                  src={newsData[0].images_slides[0].photo}
-                  alt=""
-                />
+                {newsData[0].images_slides.length > 0 ? (
+                  <Image
+                    objectFit="cover"
+                    width={1564}
+                    height={500}
+                    src={newsData[0].images_slides[0].photo}
+                    alt=""
+                  />
+                ) : (
+                  <Image
+                    objectFit="cover"
+                    width={1564}
+                    height={500}
+                    src={noneImage}
+                    alt=""
+                  />
+                )}
               </div>
               <div className={s.title}>
                 <h3>{newsData[0].thesis}</h3>
@@ -65,9 +69,13 @@ export default async function NewsPage() {
                 return <NewCards news={news} />;
               })}
             </div>
-            <Paginate />
+            {/* <Paginate /> */}
           </div>
         </div>
+      ) : (
+        <center>
+          <h3>пусто</h3>
+        </center>
       )}
     </div>
   );

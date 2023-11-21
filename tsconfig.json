@@ -29,7 +29,9 @@
     ".next/types/**/*.ts",
     "components/Form/Redister/Register.jsx",
     "components/Form/Login/Login.jsx",
-    "components/Form/Confirmation/Confirmation.jsx"
-, "app/pa/page.jsx"  ],
+    "components/Form/Confirmation/Confirmation.jsx",
+    "app/page.jsx",
+    "components/Cards/NewsCard/NewsCard.jsx"
+  ],
   "exclude": ["node_modules"]
 }

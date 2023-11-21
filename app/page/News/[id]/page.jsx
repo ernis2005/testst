@@ -5,6 +5,7 @@ import { FaEye } from 'react-icons/fa';
 import Images from '../../../../public/imgs/newscard.png';
 import { FiArrowUpRight } from 'react-icons/fi';
 import Link from 'next/link';
+import noneImage from '../../../../public/imgs/noneImage.png';
 
 import { fetchNews, fetchNewsIn } from '@/app/getData/getData';
 import NewsPage from '@/components/NewsPage/NewsPage';
@@ -15,7 +16,6 @@ export default async function NewsIn({ params: { id } }) {
 
   let datas = data.results;
   datas = datas.slice(0, 2);
-  console.log(datas);
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();
@@ -32,7 +32,11 @@ export default async function NewsIn({ params: { id } }) {
             <h2>{dataNewsIn.thesis}</h2>
             <div className={s.card}>
               <div className={s.slide}>
-                <NewsPage image={dataNewsIn.images_slides} />
+                {dataNewsIn.images_slides.length > 0 ? (
+                  <NewsPage image={dataNewsIn.images_slides} />
+                ) : (
+                  <Image width={1000} height={500} src={noneImage} alt="" />
+                )}
               </div>
               <div className={s.title}>
                 <h5>{formatDate(dataNewsIn.created_at)}</h5>
@@ -51,17 +55,26 @@ export default async function NewsIn({ params: { id } }) {
             <h2>More articles</h2>
             <div className={s.blog}>
               {datas.map((e) => {
-                console.log(e.images_slides[0].photo);
                 return (
                   <div key={e} className={s.news_card}>
                     <div className={s.image}>
-                      <Image
-                        objectFit="cover"
-                        width={500}
-                        height={250}
-                        src={e.images_slides[0].photo}
-                        alt=""
-                      />
+                      {e.images_slides.length > 0 ? (
+                        <Image
+                          objectFit="cover"
+                          width={500}
+                          height={250}
+                          src={e.images_slides[0].photo}
+                          alt=""
+                        />
+                      ) : (
+                        <Image
+                          objectFit="cover"
+                          width={500}
+                          height={250}
+                          src={noneImage}
+                          alt=""
+                        />
+                      )}
                     </div>
                     <div className={s.title}>
                       <div className={s.data}>

@@ -10,7 +10,6 @@ export const changeFirtch = createAsyncThunk(
   'users/set_new_password',
   async (data, { rejectWithValue, dispatch }) => {
     const number = data.phone.replace(/\D/g, '');
-    console.log(data);
     try {
       const config = {
         headers: {

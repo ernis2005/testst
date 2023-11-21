@@ -1,16 +1,15 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header/Header'
-import Footer from '@/components/Footer/Footer'
+
 import ProviderRedux from './store/ProviderRedux/ProviderRedux'
-
-
-
+import React from 'react'
+import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title:  " Кос и Ког",
+  title: " Кос и Ког",
   description: '',
   icons: [
     {

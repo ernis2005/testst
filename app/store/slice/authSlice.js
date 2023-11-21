@@ -42,22 +42,6 @@ export const userLogin = createAsyncThunk(
   },
 );
 
-// export const userProfile = createAsyncThunk(
-//   'users/profile',
-//   async function (id, { dispatch }) {
-//     try {
-//       const response = await axios.get(`${backendURL}users/profile/`, {
-//         headers: {
-//           accept: 'application/json',
-//           Authorization: `Bearer ${id}`,
-//         },
-//       });
-//       dispatch(autoLogin(response));
-//     } catch (error) {
-//       return error;
-//     }
-//   },
-// );
 export const userProfile = createAsyncThunk(
   'users/profile',
   async function (id, { dispatch }) {
@@ -91,12 +75,11 @@ const authSlice = createSlice({
     });
     builder.addCase(userLogin.fulfilled, (state, action) => {
       state.loading = false;
-      state.userInfo = action.payload;
       state.userToken = action.payload.data.tokens.access;
     });
     builder.addCase(userLogin.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.payload.response;
+      state.error = action?.payload.response;
     });
   },
 });

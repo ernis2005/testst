@@ -8,6 +8,7 @@ import sendFirmaSlice from './slice/sendFirmaSlice';
 import changeSlice from './slice/changeSlice';
 import historySlice from './slice/historySlice';
 import newsSlide from './slice/newsSlide';
+import ubdateSlice from './slice/ubdateSlice';
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     change: changeSlice,
     history: historySlice,
     news: newsSlide,
+    photo: ubdateSlice,
   },
 });
 

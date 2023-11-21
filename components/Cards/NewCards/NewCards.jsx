@@ -3,6 +3,7 @@ import s from './page.module.scss';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { FiArrowUpRight } from 'react-icons/fi';
+import noneImage from '../../../public/imgs/noneImage.png';
 
 export default function NewCards({ news }) {
   const formatDate = (dateString) => {
@@ -15,13 +16,23 @@ export default function NewCards({ news }) {
   return (
     <div className={s.news_card}>
       <div className={s.image}>
-        <Image
-          objectFit="cover"
-          width={762}
-          height={494}
-          src={news.images_slides[0].photo}
-          alt=""
-        />
+        {news.images_slides.length > 0 ? (
+          <Image
+            objectFit="cover"
+            width={762}
+            height={494}
+            src={news.images_slides[0].photo}
+            alt=""
+          />
+        ) : (
+          <Image
+            objectFit="cover"
+            width={762}
+            height={494}
+            src={noneImage}
+            alt=""
+          />
+        )}
       </div>
       <div className={s.title}>
         <div className={s.data}>

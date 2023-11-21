@@ -1,25 +1,32 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import axios from 'axios';
 const backendURL = 'http://185.251.88.75/api/';
 
 export const historyData = createAsyncThunk(
   'general/api/video_call_history',
-  async (_, { rejectWithValue }) => {
+  async function (queryParams) {
+    console.log(queryParams, 'queryParams');
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      };
+      const token = localStorage.getItem('userToken')?.replaceAll('"', '');
       const response = await axios.get(
-        `${backendURL}general/api/video_call_history/?page=1`,
-        config,
+        `${backendURL}general/api/video_call_history/?`,
+        {
+          params: {
+            created_at__gte: queryParams.created_at__gte,
+            created_at__lte: queryParams.created_at__lte,
+            page: 1,
+          },
+
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
-      console.log(response);
-      return response;
+      return response.data;
     } catch (error) {
-      console.log(error);
-      return rejectWithValue(error);
+      return error;
     }
   },
 );
@@ -27,7 +34,7 @@ export const historyData = createAsyncThunk(
 const hestorySlice = createSlice({
   name: 'modal',
   initialState: {
-    data: [],
+    history: [],
     status: 'idle',
     error: '',
   },
@@ -38,13 +45,11 @@ const hestorySlice = createSlice({
     });
     builder.addCase(historyData.fulfilled, (state, action) => {
       state.status = 'succeeded';
-      state.data = action.payload;
-      console.log(action.payload);
+      state.history = action.payload;
     });
     builder.addCase(historyData.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action;
-      console.log(action);
     });
   },
 });

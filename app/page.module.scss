@@ -417,6 +417,9 @@
       grid-template-columns: 3fr 6fr 3fr;
       gap: 72px;
       align-items: center;
+      @media screen and (max-width: 1280px) {
+        gap: 52px;
+      }
       @media screen and (max-width: 1140px) {
         gap: 42px;
       }
@@ -430,6 +433,7 @@
         flex-direction: column;
         justify-content: space-between;
         gap: 120px;
+
         @media screen and (max-width: 1140px) {
           gap: 30px;
         }
@@ -444,6 +448,9 @@
           font-style: normal;
           font-weight: 700;
           line-height: normal;
+          @media screen and (max-width: 1280px) {
+            font-size: 50px;
+          }
           @media screen and (max-width: 1140px) {
             font-size: 44px;
           }
@@ -493,6 +500,9 @@
 
           @media screen and (max-width: 1440px) {
             max-width: 750px;
+          }
+          @media screen and (max-width: 1280px) {
+            max-width: 650px;
           }
           @media screen and (max-width: 1140px) {
             max-width: 550px;
@@ -707,6 +717,7 @@
     max-width: 1564px;
     padding: 0 30px;
     margin: 0 auto;
+
     @media screen and (max-width: 1024px) {
       padding: 0;
     }
@@ -780,10 +791,12 @@
   .accordion {
     margin-top: 140px;
     @media screen and (max-width: 1024px) {
+      padding: 30px;
       margin-top: 80px;
     }
     @media screen and (max-width: 600px) {
       margin-top: 40px;
+      padding: 20px;
     }
 
     .accor_title {
