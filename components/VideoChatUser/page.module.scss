@@ -3,13 +3,13 @@
     height: 100%;
     background: rgba(217, 217, 217, 0.80);
     position: fixed;
-    margin-top: 0px;
-    z-index: 1;
+    margin-top: -130px;
+    z-index: 11;
     text-align: center;
     align-items: center;
     display: grid;
     align-content: center;
-   
+
     .bloxk {
         display: inline-flex;
         padding: 94px 89px 94px 90px;
@@ -48,7 +48,7 @@
         padding: 0;
         margin: 0 auto;
         border-radius: 50%;
-        z-index: 1;
+        z-index: 11;
         position: relative;
         display: grid;
         align-content: center;
@@ -58,7 +58,7 @@
             font-size: 10px;
             color: #fff;
 
-            z-index: 4;
+            z-index: 11;
             transform: rotate(135deg);
             margin: 0;
 
@@ -204,7 +204,7 @@
 
     h2 {
         color: var(--dark, #161616);
-        font-family: Gilroy;
+        font-family: Gilroy-Medium; 
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
@@ -218,8 +218,8 @@
         background-color: #000;
         margin: 0 auto;
         border-radius: 50%;
-        overflow: hidden;
         position: relative;
+        overflow: hidden;
     }
 }
 
@@ -236,7 +236,6 @@
     display: grid;
     align-content: center;
     margin: 10px;
-    
 
 }
 
@@ -367,16 +366,38 @@ background: rgba(57, 57, 57, 0.50);
     height: 100%;
     background: rgba(217, 217, 217, 0.8);
     position: fixed;
-    margin-top: 0px;
-    z-index: 1;
+    margin-top: -130px;
+    z-index: 22;
     text-align: center;
     align-items: center;
     display: grid;
     align-content: space-between;
     justify-content: end;
     justify-items: center;
+}
+.blockblock{
+    position: absolute;
+    margin-top: -140px;
+    display: grid;
+    background: rgba(217, 217, 217, 0.8);
+
+    height: 100vh;
+    width: 100%;
+    z-index: 11;
+    align-items: center;
+    justify-content: space-between;
+    justify-items: center;
     @media screen and (max-width:600px) {
-        margin-top: -90px !important;
+        position: absolute;
+        margin-top: -87px;
+        display: grid;
+        background: rgba(217, 217, 217, 0.8);
+        height: 100vh;
+        width: 100%;
+        z-index: 11;
+        align-items: center;
+        justify-content: space-between;
+        justify-items: center;
     }
 }
 .time{

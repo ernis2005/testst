@@ -9,6 +9,7 @@ const initialState = {
   userInfo: null,
   userToken: null,
   error: null,
+ 
 };
 export const userLogin = createAsyncThunk(
   'users/login',

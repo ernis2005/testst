@@ -23,19 +23,24 @@ body {
 }
 @font-face {
   font-family: 'Ubuntu-Medium';
-  src: url('../public/font/Ubuntu/Ubuntu-Regular.ttf');
+  src: url('/font/Ubuntu_Medium.ttf');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Ubuntu-Bold';
-  src: url('../public/font/Ubuntu/Ubuntu-Bold.ttf');
+  src: url('/font/Ubuntu/Ubuntu-Bold.ttf');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Copperplate Gothic Bold';
-  src: url('../public/font/Copperplate-Gothic-Bold/Copperplate\ Gothic\ Bold\ Regular.ttf');
+  src: url('/font/Copperplate-Gothic-Bold/Copperplate\ Gothic\ Bold\ Regular.ttf');
   font-weight: 400;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy-Medium';
+  src: url('/font/Gilroy_Medium.ttf');
 }

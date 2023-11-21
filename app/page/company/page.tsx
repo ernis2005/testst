@@ -80,6 +80,7 @@ const logo = [
   },
 
 ]
+
 export default function ComponyPage() {
   return (
     <div>

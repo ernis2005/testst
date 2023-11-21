@@ -1,19 +1,23 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header/Header'
-import Footer from '@/components/Footer/Footer'
+
 import ProviderRedux from './store/ProviderRedux/ProviderRedux'
-import LinkPhone from '../components/LinkPhone/Link'
-
-
-
+import React from 'react'
+import Header from '../components/Header/Header'
+import Footer from '../components/Footer/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'SurdoKG',
-  description: 'Свободное общение, где бы вы ни были!',
-
+export const metadata = {
+  title: " Кос и Ког",
+  description: '',
+  icons: [
+    {
+      rel: "icon",
+      sizes: "any",
+      url: "/logo.jpg",
+    },
+  ],
 }
 
 export default function RootLayout({
