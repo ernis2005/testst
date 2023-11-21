@@ -22,12 +22,12 @@ export const sendCodeFitch = createAsyncThunk(
         },
         config,
       );
-      console.log(data);
+
       dispatch(sendCodePhone(phone));
       dispatch(handleTabClick(7));
       return data;
     } catch (error) {
-      console.log(error);
+ 
       return rejectWithValue(error);
     }
   },

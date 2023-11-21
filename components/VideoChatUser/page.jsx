@@ -96,7 +96,7 @@ export const VideoChatUser = () => {
       room.on('trackDisabled', handleTrackDisabled);
       room.on('trackEnabled', handleTrackEnabled);
       room.participants.forEach(participantConnected);
-      console.log('p', room.participants);
+
     }
     return () => {
       if (room) {
@@ -123,7 +123,7 @@ export const VideoChatUser = () => {
 
   const participantDisconnected = (participant) => {
     handleEndCall();
-    console.log('disconnected ' + participant);
+
     setParticipants((prevParticipants) =>
       prevParticipants.filter((p) => p !== participant),
     );
@@ -194,7 +194,7 @@ export const VideoChatUser = () => {
     if (lastMessage !== null) {
       try {
         const data = JSON.parse(lastMessage.data);
-        console.log(lastMessage, ' lastMasddasdasd essage');
+
         const type = data.type;
         setLastMessageData(data);
         if (type === 'answering') {

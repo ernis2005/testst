@@ -16,7 +16,7 @@ export const metadata = {
 }
 export default async function QuestionPage() {
   const data = await fetchQuintion();
-  console.log(data.results);
+
   return (
     <div className={s.accordion}>
       <div className="container">

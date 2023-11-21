@@ -20,15 +20,15 @@ const Participant = ({ participant, isMicMuted, height, isVideoEnabled,name }) =
       .filter((track) => track !== null);
 
   useEffect(() => {
-    // console.log(participant,'test');
+
     setVideoTracks(trackpubsToTracks(participant?.videoTracks));
     setAudioTracks(trackpubsToTracks(participant?.audioTracks));
     const trackSubscribed = (track) => {
-      console.log(track, 'track');
+    
       if (track.kind === "video") {
         setVideoTracks((videoTracks) => [...videoTracks, track]);
       } else if (track.kind === "audio") {
-        console.log('audio track')
+
         setAudioTracks((audioTracks) => [...audioTracks, track]);
       }
     };
@@ -69,7 +69,7 @@ const Participant = ({ participant, isMicMuted, height, isVideoEnabled,name }) =
       };
     }
   }, [audioTracks]);
-  console.log(participant, ' tests')
+
   return (
     <div className={s.participant}>
       <h3>{name}</h3>

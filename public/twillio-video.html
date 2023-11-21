@@ -83,8 +83,7 @@
             };
 
             const participantConnected = participant => {
-                console.log('Participant "%s" connected', participant.identity);
-
+         
                 const div = document.createElement('div');
                 div.id = participant.sid;
                 div.classList.add('participant');
@@ -107,7 +106,7 @@
             };
 
             const participantDisconnected = participant => {
-                console.log('Participant "%s" disconnected', participant.identity);
+               
                 document.getElementById(participant.sid).remove();
             };
 

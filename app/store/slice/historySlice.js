@@ -5,7 +5,7 @@ const backendURL = 'http://185.251.88.75/api/';
 export const historyData = createAsyncThunk(
   'general/api/video_call_history',
   async function (queryParams) {
-    console.log(queryParams, 'queryParams');
+
     try {
       const token = localStorage.getItem('userToken')?.replaceAll('"', '');
       const response = await axios.get(

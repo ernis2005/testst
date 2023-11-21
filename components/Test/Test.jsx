@@ -19,14 +19,14 @@ export const Svg = () => (
 )
 const TestJS = () => {
   const { userInfo } = useSelector((state) => state.auth)
-  console.log(userInfo, 'data');
+
   const userId = userInfo?.id
   const { sendMessage, lastMessage, readyState } = useWebSocket(`ws://185.251.88.75:8000/ws/room/${userId}/`);
   const [isCalling, setIsCalling] = useState(false)
   const [isInCall, setIsInCall] = useState(false)
   const [callId, setCallid] = useState(null)
   const [lastMessageData, setLastMessageData] = useState()
-  console.log(lastMessageData, 'lastMessage');
+
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
@@ -35,14 +35,13 @@ const TestJS = () => {
     [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
   }[readyState];
 
-  console.log('connection', connectionStatus)
 
   const handleNotification = () => {
     if (!("Notification" in window)) {
       alert("Этот браузер не поддерживает уведомления.");
     } else if (Notification.permission === "granted") {
       const data = JSON.parse(lastMessage.data)
-      console.log(Notification.permission);
+
       new Notification("Звонок", {
         body: `${data.name}`,
         icon: `${data.image}`,
@@ -64,13 +63,13 @@ const TestJS = () => {
       try {
         const data = JSON.parse(lastMessage.data)
         const type = data.type
-        console.log('lastMessage', data)
+   
         setLastMessageData(data)
         if (type === 'calling') {
           const userName = data.name
           const userImage = data.image
           setCallid(data.call_info_id)
-          console.log(data, "data");
+     
           setIsCalling(true)
         } else if (type === 'disable') {
           toast(("Звонок завершён"), {
@@ -90,11 +89,11 @@ const TestJS = () => {
           alert(type)
         }
       } catch (e) {
-        console.log(e)
+    
       }
     }
   }, [lastMessage]);
-  console.log(lastMessageData);
+ 
   useEffect(() => {
     return () => {
       if (isInCall) handleEndCall()
@@ -111,7 +110,7 @@ const TestJS = () => {
     setIsInCall(false)
   }
   const handleEndCall = () => {
-    console.log('end call')
+
     sendMessage(JSON.stringify({ type: 'disable', 'call_info_id': callId }))
     setIsCalling(false)
     setIsInCall(false)

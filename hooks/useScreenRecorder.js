@@ -22,8 +22,7 @@ export  function useScreenRecorder() {
             const chunks = [];
             mediaRecorder.ondataavailable = (event) => {
                 if (event.data.size > 0) {
-                    console.log('recorded data', event.data)
-                    
+                 
                     setData(event.data)
                 }
             };

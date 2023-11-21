@@ -34,7 +34,7 @@ function VideoChat({ handleEndCall , name }) {
   const roomName = room?.name
 
   const { sendMessage, lastMessage, readyState } = useWebSocket(`ws://185.251.88.75:8000/ws/record/${roomName}/`);
-  console.log(lastMessage, 'lastMessage');
+
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
@@ -45,11 +45,11 @@ function VideoChat({ handleEndCall , name }) {
 
 
   useEffect(() => {
-    console.log(isFirstTime);
+
     setIsFirstTime(false);
     const connectToRoom = async () => {
       try {
-        console.log('connectToRoom')
+  
         const id = await JSON.parse(localStorage.getItem('userToken'));
         const bearerToken = await id
         const response = await axios.get(
@@ -61,15 +61,14 @@ function VideoChat({ handleEndCall , name }) {
           }
         );
         const { token } = await response.data;
-        console.log('roomName', response.data)
-        console.log(token);
+
         const newRoom = await Video.connect(token, { 
           name: response.data.room,
           audio: true,
           video: { width: '400px' }
         }).catch(e => console.log('video connect err', e));
         
-        console.log(newRoom, 'newRoom');
+      
         setRoom(newRoom);
 
         startScreenRecording()
@@ -94,7 +93,7 @@ function VideoChat({ handleEndCall , name }) {
       room.on('trackDisabled', handleTrackDisabled)
       room.on('trackEnabled', handleTrackEnabled)
       room.participants.forEach(participantConnected);
-      console.log('p', room.participants)
+    
     }
     return () => {
       if (room) {
@@ -107,7 +106,7 @@ function VideoChat({ handleEndCall , name }) {
   }, [room]);
 
   const participantConnected = (participant) => {
-    console.log('participantConnected', participant)
+    
     setParticipants(
       (prevParticipants) => [...prevParticipants, participant]
     );
@@ -131,7 +130,7 @@ function VideoChat({ handleEndCall , name }) {
 
   const participantDisconnected = (participant) => {
     handleEndCall()
-    console.log('disconnected ' + participant)
+ 
     setParticipants((prevParticipants) =>
       prevParticipants.filter((p) => p !== participant),
     );
@@ -174,11 +173,10 @@ function VideoChat({ handleEndCall , name }) {
     });
     setIsAudio(!isAudio)
   }
-  console.log(participants, '   {room &&  ');
 
   useEffect(() => {
     if (recordedData) { 
-      console.log('sendRecordedData')
+
       sendMessage(recordedData); 
     }
   }, [recordedData])
@@ -186,7 +184,6 @@ function VideoChat({ handleEndCall , name }) {
   const mute = () => {
     participants.forEach(e => e.videoTracks[0].disable())
   }
-  //  console.log(room.localParticipant ,' test ');
 
   return (
     <div className={s.VideoChat}>

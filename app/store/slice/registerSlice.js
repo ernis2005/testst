@@ -30,7 +30,7 @@ export const registerUser = createAsyncThunk(
       dispatch(handleTabClick(4));
       return user;
     } catch (error) {
-      console.log(error.response);
+  
       return rejectWithValue(error.response);
     }
   },

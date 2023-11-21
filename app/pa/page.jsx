@@ -19,7 +19,7 @@ const ScreenRecorder = ({ isRecording }) => {
       const chunks = [];
       mediaRecorder.ondataavailable = (event) => {
         if (event.data.size > 0) {
-          console.log('recorded data', event.data.size)
+      
           chunks.push(event.data);
           if (webSocketRef.current && webSocketRef.current.readyState === WebSocket.OPEN) {
             
@@ -43,7 +43,7 @@ const ScreenRecorder = ({ isRecording }) => {
       mediaRecorder.start();
       setRecording(true);
     } catch (error) {
-      console.error('Error accessing screen:', error);
+    
     }
   };
 
