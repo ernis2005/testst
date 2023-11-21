@@ -16,7 +16,6 @@ export default async function NewsIn({ params: { id } }) {
 
   let datas = data.results;
   datas = datas.slice(0, 2);
-  console.log(datas);
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();

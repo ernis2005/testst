@@ -11,6 +11,7 @@ import noneImage from '../../../public/imgs/noneImage.png';
 export default async function NewsPage() {
   const data = await fetchNews();
   const newsData = data?.results || [];
+
   const formatDate = (dateString) => {
     const dateObj = new Date(dateString);
     const year = dateObj.getFullYear();
@@ -63,7 +64,7 @@ export default async function NewsPage() {
                 return <NewCards news={news} />;
               })}
             </div>
-            <Paginate />
+            {/* <Paginate /> */}
           </div>
         </div>
       ) : (
