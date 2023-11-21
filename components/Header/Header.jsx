@@ -20,7 +20,6 @@ export default function Header() {
   const { isUser, error, userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    
     const id = JSON?.parse(localStorage.getItem('userToken'));
     if (id !== null) {
       dispatch(userProfile(id));
@@ -38,10 +37,10 @@ export default function Header() {
       document.body.style.overflow = '';
     }
   }, [modal]);
-  return (  
+  return (
     <div>
- <TestJS/>
-    <div className={`${s.Header}`}>
+      <TestJS />
+      <div className={`${s.Header}`}>
         <div className="container">
           <nav className="">
             <Link href="/" className={s.header_logo}>
@@ -79,6 +78,7 @@ export default function Header() {
               {userInfo ? (
                 <Link className={s.profil} href="/page/profil">
                   <Image
+                    objectFit="cover"
                     width={70}
                     height={70}
                     src={

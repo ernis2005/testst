@@ -6,6 +6,7 @@ import ProviderRedux from './store/ProviderRedux/ProviderRedux'
 import React from 'react'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
+import LinkPhone from '../components/LinkPhone/LinkPhone'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -29,8 +30,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ProviderRedux>
+          <LinkPhone />
           <Header />
-          <main> {children}</main>
+          <main>
+            {children}
+          </main>
           <Footer />
         </ProviderRedux>
       </body>

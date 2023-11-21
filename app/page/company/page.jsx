@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 import s from './page.module.scss';
 import Image from 'next/legacy/image';
 import Com from '../../../public/imgs/com.png';

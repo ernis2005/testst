@@ -4,18 +4,19 @@ import Spiner from '@/components/Spiner/Spiner';
 import { fetchQuintion } from '@/app/getData/getData';
 import AccordionPage from '@/components/AccordionPage/AccordionPage';
 export const metadata = {
-  title:  " Вапросы и ответы",
+  title: ' Вапросы и ответы',
   description: '',
   icons: [
     {
-      rel: "icon",
-      sizes: "any",
-      url: "/logo.jpg",
+      rel: 'icon',
+      sizes: 'any',
+      url: '/logo.jpg',
     },
   ],
-}
+};
 export default async function QuestionPage() {
   const data = await fetchQuintion();
+  const question = data?.results || [];
 
   return (
     <div className={s.accordion}>
@@ -31,11 +32,15 @@ export default async function QuestionPage() {
             industry's standard dummy text
           </p>
         </div>
-        <div className={s.wrapper}>
-          {data.results.map((item) => {
-            return <AccordionPage item={item} />;
-          })}
-        </div>
+        {question.length > 0 ? (
+          <div className={s.wrapper}>
+            {question.results.map((item) => {
+              return <AccordionPage item={item} />;
+            })}
+          </div>
+        ) : (
+          <center>пусто</center>
+        )}
       </div>
     </div>
   );
