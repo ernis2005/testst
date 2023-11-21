@@ -18,19 +18,21 @@ export default function Header() {
   const { modal } = useSelector((state) => state.modal);
 
   const { isUser, error, userInfo } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    
-    const id = JSON?.parse(localStorage.getItem('userToken'));
-    if (id !== null) {
-      dispatch(userProfile(id));
+ const [loading, setLoading] = useState(false);
+  const  getuser = async () => {
+    const id = await JSON?.parse(localStorage.getItem('userToken'));
+     if (id !== null) {
+     dispatch(userProfile(id));
+    setLoading(true)
     }
-  }, [dispatch]);
 
+  }
+  useEffect(() => {
+    getuser()
+  }, []);
   const handleModalOnclik = () => {
     dispatch(handleModal(!modal));
   };
-
   useEffect(() => {
     if (modal) {
       document.body.style.overflow = 'hidden';
@@ -78,7 +80,8 @@ export default function Header() {
               </ul>
               {userInfo ? (
                 <Link className={s.profil} href="/page/profil">
-                  <Image
+                {loading === false ? (<h2>loading</h2>) : (
+                    <Image
                     width={70}
                     height={70}
                     src={
@@ -88,6 +91,9 @@ export default function Header() {
                     }
                     alt=""
                   />
+                  )
+                  }
+                
                 </Link>
               ) : (
                 <button onClick={handleModalOnclik} className={s.header_button}>
