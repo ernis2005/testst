@@ -1,36 +1,80 @@
-// // 'use client';
-// // import React, { useEffect, useState } from 'react';
-// // import s from './page.module.scss';
-// // import { fetchNews } from '@/app/getData/getData';
-// // import { useDispatch } from 'react-redux';
+'use client';
+import React, { useEffect, useState } from 'react';
+import s from './page.module.scss';
+import NewCards from '../Cards/NewCards/NewCards';
 
-// // export default function Paginate() {
-// //   // const [noOFElement, setNoOFElement] = useState(6);
-// //   // const datas = [1, 2, 3, 4, 5, 67, 8, 9, 0];
-// //   // const slice = data?.slice(0, noOFElement);
-// //   // const data4length = datas.length;
-// //   // const LoadMore = () => {
-// //   //   setNoOFElement(noOFElement + 6);
-// //   // };
-// //   // <button onClick={() => LoadMore()} className={cm(s.button)}>
-// //   //   Смотреть еще
-// //   // </button>;
-// //   return (
-// //     <div className={s.paginate}>
-// //       <div className={s.wrapper}>
-// //         <button>Prev</button>
-// //         <ul>
-// //           <li>01</li>
-// //           <li>02</li>
-// //           <li>03</li>
-// //           <li>04</li>
-// //           <li>05</li>
-// //         </ul>
-// //         <button>Next</button>
-// //       </div>
-// //     </div>
-// //   );
-// // }
+export default function Paginate({ newsData }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const newsPerPage = 2;
+  const indexOfLastNews = currentPage * newsPerPage;
+  const indexOfFirstNews = indexOfLastNews - newsPerPage;
+  const currentNews = newsData.slice(indexOfFirstNews, indexOfLastNews);
+  const npage = Math.ceil(newsData.length / newsPerPage);
+  const paginate = [...Array(npage + 1).keys()].slice(1);
+
+  const getItemProps = (index) => setCurrentPage(index);
+  const next = () => {
+    if (currentPage !== npage) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const prev = () => {
+    if (currentPage !== 1) {
+      console.log();
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  return (
+    <div>
+      <div className={s.cards}>
+        <h2>More articles</h2>
+        <div className={s.wrapper}>
+          {currentNews.map((news) => {
+            return <NewCards news={news} />;
+          })}
+        </div>
+        <div className={s.paginate}>
+          <div className={s.pag_wrapper}>
+            <button
+              style={{
+                opacity: currentPage === 1 ? '0.5' : '',
+              }}
+              onClick={prev}
+            >
+              Prev
+            </button>
+            <ul>
+              {paginate.map((n) => {
+                return (
+                  <li
+                    style={{
+                      backgroundColor: currentPage === n ? '#000' : '',
+                      color: currentPage === n ? '#fff' : '#000',
+                    }}
+                    onClick={() => getItemProps(n)}
+                    key={n}
+                  >
+                    {n}
+                  </li>
+                );
+              })}
+            </ul>
+            <button
+              style={{
+                opacity: currentPage === npage ? '0.5' : '',
+              }}
+              onClick={next}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // 'use client';
 // import { fetchNews } from '@/app/getData/getData';
 // import React, { useState } from 'react';

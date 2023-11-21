@@ -18,12 +18,12 @@ export default function Header() {
   const { modal } = useSelector((state) => state.modal);
 
   const { isUser, error, userInfo } = useSelector((state) => state.auth);
- const [loading, setLoading] = useState(false);
-  const  getuser = async () => {
-    const id = await JSON?.parse(localStorage.getItem('userToken'));
-     if (id !== null) {
-     dispatch(userProfile(id));
-    setLoading(true)
+
+  useEffect(() => {
+    
+    const id = JSON?.parse(localStorage.getItem('userToken'));
+    if (id !== null) {
+      dispatch(userProfile(id));
     }
 
   }
@@ -40,10 +40,10 @@ export default function Header() {
       document.body.style.overflow = '';
     }
   }, [modal]);
-  return (  
+  return (
     <div>
- <TestJS/>
-    <div className={`${s.Header}`}>
+      <TestJS />
+      <div className={`${s.Header}`}>
         <div className="container">
           <nav className="">
             <Link href="/" className={s.header_logo}>
@@ -80,8 +80,7 @@ export default function Header() {
               </ul>
               {userInfo ? (
                 <Link className={s.profil} href="/page/profil">
-                {loading === false ? (<h2>loading</h2>) : (
-                    <Image
+                  <Image
                     width={70}
                     height={70}
                     src={

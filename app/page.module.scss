@@ -313,6 +313,8 @@
         gap: 8px;
         @media screen and (max-width: 600px) {
           font-size: 18px;
+          width: 180px;
+          height: 40px;
         }
       }
     }
@@ -861,4 +863,6 @@
       }
     }
   }
+}
+.tes {
 }

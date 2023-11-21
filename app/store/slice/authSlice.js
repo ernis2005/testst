@@ -9,11 +9,10 @@ const initialState = {
   userInfo: null,
   userToken: null,
   error: null,
- 
 };
 export const userLogin = createAsyncThunk(
   'users/login',
-  async ({ login, password }, { rejectWithValue, dispatch }) => {
+  async ({ login, password }, { thunkAPI, dispatch }) => {
     const number = login.replace(/\D/g, '');
     try {
       const config = {
@@ -37,7 +36,7 @@ export const userLogin = createAsyncThunk(
       dispatch(handleModal(false));
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
@@ -60,6 +59,32 @@ export const userProfile = createAsyncThunk(
   },
 );
 
+// const authSlice = createSlice({
+//   name: 'user',
+//   initialState,
+//   reducers: {
+//     autoLogin: (state, action) => {
+//       state.userInfo = action.payload.data;
+//     },
+//   },
+//   extraReducers: {
+//     [userLogin.pending]: (state) => {
+//       state.loading = true;
+//       state.error = null;
+//     },
+//     [userLogin.fulfilled]: (state, action) => {
+//       state.loading = false;
+//       state.userToken = action.payload.data.tokens.access;
+//     },
+//     [userLogin.rejected]: (state, action) => {
+//       state.loading = false;
+//       state.error = action?.payload.response;
+//     },
+//   },
+// });
+// export const { autoLogin } = authSlice.actions;
+// export default authSlice.reducer;
+
 const authSlice = createSlice({
   name: 'user',
   initialState,
@@ -71,7 +96,6 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(userLogin.pending, (state) => {
       state.loading = true;
-      state.error = null;
     });
     builder.addCase(userLogin.fulfilled, (state, action) => {
       state.loading = false;

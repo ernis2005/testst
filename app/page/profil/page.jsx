@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { userProfile } from '@/app/store/slice/authSlice';
 import { ubdateDate, updateDate } from '@/app/store/slice/ubdateSlice';
-import Avatar from '../../../public/imgs/avatar.png';
+import Avatar from '@/public/imgs/avatar.png';
 import Spiner from '@/components/Spiner/Spiner';
 
 export default function ProfilPage() {
@@ -27,7 +27,6 @@ export default function ProfilPage() {
   };
 
   const handleFileChange = (event) => {
-
     const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);
@@ -84,7 +83,7 @@ export default function ProfilPage() {
                   <input
                     onChange={(event) => handleFileChange(event)}
                     name="picture"
-                    accept="image/* "
+                    accept="image/*"
                     type="file"
                   />
                   Сменить фото
