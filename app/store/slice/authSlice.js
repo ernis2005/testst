@@ -9,11 +9,10 @@ const initialState = {
   userInfo: null,
   userToken: null,
   error: null,
- 
 };
 export const userLogin = createAsyncThunk(
   'users/login',
-  async ({ login, password }, { rejectWithValue, dispatch }) => {
+  async ({ login, password }, { thunkAPI, dispatch }) => {
     const number = login.replace(/\D/g, '');
     try {
       const config = {
@@ -37,7 +36,7 @@ export const userLogin = createAsyncThunk(
       dispatch(handleModal(false));
       return data;
     } catch (error) {
-      return rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );

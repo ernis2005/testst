@@ -190,9 +190,9 @@ export default async function Home() {
                 industry's standard dummy text ever since the 1500s Lorem Ipsum
                 is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum has been the industry's standard dummy text ever
-                since the 1500s{' '}
+                since the 1500s
               </p>
-              <Link href={'page/compony'} className={s.btn}>
+              <Link href={'page/company'} className={s.btn}>
                 Подробнее
                 <FiArrowUpRight className="w-[24px] h-[24px]" />
               </Link>
