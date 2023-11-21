@@ -19,14 +19,15 @@ export default function Header() {
 
   const { isUser, error, userInfo } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    
-    const id = JSON?.parse(localStorage.getItem('userToken'));
-    if (id !== null) {
-      dispatch(userProfile(id));
-    }
 
-  }
+     const getuser = () => {
+      const id = JSON?.parse(localStorage.getItem('userToken'));
+      if (id !== null) {
+        dispatch(userProfile(id));
+      }
+    
+     }
+  
   useEffect(() => {
     getuser()
   }, []);
@@ -91,7 +92,7 @@ export default function Header() {
                     alt=""
                   />
                   )
-                  }
+                
                 
                 </Link>
               ) : (
