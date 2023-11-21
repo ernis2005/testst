@@ -9,10 +9,10 @@ export const fetchNewsData = createAsyncThunk(
       const response = await axios.get(
         `${backendURL}general/news/?page=${page}`,
       );
-      console.error(response);
+
       return response;
     } catch (error) {
-      console.error(error);
+    
       return rejectWithValue(error);
     }
   },

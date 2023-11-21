@@ -23,7 +23,7 @@ export default function Recovery() {
     dispatch(sendCodeFitch(data));
   };
 
-  console.log(phone);
+
 
   return (
     <>

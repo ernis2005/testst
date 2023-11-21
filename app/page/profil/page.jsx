@@ -27,7 +27,7 @@ export default function ProfilPage() {
   };
 
   const handleFileChange = (event) => {
-    console.log(event);
+
     const file = event.target.files[0];
     if (file) {
       setSelectedFile(file);

@@ -16,7 +16,7 @@ export default function ConfirSendCode() {
     code: '',
   });
 
-  console.log(error);
+
   const handleOnChange = (res) => {
     setResult((prevState) => ({
       ...prevState,

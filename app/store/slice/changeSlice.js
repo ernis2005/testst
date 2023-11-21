@@ -25,7 +25,7 @@ export const changeFirtch = createAsyncThunk(
         },
         config,
       );
-      console.log(response);
+     
       dispatch(handleTabClick(5));
       const token = JSON.parse(localStorage.getItem('userToken'));
       dispatch(userProfile(token));
@@ -34,7 +34,8 @@ export const changeFirtch = createAsyncThunk(
       }, 2000);
       return response;
     } catch (error) {
-      console.log(error);
+    
+
       return rejectWithValue(error);
     }
   },
@@ -58,7 +59,7 @@ const changeSlice = createSlice({
       state.error = null;
     });
     builder.addCase(changeFirtch.fulfilled, (state, action) => {
-      console.log(action);
+
       state.loading = false;
       state.token = action.payload;
     });

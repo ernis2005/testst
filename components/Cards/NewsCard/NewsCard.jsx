@@ -7,7 +7,7 @@ import News from '../../../public/imgs/news.png';
 import noneImage from '../../../public/imgs/noneImage.png';
 
 export default function NewsCard({ news }) {
-  console.log(news.images_slides);
+
 
   return (
     <div className={s.card}>

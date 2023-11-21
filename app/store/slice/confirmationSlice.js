@@ -33,7 +33,7 @@ export const confirmationFetch = createAsyncThunk(
       }, 2000);
       return response;
     } catch (error) {
-      console.log(error);
+
       return rejectWithValue(error);
     }
   },
@@ -60,12 +60,12 @@ const confirmationSlice = createSlice({
     builder.addCase(confirmationFetch.fulfilled, (state, action) => {
       state.loading = false;
       state.token = action.payload;
-      console.log(action.payload);
+   
     });
     builder.addCase(confirmationFetch.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload.response;
-      console.log(action.payload.response.data);
+     
     });
   },
 });

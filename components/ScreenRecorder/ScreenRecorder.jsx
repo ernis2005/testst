@@ -20,7 +20,7 @@ export default ScreenRecorder = ({ isRecording = false, onDataAvailable }) => {
       mediaRecorder.ondataavailable = (event) => {
         if (event.data.size > 0) {
             onDataAvailable(event.data)
-          console.log('recorded data', event.data.size)
+
           chunks.push(event.data);
           if (webSocketRef.current && webSocketRef.current.readyState === WebSocket.OPEN) {
             

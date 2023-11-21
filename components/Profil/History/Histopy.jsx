@@ -123,7 +123,7 @@ export default function Histopy() {
             {datas?.length > 0 ? (
               <div className={s.wrapper}>
                 {datas.map((e) => {
-                  console.log(e);
+              
                   return (
                     <div key={e} className={s.card}>
                       <div className={s.blog}>

@@ -23,7 +23,7 @@ export const sendCodeFitchCode = createAsyncThunk(
         },
         config,
       );
-      console.log(response.data);
+
       dispatch(sendCodeConfirtion(data));
       localStorage.setItem('userToken', JSON.stringify(response.data.access));
       dispatch(handleTabClick(6));
