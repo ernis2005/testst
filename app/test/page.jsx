@@ -20,15 +20,10 @@ const page = () => {
 
   const userId = userInfo?.id
   const { sendMessage, lastMessage, readyState } = useWebSocket(`ws://185.251.88.75:8000/ws/room/${userId}/`);
-
   const [isCalling, setIsCalling] = useState(false)
   const [isInCall, setIsInCall] = useState(false)
   const [callId, setCallid] = useState(null)
   const [lastMessageData, setLastMessageData] = useState()
-
-  
-
-
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
@@ -147,7 +142,7 @@ const page = () => {
         <source src="/test1.mp3" type="audio/mpeg" />
         Тег audio не поддерживается вашим браузером. <a href="/test1.mp3">Скачайте музыку</a>.
       </audio>)}
-      {isCalling && (<button onClick={handleNotification()}>Отправить уведомление</button>)}
+      {isCalling && (<button onClick={handleNotification()}> </button>)}
       {isInCall &&
         <div className={s.module1}>
         <VideoChat handleEndCall={handleEndCall} />

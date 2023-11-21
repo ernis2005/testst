@@ -86,7 +86,19 @@ const TestJS = () => {
           setIsCalling(false)
           setIsInCall(false)
         } else if (type === 'decline') {
-          alert(type)
+           console.log('decline', );
+          toast(("Звонок завершён"), {
+            position: "bottom-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+              setIsCalling(false)
+              setIsInCall(false)
         }
       } catch (e) {
     
@@ -160,7 +172,8 @@ const TestJS = () => {
         <source src="/test1.mp3" type="audio/mpeg" />
         Тег audio не поддерживается вашим браузером. <a href="/test1.mp3">Скачайте музыку</a>.
       </audio>)}
-      {isCalling && (<button onClick={handleNotification()}>Отправить уведомление</button>)}
+      {isCalling && (<button onClick={handleNotification()}>
+      </button>)}
       {isInCall &&
         <div className={s.module1}>
           <VideoChat handleEndCall={handleEndCall}    name={lastMessageData.name} />

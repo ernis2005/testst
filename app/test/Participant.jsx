@@ -77,7 +77,7 @@ const Participant = ({ participant, isMicMuted, height, isVideoEnabled,name }) =
         <BiMicrophoneOff />
       </div>
       }
-      {isVideoEnabled === false && <div className={s.audioUsers}><BsCameraVideoOffFill /></div>}
+      {isVideoEnabled === true && <div className={s.isVideoEnabled}><BsCameraVideoOffFill /></div>}
       <video ref={videoRef} autoPlay={true} />
       <audio ref={audioRef} autoPlay={isAudio} />
     </div>
