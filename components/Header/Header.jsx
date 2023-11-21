@@ -90,10 +90,7 @@ export default function Header() {
                         : userInfo?.image_profile
                     }
                     alt=""
-                  />
-                  )
-                
-                
+                  />  
                 </Link>
               ) : (
                 <button onClick={handleModalOnclik} className={s.header_button}>

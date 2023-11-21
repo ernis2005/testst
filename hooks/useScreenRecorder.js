@@ -26,14 +26,13 @@ export  function useScreenRecorder() {
                     setData(event.data)
                 }
             };
+            
             mediaRecorder.onstop = () => {
-                if (webSocketRef.current && webSocketRef.current.readyState === WebSocket.OPEN) {
-                webSocketRef.current.send(JSON.stringify({ type: 'endRecording' }));
-                }
-
                 const blob = new Blob(chunks, { type: 'video/webm' });
                 const videoURL = URL.createObjectURL(blob);
                 // Здесь вы можете использовать videoURL для проигрывания видео на странице или выполнения других действий
+
+                console.log('stop', videoURL)
             };
 
             getVideoChunksAndSend()
@@ -46,19 +45,20 @@ export  function useScreenRecorder() {
     };
 
     const stopRecording = () => {
-        if (!recording) return
+        console.log('stopRecording')
+        mediaRecorderRef.current?.stop();
+        setMediaStream(null);
+        setRecording(false);
 
-        if (mediaRecorderRef.current && mediaStream) {
-            mediaRecorderRef.current.stop();
-            mediaStream.getTracks().forEach((track) => track.stop());
-            setRecording(false);
-            setData(null)
-        }
+        mediaRecorderRef.current = null;
+
+        setData(null)
     };
 
     const getVideoChunksAndSend = () => {
         setTimeout(function () {
-            mediaRecorderRef.current.requestData()
+            if (mediaRecorderRef.current?.state === 'inactive') return
+            mediaRecorderRef.current?.requestData()
 
             getVideoChunksAndSend()
         }, 3000)

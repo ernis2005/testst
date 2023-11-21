@@ -88,9 +88,10 @@ function VideoChat({ handleEndCall, name }) {
     };
     connectToRoom();
     return () => {
+      console.log('disconnect');
+      stopScreenRecording();
       if (room) {
         room.disconnect();
-        stopScreenRecording();
       }
     };
   }, []);

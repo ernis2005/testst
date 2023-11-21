@@ -72,6 +72,8 @@ const TestJS = () => {
      
           setIsCalling(true)
         } else if (type === 'disable') {
+          if (!isInCall && !isCalling) return
+          
           toast(("Звонок завершён"), {
             position: "bottom-center",
             autoClose: 1000,
@@ -82,11 +84,14 @@ const TestJS = () => {
             progress: undefined,
             theme: "dark",
           });
+          
           // location.reload()
           setIsCalling(false)
           setIsInCall(false)
         } else if (type === 'decline') {
-           console.log('decline', );
+          if (!isCalling) return
+
+          console.log('decline', );
           toast(("Звонок завершён"), {
             position: "bottom-center",
             autoClose: 1000,
@@ -97,8 +102,9 @@ const TestJS = () => {
             progress: undefined,
             theme: "dark",
           });
-              setIsCalling(false)
-              setIsInCall(false)
+
+          setIsCalling(false)
+          setIsInCall(false)
         }
       } catch (e) {
     
@@ -126,7 +132,7 @@ const TestJS = () => {
     sendMessage(JSON.stringify({ type: 'disable', 'call_info_id': callId }))
     setIsCalling(false)
     setIsInCall(false)
-    location.reload()
+ 
   }
   return (
     <div  >
