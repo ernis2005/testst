@@ -35,8 +35,18 @@ export default function Footer() {
               <h3>Quick Links</h3>
               <ul>
                 <li><Link className={s.link} href="/">Главная</Link></li>
-                <li><Link className={s.link} href="page/compony">О компании</Link></li>
-                <li><Link className={s.link} href="/page/news">Новости</Link></li>
+                <li>
+                  <Link className={s.link} href="/page/company">О компании</Link>
+                </li>
+                <li>
+                  <Link className={s.link} href="/page/News">Новости</Link>
+                </li>
+                <li>
+                  <Link className={s.link} href="/page/Questions">Вопросы</Link>
+                </li>
+                <li>
+                  <Link className={s.link} href="/page/contact">Контакты</Link>
+                </li>
               </ul>
             </div>
             <div className={s.wrapper}>
