@@ -34,7 +34,7 @@ export default async function QuestionPage() {
         </div>
         {question.length > 0 ? (
           <div className={s.wrapper}>
-            {question.results.map((item) => {
+            {question.map((item) => {
               return <AccordionPage item={item} />;
             })}
           </div>
