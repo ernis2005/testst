@@ -148,6 +148,17 @@ const logo = [
     title: 'TESLA',
   },
 ];
+export const metadata = {
+  title: 'КОС И КОГ',
+  description: 'Свободное общение, где бы вы ни были!',
+  icons: [
+    {
+      rel: 'icon',
+      sizes: 'any',
+      url: '/logo.jpg',
+    },
+  ],
+};
 
 export default async function Home() {
   const question = await fetchQuintion();

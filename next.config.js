@@ -5,8 +5,7 @@ const nextConfig = {
     domains: ['185.251.88.75'],
   },
   generateBuildId: async () => {
-    
-    return 'my-build-id'
+    return 'my-build-id';
   },
   distDir: 'build',
 };
