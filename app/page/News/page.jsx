@@ -55,7 +55,7 @@ export default async function NewsPage() {
                 <h3>{newsData[0].thesis}</h3>
                 <div className={s.data}>
                   <p>{formatDate(newsData[0].created_at)}</p>
-                  <Link className={s.link} href={`news/${newsData[0].id}`}>
+                  <Link className={s.link} href={`News/${newsData[0].id}`}>
                     Читать полностью <FiArrowUpRight className={s.logo} />{' '}
                   </Link>
                 </div>
