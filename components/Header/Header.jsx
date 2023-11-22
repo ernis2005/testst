@@ -19,17 +19,15 @@ export default function Header() {
 
   const { isUser, error, userInfo } = useSelector((state) => state.auth);
 
+  const getuser = () => {
+    const id = JSON?.parse(localStorage.getItem('userToken'));
+    if (id !== null) {
+      dispatch(userProfile(id));
+    }
+  };
 
-     const getuser = () => {
-      const id = JSON?.parse(localStorage.getItem('userToken'));
-      if (id !== null) {
-        dispatch(userProfile(id));
-      }
-    
-     }
-  
   useEffect(() => {
-    getuser()
+    getuser();
   }, []);
   const handleModalOnclik = () => {
     dispatch(handleModal(!modal));
@@ -64,12 +62,12 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className={s.link} href="/page/news">
+                  <Link className={s.link} href="/page/News">
                     Новости
                   </Link>
                 </li>
                 <li>
-                  <Link className={s.link} href="/page/questions">
+                  <Link className={s.link} href="/page/Questions">
                     Вопросы
                   </Link>
                 </li>
@@ -90,7 +88,7 @@ export default function Header() {
                         : userInfo?.image_profile
                     }
                     alt=""
-                  />  
+                  />
                 </Link>
               ) : (
                 <button onClick={handleModalOnclik} className={s.header_button}>
