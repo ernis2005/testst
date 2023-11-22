@@ -75,7 +75,7 @@ const logo = [
   },
 ];
 
-export default function ComponyPage() {
+function ComponyPage() {
   return (
     <div>
       <div className="container">
@@ -143,3 +143,4 @@ export default function ComponyPage() {
     </div>
   );
 }
+export default ComponyPage;

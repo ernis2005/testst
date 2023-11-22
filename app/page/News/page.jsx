@@ -63,15 +63,6 @@ export default async function NewsPage() {
             </div>
           </div>
           <Paginate newsData={newsData} />
-          {/* <div className={s.cards}>
-            <h2>More articles</h2>
-            <div className={s.wrapper}>
-              {newsData.map((news) => {
-                return <NewCards news={news} />;
-              })}
-            </div>
-             <Paginate /> 
-            </div> */}
         </div>
       ) : (
         <center>
