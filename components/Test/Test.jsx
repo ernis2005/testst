@@ -27,6 +27,8 @@ const TestJS = () => {
   const [callId, setCallid] = useState(null)
   const [lastMessageData, setLastMessageData] = useState()
 
+
+
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
@@ -63,6 +65,7 @@ const TestJS = () => {
       try {
         const data = JSON.parse(lastMessage.data)
         const type = data.type
+          consle.log('data',data );
    
         setLastMessageData(data)
         if (type === 'calling') {

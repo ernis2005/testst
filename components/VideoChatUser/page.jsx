@@ -88,6 +88,7 @@ export const VideoChatUser = () => {
   const { sendMessage, lastMessage, readyState } = useWebSocket(
     `ws://185.251.88.75:8000/ws/room/${Chat_id}/`,
   );
+  console.log('lastMessage', lastMessage);
 
   React.useEffect(() => {
     if (room) {
