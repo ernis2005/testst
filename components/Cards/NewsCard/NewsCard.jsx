@@ -7,8 +7,6 @@ import News from '../../../public/imgs/news.png';
 import noneImage from '../../../public/imgs/noneImage.png';
 
 export default function NewsCard({ news }) {
-
-
   return (
     <div className={s.card}>
       <div>
@@ -28,7 +26,7 @@ export default function NewsCard({ news }) {
           <h2>{news.thesis.slice(0, 15)}</h2>
           <p>{news.description.slice(0, 35)}...</p>
         </div>
-        <Link className={s.link} href={`page/news/${news.id}`}>
+        <Link className={s.link} href={`page/News/${news.id}`}>
           <FiArrowUpRight className={s.logo} />
         </Link>
       </div>

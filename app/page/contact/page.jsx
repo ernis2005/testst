@@ -5,14 +5,14 @@ export const metadata = {
   description: '',
   icons: [
     {
-      rel: "icon",
-      sizes: "any",
-      url: "/logo.jpg",
+      rel: 'icon',
+      sizes: 'any',
+      url: '/logo.jpg',
     },
   ],
-}
+};
 
-export default function ContactPage() {
+function ContactPage() {
   return (
     <div>
       <div className="container">
@@ -61,3 +61,5 @@ export default function ContactPage() {
     </div>
   );
 }
+
+export default ContactPage;

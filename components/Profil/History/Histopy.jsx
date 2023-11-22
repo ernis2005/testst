@@ -123,7 +123,7 @@ export default function Histopy() {
             {datas?.length > 0 ? (
               <div className={s.wrapper}>
                 {datas.map((e) => {
-              
+                  console.log(e);
                   return (
                     <div key={e} className={s.card}>
                       <div className={s.blog}>
@@ -148,7 +148,7 @@ export default function Histopy() {
                           />
                         </svg>
                         <div className={s.title}>
-                          <h3>{e.partner_name}</h3>
+                          <h3>{e.operator_name}</h3>
                           <p>{e.end_time?.slice(11, 19)}</p>
                         </div>
                       </div>

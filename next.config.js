@@ -5,7 +5,7 @@ const nextConfig = {
     domains: ['185.251.88.75'],
   },
   generateBuildId: async () => {
-    // You can, for example, get the latest git commit hash here
+    
     return 'my-build-id'
   },
   distDir: 'build',

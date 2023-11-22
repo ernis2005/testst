@@ -55,7 +55,7 @@ export default async function NewsPage() {
                 <h3>{newsData[0].thesis}</h3>
                 <div className={s.data}>
                   <p>{formatDate(newsData[0].created_at)}</p>
-                  <Link className={s.link} href={`news/${newsData[0].id}`}>
+                  <Link className={s.link} href={`News/${newsData[0].id}`}>
                     Читать полностью <FiArrowUpRight className={s.logo} />{' '}
                   </Link>
                 </div>
@@ -63,15 +63,6 @@ export default async function NewsPage() {
             </div>
           </div>
           <Paginate newsData={newsData} />
-          {/* <div className={s.cards}>
-            <h2>More articles</h2>
-            <div className={s.wrapper}>
-              {newsData.map((news) => {
-                return <NewCards news={news} />;
-              })}
-            </div>
-             <Paginate /> 
-            </div> */}
         </div>
       ) : (
         <center>

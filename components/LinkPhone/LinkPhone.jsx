@@ -11,6 +11,9 @@ export default function LinkPhone() {
   const { userInfo } = useSelector((state) => state.auth);
   const { modal } = useSelector((state) => state.modal);
 
+  if (userInfo?.role === 'operator') {
+    return null;
+  }
   return (
     <div>
       {userInfo ? (
@@ -20,7 +23,7 @@ export default function LinkPhone() {
       ) : (
         <Link
           href="#"
-          onClick={() => dispatch(handleModal())}
+          onClick={() => dispatch(handleModal(!modal))}
           className={s.link}
         >
           <MdLocalPhone className={s.logo} />

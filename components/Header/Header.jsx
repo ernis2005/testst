@@ -19,17 +19,15 @@ export default function Header() {
 
   const { isUser, error, userInfo } = useSelector((state) => state.auth);
 
+  const getuser = () => {
+    const id = JSON?.parse(localStorage.getItem('userToken'));
+    if (id !== null) {
+      dispatch(userProfile(id));
+    }
+  };
 
-     const getuser = () => {
-      const id = JSON?.parse(localStorage.getItem('userToken'));
-      if (id !== null) {
-        dispatch(userProfile(id));
-      }
-    
-     }
-  
   useEffect(() => {
-    getuser()
+    getuser();
   }, []);
   const handleModalOnclik = () => {
     dispatch(handleModal(!modal));
@@ -64,12 +62,12 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className={s.link} href="/page/news">
+                  <Link className={s.link} href="/page/News">
                     Новости
                   </Link>
                 </li>
                 <li>
-                  <Link className={s.link} href="/page/questions">
+                  <Link className={s.link} href="/page/Questions">
                     Вопросы
                   </Link>
                 </li>
@@ -90,7 +88,7 @@ export default function Header() {
                         : userInfo?.image_profile
                     }
                     alt=""
-                  />  
+                  />
                 </Link>
               ) : (
                 <button onClick={handleModalOnclik} className={s.header_button}>
@@ -108,53 +106,43 @@ export default function Header() {
           </nav>
         </div>
         {toggle && (
-          <ul className={`${s.toggle_menu}`}>
-            <li className="">
-              <Link
-                onClick={() => setToggle(!toggle)}
-                className={s.link}
-                href="/"
-              >
-                Главная
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={() => setToggle(!toggle)}
-                className={s.link}
-                href="/page/compony"
-              >
-                О компании
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={() => setToggle(!toggle)}
-                className={s.link}
-                href="/page/news"
-              >
-                Новости
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={() => setToggle(!toggle)}
-                className={s.link}
-                href="/page/questions"
-              >
-                Вопросы
-              </Link>
-            </li>
-            <li>
-              <Link
-                onClick={() => setToggle(!toggle)}
-                className={s.link}
-                href="/page/contact"
-              >
-                Контакты
-              </Link>
-            </li>
-          </ul>
+          <div className={`${s.toggle_menu}`}>
+            <Link
+              onClick={() => setToggle(!toggle)}
+              className={s.link}
+              href="/"
+            >
+              Главная
+            </Link>
+            <Link
+              onClick={() => setToggle(!toggle)}
+              className={s.link}
+              href="/page/company"
+            >
+              О компании
+            </Link>
+            <Link
+              onClick={() => setToggle(!toggle)}
+              className={s.link}
+              href="/page/News"
+            >
+              Новости
+            </Link>
+            <Link
+              onClick={() => setToggle(!toggle)}
+              className={s.link}
+              href="/page/Questions"
+            >
+              Вопросы
+            </Link>
+            <Link
+              onClick={() => setToggle(!toggle)}
+              className={s.link}
+              href="/page/contact"
+            >
+              Контакты
+            </Link>
+          </div>
         )}
         {modal && <Modal />}
       </div>

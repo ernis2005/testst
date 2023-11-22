@@ -9,9 +9,9 @@ import s from '../../app/test/page.module.scss';
 
 import { BsCameraVideo, BsCameraVideoOff } from 'react-icons/bs';
 import { BiMicrophone, BiMicrophoneOff } from 'react-icons/bi';
-import { useSelector } from 'react-redux';
 
 import { useScreenRecorder } from '../../hooks/useScreenRecorder';
+import { useSelector } from 'react-redux';
 
 export const Svg = () => (
   <svg
@@ -44,13 +44,13 @@ function VideoChat({ handleEndCall, name }) {
     useScreenRecorder();
 
 
-     
   const roomName = room?.name;
   const { sendMessage, lastMessage, readyState } = useWebSocket(
     `ws://185.251.88.75:8000/ws/record/${roomName}/`,
   );
-    console.log('lastMessage', lastMessage);
-    const connectionStatus = {
+
+   console.log('lastMessage', lastMessage);
+  const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
     [ReadyState.CLOSING]: 'Closing',
@@ -65,7 +65,7 @@ function VideoChat({ handleEndCall, name }) {
         const id = await JSON.parse(localStorage.getItem('userToken'));
         const bearerToken = await id;
         const response = await axios.get(
-          'http://185.251.88.75/api/general/get_video_token/', 
+          'http://185.251.88.75/api/general/get_video_token/',
           {
             headers: {
               Authorization: `Bearer ${bearerToken}`,
@@ -73,7 +73,6 @@ function VideoChat({ handleEndCall, name }) {
           },
         );
         const { token,  } = await response.data;
-      
         const newRoom = await Video.connect(token, {
           name: response.data.room,
           audio: true,
@@ -83,7 +82,6 @@ function VideoChat({ handleEndCall, name }) {
         setRoom(newRoom);
 
         startScreenRecording();
-        // Добавляем локальный видеопоток
       } catch (error) {
         console.error('Error connecting to the room:', error);
       }
@@ -210,8 +208,7 @@ function VideoChat({ handleEndCall, name }) {
                   height={''}
                   isMicMuted={!participantMicEnabled}
                   isVideoEnabled={!participantCamEnabled}
-                 name={name}
-                
+                  name={name}
                 />
               </div>
             )}

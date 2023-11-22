@@ -42,7 +42,7 @@ export default function Paginate({ newsData }) {
               }}
               onClick={prev}
             >
-              Prev
+              Назад
             </button>
             <ul>
               {paginate.map((n) => {
@@ -66,7 +66,7 @@ export default function Paginate({ newsData }) {
               }}
               onClick={next}
             >
-              Next
+              Вперёд
             </button>
           </div>
         </div>
@@ -74,80 +74,3 @@ export default function Paginate({ newsData }) {
     </div>
   );
 }
-
-// 'use client';
-// import { fetchNews } from '@/app/getData/getData';
-// import React, { useState } from 'react';
-
-// export default function Paginate() {
-//   const data = fetchNews();
-
-//   const [currentPage, setCurrentPage] = useState(1);
-
-//   const newsPerPage = 2;
-//   console.log(data);
-
-//   const news = data || [];
-//   console.log(news);
-
-//   const indexOfLastNews = currentPage * newsPerPage;
-//   const indexOfFirstNews = indexOfLastNews - newsPerPage;
-//   // const currentNews = newsd.slice(indexOfFirstNews, indexOfLastNews);
-//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-//   const [active, setActive] = useState(currentPage);
-//   const getItemProps = (index) => ({
-//     variant: active === index ? 'filled' : 'text',
-//     color: active === index ? 'gray' : '#000',
-
-//     onClick: () => {
-//       setActive(index);
-//       paginate(index);
-//     },
-//   });
-//   const next = () => {
-//     if (active === Math.ceil(totalNews / newsPerPage)) return;
-//     setActive(active + 1);
-//     paginate(active + 1);
-//   };
-
-//   const prev = () => {
-//     if (active === 1) return;
-//     setActive(active - 1);
-//     paginate(active - 1);
-//   };
-
-//   return (
-//     <div>
-//       {/* <div className="flex items-center gap-4">
-//         <button
-//           variant="text"
-//           className="flex items-center gap-2"
-//           onClick={prev}
-//           disabled={active === 1}
-//         >
-//           Prevs
-//           // {/* <GrFormPrevious strokeWidth={2} className="h-6 w-6" />
-//         </button>
-//         <div className="flex items-center gap-2">
-//           {Array.from({ length: Math.ceil(totalNews / newsPerPage) }).map(
-//             (_, index) => (
-//               <div className="" key={index} {...getItemProps(index + 1)}>
-//                 <span className="">{index + 1}</span>
-//               </div>
-//             ),
-//           )}
-//         </div>
-//         <button
-//           variant="text"
-//           className="flex items-center gap-2"
-//           onClick={next}
-//           disabled={active === Math.ceil(totalNews / newsPerPage)}
-//         >
-//           next
-//           <GrFormNext strokeWidth={2} className="h-6 w-6" />
-//         </button>
-//       </div> */}
-//     </div>
-//   );
-// }

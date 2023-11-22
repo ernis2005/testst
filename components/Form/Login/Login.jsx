@@ -24,6 +24,7 @@ export default function Login() {
     e.preventDefault();
     setEye(!eye);
   };
+
   const submitForm = (data) => {
     dispatch(userLogin(data));
   };

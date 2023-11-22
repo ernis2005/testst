@@ -37,7 +37,7 @@ export default function NewCards({ news }) {
       <div className={s.title}>
         <div className={s.data}>
           <p>{formatDate(news.created_at)}</p>
-          <Link className={s.link} href={`news/${news.id}`}>
+          <Link className={s.link} href={`News/${news.id}`}>
             Читать полностью
             <FiArrowUpRight className={s.logo} />
           </Link>
