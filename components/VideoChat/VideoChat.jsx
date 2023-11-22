@@ -49,6 +49,7 @@ function VideoChat({ handleEndCall, name }) {
     `ws://185.251.88.75:8000/ws/record/${roomName}/`,
   );
 
+   console.log('lastMessage', lastMessage);
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',

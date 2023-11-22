@@ -3,6 +3,7 @@ import s from './page.module.scss';
 import Spiner from '@/components/Spiner/Spiner';
 import { fetchQuintion } from '@/app/getData/getData';
 import AccordionPage from '@/components/AccordionPage/AccordionPage';
+
 export const metadata = {
   title: ' Вапросы и ответы',
   description: '',
@@ -14,6 +15,7 @@ export const metadata = {
     },
   ],
 };
+
 export default async function QuestionPage() {
   const data = await fetchQuintion();
   const question = data?.results || [];
@@ -34,7 +36,7 @@ export default async function QuestionPage() {
         </div>
         {question.length > 0 ? (
           <div className={s.wrapper}>
-            {question.results.map((item) => {
+            {question.map((item) => {
               return <AccordionPage item={item} />;
             })}
           </div>
