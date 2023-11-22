@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
           <div className={s.footer_rigth}>
             <div>
-              <h3>Quick Links</h3>
+              {/* <h3>Quick Links</h3> */}
               <ul>
                 <li><Link className={s.link} href="/">Главная</Link></li>
                 <li><Link className={s.link} href="page/compony">О компании</Link></li>

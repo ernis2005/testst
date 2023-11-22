@@ -14,6 +14,7 @@ import { type } from 'os';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import { toast } from 'react-toastify';
 export const Svg = () => (
   <svg
     className="text-white"
@@ -37,6 +38,8 @@ export const VideoChatUser = () => {
   const [participants, setParticipants] = React.useState([]);
   const [cameraIndexFo, setCameraIndexFo] = React.useState(2);
   const [isAudio, setIsAudio] = React.useState(true);
+  const [userFullName, setUserFullName] = React.useState();
+  const [userFullNameOP, setUserFullNameOp] = React.useState();
   const [participantCamEnabled, setParticipantCamEnabled] = React.useState(true);
   const [callId, setCallid] = React.useState(null);
   const [participantMicEnabled, setParticipantMicEnabled] = React.useState(true);
@@ -54,17 +57,19 @@ export const VideoChatUser = () => {
     const connectToRoom = async () => {
       try {
         const response = await axios.get(
-          'http://185.251.88.75/api/general/get_video_token/', // `http://185.251.88.75/api/general/get_video_token/`,
+          'http://185.251.88.75/api/general/get_video_token/',
           {
             headers: {
               Authorization: `Bearer ${returnFormData}`,
             },
           },
         );
-        const { token, chat_id, call_info_id } = await response.data;
+        const { token, chat_id, call_info_id, full_name } = await response.data;
         setChat_id(chat_id);
-
+        console.log(response.data, 'response.data');
+        console.log(call_info_id, 'chat_id');
         setCallid(call_info_id);
+        setUserFullNameOp(full_name)
         const newRoom = await Video.connect(token, {
           name: ' my-Cha',
           //  response.data.room,
@@ -88,7 +93,6 @@ export const VideoChatUser = () => {
   const { sendMessage, lastMessage, readyState } = useWebSocket(
     `ws://185.251.88.75:8000/ws/room/${Chat_id}/`,
   );
-  console.log('lastMessage', lastMessage);
 
   React.useEffect(() => {
     if (room) {
@@ -97,7 +101,6 @@ export const VideoChatUser = () => {
       room.on('trackDisabled', handleTrackDisabled);
       room.on('trackEnabled', handleTrackEnabled);
       room.participants.forEach(participantConnected);
-
     }
     return () => {
       if (room) {
@@ -142,7 +145,7 @@ export const VideoChatUser = () => {
     if (track.kind === 'audio') {
       setParticipantMicEnabled(true);
     } else if (track.kind === 'video') {
-      setParticipantCamEnabled(false);
+      setParticipantCamEnabled(true);
     }
   };
 
@@ -193,77 +196,77 @@ export const VideoChatUser = () => {
 
   React.useEffect(() => {
     if (lastMessage !== null) {
+      console.log(lastMessage, 'lastMessage');
       try {
         const data = JSON.parse(lastMessage.data);
 
         const type = data.type;
         setLastMessageData(data);
+        console.log(data, 'data');
+        setUserFullName(data.user_full_name)
         if (type === 'answering') {
           setIsCalling(false);
           setIsInCall(true);
+          console.log('answering');
         } else if (type === 'disable') {
-          toast(("Звонок завершён"), {
-            position: "bottom-center",
+          toast('Звонок завершён', {
+            position: 'bottom-center',
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: 'dark',
           });
           setIsInCall(false);
           setIsCalling(false);
-          redirect('/')
-
+          window.location.href = '/';
 
         } else if (type === 'decline') {
-          toast(("Звонок завершён"), {
-            position: "bottom-center",
+          toast('Звонок завершён', {
+            position: 'bottom-center',
             autoClose: 1000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "dark",
+            theme: 'dark',
           });
           setIsInCall(false);
           setIsCalling(false);
-          redirect('/')
+          window.location.href = '/';
+
         }
       } catch (e) {
         console.log(e);
       }
     }
   }, [lastMessage]);
-  let redirectTest = false
+
+  let redirectTest = false;
   const redirectPage = () => {
     sendMessage(JSON.stringify({ type: 'disable', call_info_id: callId }));
     setIsCalling(false);
-    redirectTest = true
+    redirectTest = true;
     if (redirectTest === true) {
       window.location.href = '/';
     }
   };
   const onRediteck = () => {
-    redirect('/')
-  }
-
+    redirect('/');
+  };
 
   return (
     <div className={s.blockblock}>
-      {redirectTest === true && (
-        <p onClick={onRediteck()}></p>
-
-      )}
+      {redirectTest === true && <p onClick={onRediteck()}></p>}
 
       {isCalling === true && (
         <div className={s.module}>
           <div className={s.bloxk}>
             <span className={s.userInfo}>
               <div className={s.image}>
-
                 {userInfo?.image_profile !== null ? (
                   <Image
                     src={userInfo?.image_profile}
@@ -293,6 +296,7 @@ export const VideoChatUser = () => {
                 <Participant
                   participant={room.localParticipant}
                   height={400}
+                  name={userFullName}
                 />
               )
               : participants.length > 0 && (
@@ -301,7 +305,9 @@ export const VideoChatUser = () => {
                     participant={participants[participants.length - 1]}
                     height={''}
                     isMicMuted={!participantMicEnabled}
-                    isVideoEnabled={participantCamEnabled}
+                    isVideoEnabled={!participantCamEnabled}
+
+                    name={userFullNameOP}
                   />
                 </div>
               )}
@@ -315,6 +321,7 @@ export const VideoChatUser = () => {
                   <Participant
                     participant={room.localParticipant}
                     height={400}
+                    name={userFullName}
                   />
                 )
                 : participants.length > 0 && (
@@ -323,7 +330,8 @@ export const VideoChatUser = () => {
                       participant={participants[participants.length - 1]}
                       height={400}
                       isMicMuted={!participantMicEnabled}
-                      isVideoEnabled={participantCamEnabled}
+                      isVideoEnabled={!participantCamEnabled}
+                      name={userFullNameOP}
                     />
                   </div>
                 )}

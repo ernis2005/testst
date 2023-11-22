@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, use } from 'react';
 import Video from 'twilio-video';
 import Participant from '../../app/test/Participant';
 
@@ -29,6 +29,7 @@ export const Svg = () => (
   </svg>
 );
 function VideoChat({ handleEndCall, name }) {
+  const { userInfo } = useSelector((state) => state.auth)
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
   const [isFirstTime, setIsFirstTime] = useState(true);
@@ -38,19 +39,18 @@ function VideoChat({ handleEndCall, name }) {
   const [isCamera, setIsCamera] = useState(true);
   const [participantCamEnabled, setParticipantCamEnabled] = useState(true);
   const [participantMicEnabled, setParticipantMicEnabled] = useState(true);
-
+  const [userFullNameOP   , setUserFullNameOp ] = React.useState();
   const { startScreenRecording, stopScreenRecording, recordedData } =
     useScreenRecorder();
 
 
+     
   const roomName = room?.name;
-
   const { sendMessage, lastMessage, readyState } = useWebSocket(
     `ws://185.251.88.75:8000/ws/record/${roomName}/`,
   );
-
-   console.log('lastMessage', lastMessage);
-  const connectionStatus = {
+    console.log('lastMessage', lastMessage);
+    const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
     [ReadyState.CLOSING]: 'Closing',
@@ -73,6 +73,7 @@ function VideoChat({ handleEndCall, name }) {
           },
         );
         const { token,  } = await response.data;
+      
         const newRoom = await Video.connect(token, {
           name: response.data.room,
           audio: true,
@@ -198,7 +199,9 @@ function VideoChat({ handleEndCall, name }) {
       <div className={s.VideoChat1}>
         {cameraIndexFo === 1
           ? room && (
-              <Participant participant={room.localParticipant} height={400} />
+              <Participant participant={room.localParticipant} height={400} 
+              name={userInfo.full_name}
+               />
             )
           : participants.length > 0 && (
               <div>
@@ -207,6 +210,7 @@ function VideoChat({ handleEndCall, name }) {
                   height={''}
                   isMicMuted={!participantMicEnabled}
                   isVideoEnabled={!participantCamEnabled}
+                 name={name}
                 
                 />
               </div>
@@ -216,7 +220,9 @@ function VideoChat({ handleEndCall, name }) {
         <div className={s.roomVideoChat}>
           {cameraIndexFo === 2
             ? room && (
-                <Participant participant={room.localParticipant} height={400} />
+                <Participant participant={room.localParticipant} height={400} 
+               name={userInfo.full_name}
+                 />
               )
             : participants.length > 0 && (
                 <div>
@@ -225,6 +231,7 @@ function VideoChat({ handleEndCall, name }) {
                     height={400}
                     isMicMuted={!participantMicEnabled}
                     isVideoEnabled={!participantCamEnabled}
+                     name={name}
                   />
                 </div>
               )}

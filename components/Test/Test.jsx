@@ -21,14 +21,17 @@ const TestJS = () => {
   const { userInfo } = useSelector((state) => state.auth)
 
   const userId = userInfo?.id
+  
+   
   const { sendMessage, lastMessage, readyState } = useWebSocket(`ws://185.251.88.75:8000/ws/room/${userId}/`);
+  console.log(`ws://185.251.88.75:8000/ws/room/${userId}/`);
   const [isCalling, setIsCalling] = useState(false)
   const [isInCall, setIsInCall] = useState(false)
   const [callId, setCallid] = useState(null)
   const [lastMessageData, setLastMessageData] = useState()
+  const [userFullName, setUserFullName] = useState()
 
-
-
+  
   const connectionStatus = {
     [ReadyState.CONNECTING]: 'Connecting',
     [ReadyState.OPEN]: 'Open',
@@ -37,13 +40,14 @@ const TestJS = () => {
     [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
   }[readyState];
 
+  console.log(userId, 'userId users ');
+  console.log('connection status', connectionStatus[readyState], readyState, lastMessage);
 
   const handleNotification = () => {
     if (!("Notification" in window)) {
       alert("Этот браузер не поддерживает уведомления.");
-    } else if (Notification.permission === "granted") {
+    }  else if (Notification.permission === "granted") {
       const data = JSON.parse(lastMessage.data)
-
       new Notification("Звонок", {
         body: `${data.name}`,
         icon: `${data.image}`,
@@ -65,7 +69,7 @@ const TestJS = () => {
       try {
         const data = JSON.parse(lastMessage.data)
         const type = data.type
-          consle.log('data',data );
+        // consle.log('data',data );
    
         setLastMessageData(data)
         if (type === 'calling') {
@@ -108,9 +112,14 @@ const TestJS = () => {
 
           setIsCalling(false)
           setIsInCall(false)
+        } else if (type === 'answering') {
+          // if (!isCalling) return
+          
+          // setIsInCall(true)
+          setUserFullName(data.user_full_name)
         }
       } catch (e) {
-    
+        console.log('error', e);
       }
     }
   }, [lastMessage]);
@@ -195,7 +204,7 @@ const TestJS = () => {
       </button>)}
       {isInCall &&
         <div className={s.module1}>
-          <VideoChat handleEndCall={handleEndCall}    name={lastMessageData.name} />
+          <VideoChat handleEndCall={handleEndCall}    name={userFullName} />
         </div>
       }
     </div>
