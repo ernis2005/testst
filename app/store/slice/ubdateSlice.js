@@ -45,34 +45,9 @@ const ubdateSlice = createSlice({
     });
     builder.addCase(updateDate.rejected, (state, action) => {
       state.status = 'failed';
-      state.error = action?.payload;
+      state.error = action.payload;
     });
   },
 });
 export const {} = ubdateSlice.actions;
 export default ubdateSlice.reducer;
-
-// const ubdateSlice = createSlice({
-//   name: 'modal',
-//   initialState: {
-//     photo: null,
-//     status: 'idle',
-//     error: null,
-//   },
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder.addCase(updateDate.pending, (state) => {
-//       state.status = 'loading';
-//     });
-//     builder.addCase(updateDate.fulfilled, (state, action) => {
-//       state.status = 'succeeded';
-//       state.photo = action.payload;
-//     });
-//     builder.addCase(updateDate.rejected, (state, action) => {
-//       state.status = 'failed';
-//       state.error = action?.payload;
-//     });
-//   },
-// });
-// export const {} = ubdateSlice.actions;
-// export default ubdateSlice.reducer;
