@@ -22,7 +22,9 @@
         width: 600px;
         display: grid;
         gap: 30px;
-
+        @media screen and (max-width:666px) {
+            max-width: 360px;
+        }
     }
 }
 
@@ -374,6 +376,9 @@ background: rgba(57, 57, 57, 0.50);
     align-content: space-between;
     justify-content: end;
     justify-items: center;
+    @media screen and (max-width:666px) {
+        max-width: 360px;
+    }
 }
 .blockblock{
     position: absolute;
