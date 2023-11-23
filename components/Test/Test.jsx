@@ -92,7 +92,7 @@ const TestJS = () => {
             theme: "dark",
           });
           
-          // location.reload()
+          location.reload()
           setIsCalling(false)
           setIsInCall(false)
         } else if (type === 'decline') {
@@ -144,7 +144,7 @@ const TestJS = () => {
     sendMessage(JSON.stringify({ type: 'disable', 'call_info_id': callId }))
     setIsCalling(false)
     setIsInCall(false)
-  
+    location.reload()
     toast(("Звонок завершён"), {
       position: "bottom-center",
       autoClose: 1000,
