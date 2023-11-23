@@ -67,6 +67,10 @@ export default function Slider() {
           nextEl: ".next",
         }}
         breakpoints={{
+          320: {
+            slidesPerView: 1.7,
+            spaceBetween: 40,
+          },
           425: {
             slidesPerView: 1.7,
             spaceBetween: 40,
