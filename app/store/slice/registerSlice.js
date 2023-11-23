@@ -26,11 +26,9 @@ export const registerUser = createAsyncThunk(
       );
       const phone = data.phone;
       dispatch(autoRegister(phone));
-      // dispatch(autoRegister(data.phone));
       dispatch(handleTabClick(4));
       return user;
     } catch (error) {
-  
       return rejectWithValue(error.response);
     }
   },
